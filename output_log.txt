@@ -1,0 +1,520 @@
+122536 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {3730021850539978676=-4661027989497318667}, [hello there]
+122952 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+122952 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 177
+122952 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+122952 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+122953 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=177, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+122954 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 177
+122954 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 177 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+124539 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+124539 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+124539 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {-1467480304869724973=-694720440509359941}, [hello there]
+124953 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+124953 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+124953 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+124953 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 178
+124953 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=178, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+124954 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 178
+124954 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 178 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+126541 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+126541 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+126542 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {4189522569322248226=235123892264301035}, [hello there]
+126954 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+126954 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+126954 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+126954 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 179
+126954 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=179, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+126956 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 179
+126956 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 179 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+128545 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+128545 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+128545 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {4968379678387928186=-8650615783321551352}, [hello there]
+128956 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+128956 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+128956 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 180
+128956 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+128956 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=180, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+128957 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 180
+128957 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 180 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+130653 [Thread-25-mobile_request_spout] WARN storm.kafka.KafkaUtils - No data found in Kafka Partition partition_1
+130654 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+130654 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+130655 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {-4599342897660588550=-803272009863728311}, [hello there]
+130823 [Thread-25-mobile_request_spout] INFO storm.kafka.ZkCoordinator - Refreshing partition manager connections
+130823 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkCoordinator - Refreshing partition manager connections
+130826 [Thread-27-mobile_request_spout] INFO storm.kafka.DynamicBrokersReader - Read partition info from zookeeper: GlobalPartitionInformation{partitionMap={0=10.189.169.107:9092, 1=10.189.169.107:9092}}
+130826 [Thread-25-mobile_request_spout] INFO storm.kafka.DynamicBrokersReader - Read partition info from zookeeper: GlobalPartitionInformation{partitionMap={0=10.189.169.107:9092, 1=10.189.169.107:9092}}
+130826 [Thread-25-mobile_request_spout] INFO storm.kafka.ZkCoordinator - Deleted partition managers: []
+130826 [Thread-25-mobile_request_spout] INFO storm.kafka.ZkCoordinator - New partition managers: []
+130826 [Thread-25-mobile_request_spout] INFO storm.kafka.ZkCoordinator - Finished refreshing
+130826 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkCoordinator - Deleted partition managers: []
+130826 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkCoordinator - New partition managers: []
+130826 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkCoordinator - Finished refreshing
+130957 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+130957 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+130957 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+130957 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 181
+130957 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=181, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+130958 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 181
+130958 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 181 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+132569 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+132569 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+132570 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {8238207759557340987=-5027350814153905928}, [hello there]
+132958 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+132958 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+132958 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 182
+132958 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+132958 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=182, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+132973 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 182
+132973 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 182 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+134573 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+134573 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+134573 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {8514572683416204744=5784060786711941884}, [hello there]
+134959 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+134959 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+134959 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+134959 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 183
+134959 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=183, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+134961 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 183
+134961 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 183 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+136576 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+136576 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+136576 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {-885552926872485427=-1883826442578009420}, [hello there]
+136960 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+136960 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+136960 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+136960 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 184
+136960 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=184, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+136961 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 184
+136961 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 184 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+138579 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+138579 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+138579 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {-4226097830993134323=5957660093556171013}, [hello there]
+138962 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+138962 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+138962 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 185
+138962 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+138962 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=185, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+138963 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 185
+138963 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 185 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+140590 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+140591 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+140591 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {4136043257598989593=1455021903525270966}, [hello there]
+140963 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+140963 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+140963 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+140963 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 186
+140963 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=186, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+140971 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 186
+140971 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 186 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+142594 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+142594 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+142594 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {-2210381859265452866=-1994000384926511110}, [hello there]
+142964 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+142964 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+142964 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 187
+142964 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+142964 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=187, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+142965 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 187
+142965 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 187 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+144597 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+144597 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+144598 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {3266472175647097023=-4701687647438789554}, [hello there]
+144965 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+144965 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+144965 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 188
+144965 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+144965 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=188, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+144967 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 188
+144967 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 188 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+146599 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+146599 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+146599 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {-5054440240975897661=-5453179414548565115}, [hello there]
+146966 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+146966 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+146966 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+146966 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 189
+146966 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=189, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+146968 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 189
+146968 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 189 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+148602 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+148602 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+148603 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {-8867547639458794096=-6458092465246171360}, [hello there]
+148967 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+148967 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+148967 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+148967 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 190
+148967 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=190, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+148993 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 190
+148993 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 190 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+150605 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+150605 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+150606 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {5732530084375693689=4238779472822243043}, [hello there]
+150968 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+150968 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+150969 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+150969 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 191
+150969 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=191, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+150970 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 191
+150970 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 191 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+152609 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+152609 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+152609 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {-3231521618529030123=77683962479717284}, [hello there]
+152970 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+152970 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+152970 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+152970 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 192
+152970 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=192, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+152972 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 192
+152972 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 192 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+154610 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+154610 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+154611 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {725308430193043505=-6003391681304235163}, [hello there]
+154971 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+154971 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+154971 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+154971 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 193
+154971 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=193, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+154973 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 193
+154973 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 193 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+156612 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+156612 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+156613 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {-979994634973807865=8621639345355598501}, [hello there]
+156972 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+156972 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+156972 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+156972 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 194
+156972 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=194, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+156999 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 194
+156999 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 194 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+158617 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+158617 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+158618 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {1349691360995274671=-8519949049714528526}, [hello there]
+158973 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+158973 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+158973 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 195
+158973 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+158973 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=195, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+158988 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 195
+158988 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 195 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+160619 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+160619 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+160620 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {-4135231899407220267=-5877039809094422845}, [hello there]
+160974 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+160974 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+160974 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+160974 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 196
+160974 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=196, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+160998 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 196
+160998 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 196 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+162635 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+162635 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+162636 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {7128833556628770731=-7679048518207829372}, [hello there]
+162975 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+162975 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+162975 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+162975 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 197
+162976 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=197, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+162997 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 197
+162997 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 197 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+164638 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+164638 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+164639 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {-8673592550844681439=6840401053541855985}, [hello there]
+164977 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+164977 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+164977 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+164977 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 198
+164977 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=198, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+164995 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 198
+164995 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 198 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+166641 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+166641 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+166642 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {2994037536419412563=-5255050345826314074}, [hello there]
+166978 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+166978 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+166978 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 199
+166978 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+166978 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=199, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+166979 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 199
+166979 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 199 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+168644 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+168644 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+168645 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {-4862476684957076669=6483718032949149943}, [hello there]
+168979 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+168979 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+168979 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+168979 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 200
+168979 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=200, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+168981 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 200
+168981 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 200 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+170647 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+170647 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+170648 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {7438705974742335175=8538016327472567293}, [hello there]
+170981 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+170981 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+170981 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+170981 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 201
+170981 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=201, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+170983 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 201
+170983 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 201 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+172664 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+172664 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+172665 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {-3411606311946740028=2658300541200021489}, [hello there]
+172982 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+172982 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+172982 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+172982 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 202
+172982 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=202, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+172983 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 202
+172983 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 202 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+174668 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+174668 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+174668 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {2696578715821945756=-8749260129952526916}, [hello there]
+174983 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+174983 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+174983 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+174983 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 203
+174983 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=203, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+174984 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 203
+174984 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 203 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+176672 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+176672 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+176673 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {-5504089400836104988=5019647818690126542}, [hello there]
+176984 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+176984 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+176985 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 204
+176985 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+176985 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=204, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+176986 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 204
+176986 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 204 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+178676 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+178676 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+178677 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {8671509767072805210=1636713692029561902}, [hello there]
+178985 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+178985 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+178985 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+178985 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 205
+178985 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=205, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+178986 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 205
+178986 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 205 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+180680 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+180680 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+180681 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {4989209356063982102=-4823269128874909999}, [hello there]
+180986 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+180986 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+180986 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+180986 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 206
+180986 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=206, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+180988 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 206
+180988 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 206 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+182685 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+182685 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+182685 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {-8043860347537613570=8186282348813072688}, [hello there]
+182987 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+182987 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+182987 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+182987 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 207
+182987 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=207, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+182988 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 207
+182988 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 207 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+184687 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+184687 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+184688 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {7449351934769595007=-6958092206650666476}, [hello there]
+184988 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+184988 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+184988 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+184988 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 208
+184988 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=208, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+184990 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 208
+184990 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 208 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+186689 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+186689 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+186690 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {8900406095393423993=-4129764081758093133}, [hello there]
+186990 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+186990 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+186990 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+186990 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 209
+186990 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=209, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+186992 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 209
+186992 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 209 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+188694 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+188694 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+188694 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {8013525965079540858=3986196500738077184}, [hello there]
+188992 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+188992 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+188992 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 210
+188992 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+188992 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=210, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+189010 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 210
+189010 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 210 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+190347 [Thread-25-mobile_request_spout] WARN storm.kafka.KafkaUtils - No data found in Kafka Partition partition_1
+190696 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+190696 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+190697 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {-2597883826403606738=-2794825411194192065}, [hello there]
+190828 [Thread-25-mobile_request_spout] INFO storm.kafka.ZkCoordinator - Refreshing partition manager connections
+190828 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkCoordinator - Refreshing partition manager connections
+190831 [Thread-27-mobile_request_spout] INFO storm.kafka.DynamicBrokersReader - Read partition info from zookeeper: GlobalPartitionInformation{partitionMap={0=10.189.169.107:9092, 1=10.189.169.107:9092}}
+190831 [Thread-25-mobile_request_spout] INFO storm.kafka.DynamicBrokersReader - Read partition info from zookeeper: GlobalPartitionInformation{partitionMap={0=10.189.169.107:9092, 1=10.189.169.107:9092}}
+190831 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkCoordinator - Deleted partition managers: []
+190831 [Thread-25-mobile_request_spout] INFO storm.kafka.ZkCoordinator - Deleted partition managers: []
+190831 [Thread-25-mobile_request_spout] INFO storm.kafka.ZkCoordinator - New partition managers: []
+190831 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkCoordinator - New partition managers: []
+190831 [Thread-25-mobile_request_spout] INFO storm.kafka.ZkCoordinator - Finished refreshing
+190831 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkCoordinator - Finished refreshing
+190993 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+190993 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+190994 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+190994 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 211
+190994 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=211, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+190996 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 211
+190996 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 211 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+192700 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+192700 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+192700 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {6349541100152824598=-6967652418097505833}, [hello there]
+192994 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+192994 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+192996 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+192996 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 212
+192996 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=212, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+192998 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 212
+192998 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 212 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+194703 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+194703 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+194703 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {-4272273166462796680=-5285196420374110101}, [hello there]
+194996 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+194996 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+194997 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+194997 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 213
+194998 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=213, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+194999 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 213
+194999 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 213 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+196706 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+196706 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+196706 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {-8463737021805449066=5386634405325467946}, [hello there]
+196997 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+196997 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+196998 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+196998 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 214
+196998 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=214, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+197000 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 214
+197000 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 214 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+198709 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+198709 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+198709 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {2463243695403547170=-8929466415289676442}, [hello there]
+198999 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+198999 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+198999 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 215
+198999 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+198999 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=215, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+199006 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 215
+199006 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 215 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+200712 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+200713 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+200713 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {4705144157702260976=-8700365588339072413}, [hello there]
+201000 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+201000 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+201000 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 216
+201000 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+201000 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=216, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+201001 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 216
+201001 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 216 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+202714 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+202714 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+202715 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {-8079610566509254419=-1686749675616515215}, [hello there]
+203002 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+203002 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 217
+203002 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+203002 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+203002 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=217, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+203003 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 217
+203003 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 217 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+204718 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+204718 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+204718 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {-7478623371209087921=-7280940315316641475}, [hello there]
+205004 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+205004 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+205004 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+205004 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 218
+205004 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=218, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+205019 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 218
+205019 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 218 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+206720 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+206720 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+206720 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {4721941238498268429=-7420078944733533597}, [hello there]
+207006 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+207006 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+207006 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+207006 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 219
+207006 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=219, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+207016 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 219
+207016 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 219 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+208723 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+208723 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+208724 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {1669462917051095442=-4170021775151070906}, [hello there]
+209008 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+209008 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+209008 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+209008 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 220
+209008 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=220, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+209009 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 220
+209009 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 220 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+210725 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+210725 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+210726 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {-5634830375253417812=1112902442249716516}, [hello there]
+211008 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+211008 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 221
+211008 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+211008 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+211008 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=221, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+211009 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 221
+211009 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 221 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+212729 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+212729 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+212730 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {2076969705893576906=1777425488197131364}, [hello there]
+213010 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+213010 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+213010 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 222
+213010 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+213010 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=222, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+213011 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 222
+213011 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 222 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+214732 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+214732 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+214733 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {2076878437862772326=-8705455184156146126}, [hello there]
+215012 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+215012 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+215012 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 223
+215012 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+215012 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=223, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+215013 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 223
+215013 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 223 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+216735 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+216735 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+216735 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {-1971628088248916545=-4733043512633308851}, [hello there]
+217013 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+217013 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+217013 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+217013 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 224
+217013 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=224, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+217015 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 224
+217015 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 224 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+218738 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+218738 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+218738 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {7600692306189343692=-1407151556071351777}, [hello there]
+219015 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+219015 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+219015 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+219015 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 225
+219015 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=225, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+219024 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 225
+219024 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 225 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+220741 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Fetched 1 messages from Kafka: 10.189.169.107:0
+220741 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Added 1 messages from Kafka: 10.189.169.107:0 to internal buffers
+220741 [Thread-23-mobile_request_bolt] INFO com.storm.core.bolts.MobileRequestBolt - source: mobile_request_spout:4, stream: default, id: {286852352390826604=2221505596010291725}, [hello there]
+221017 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=0}
+221017 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Writing committed offset to ZK: 226
+221017 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committing offset for Partition{host=10.189.169.107:9092, partition=1}
+221017 [Thread-25-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 0 for Partition{host=10.189.169.107:9092, partition=1} for topology: e372c13a-a136-4d6e-a385-ea123a676688
+221017 [Thread-27-mobile_request_spout] INFO storm.kafka.ZkState - Writing /uniqueIdentifier/partition_0 the data {topology={id=e372c13a-a136-4d6e-a385-ea123a676688, name=searchTopology}, offset=226, partition=0, broker={host=10.189.169.107, port=9092}, topic=searchTopic}
+221018 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Wrote committed offset to ZK: 226
+221018 [Thread-27-mobile_request_spout] INFO storm.kafka.PartitionManager - Committed offset 226 for Partition{host=10.189.169.107:9092, partition=0} for topology: e372c13a-a136-4d6e-a385-ea123a676688
