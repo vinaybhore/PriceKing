@@ -1,0 +1,71 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient"
+    tools:context=".ProductListActivity" >
+
+    <RelativeLayout
+        android:id="@+id/search_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dip" >
+
+        <AutoCompleteTextView
+            android:id="@+id/et_search_query"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/search_query"
+            android:inputType="text"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textCursorDrawable="@null" />
+
+        <ImageButton
+            android:id="@+id/audio_input"
+            android:layout_width="35dip"
+            android:layout_height="32dip"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="5dp"
+            android:src="@android:drawable/ic_btn_speak_now"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/search_layout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dip"
+        android:text="@string/search"
+        android:textColor="@color/white" />
+
+    <ListView
+        android:id="@+id/product_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/btn_search"
+        android:cacheColorHint="#00000000"
+        android:divider="@color/grey_dark_color"
+        android:dividerHeight="1dip"
+        android:visibility="visible" >
+    </ListView>
+
+    <TextView
+        android:id="@+id/no_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:gravity="center_horizontal"
+        android:padding="15dip"
+        android:text="@string/data_not_found"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+</RelativeLayout>

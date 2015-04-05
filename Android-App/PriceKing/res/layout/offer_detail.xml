@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/tab_base_layout"
+        android:fadingEdge="none"
+        android:foregroundGravity="right" >
+
+        <RelativeLayout
+            android:id="@+id/main_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="invisible" >
+
+            <ImageView
+                android:id="@+id/img_thumbnail"
+                android:layout_width="200dip"
+                android:layout_height="200dip"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10dip"
+                android:layout_marginTop="30dip"
+                android:background="@drawable/ic_launcher" />
+
+            <TextView
+                android:id="@+id/title_key"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/img_thumbnail"
+                android:layout_marginBottom="5dip"
+                android:layout_marginLeft="15dip"
+                android:layout_marginRight="10dip"
+                android:layout_marginTop="20dip"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="Title:"
+                android:textColor="@color/blue"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title_key"
+                android:layout_marginBottom="5dip"
+                android:layout_marginRight="10dip"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:padding="15dip"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/msrp_key"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title"
+                android:layout_marginBottom="5dip"
+                android:layout_marginLeft="15dip"
+                android:layout_marginRight="10dip"
+                android:layout_marginTop="20dip"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="MSRP:"
+                android:textColor="@color/blue"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/msrp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/msrp_key"
+                android:layout_marginBottom="5dip"
+                android:layout_marginRight="10dip"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:padding="15dip"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/sale_price_key"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/msrp"
+                android:layout_marginBottom="5dip"
+                android:layout_marginLeft="15dip"
+                android:layout_marginRight="10dip"
+                android:layout_marginTop="20dip"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="Sale Price:"
+                android:textColor="@color/blue"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/sale_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sale_price_key"
+                android:layout_marginBottom="5dip"
+                android:layout_marginRight="10dip"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:padding="15dip"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/rating_key"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sale_price"
+                android:layout_marginBottom="5dip"
+                android:layout_marginLeft="15dip"
+                android:layout_marginRight="10dip"
+                android:layout_marginTop="20dip"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="Customer Rating:"
+                android:textColor="@color/blue"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rating_key"
+                android:layout_marginBottom="5dip"
+                android:layout_marginRight="10dip"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:padding="15dip"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/web_site"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="40dip"
+                android:text="Go to Source"
+                android:textStyle="bold"
+                android:visibility="invisible" />
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

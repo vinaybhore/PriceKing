@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">PriceKing</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_example">Example action</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Share Offers Dialog -->
+    <string name="share_facebook">Facebook</string>
+    <string name="share_twitter">Twitter</string>
+    <string name="share_email">Email</string>
+    <string name="share_linkedin">LinkedIn</string>
+    
+    <!-- Offer List Screen -->
+    <string name="data_not_found">Data not found</string>
+    <string name="search_query">Enter product to search</string>
+    <string name="search">Search</string>
+    <string name="enter_valid_product">Please enter a valid product name</string>
+    
+    
+    <!-- Network Error -->
+    <string name="network_error">Network error. Please check your connection...</string>
+    
+    <!-- Menu Offer Share -->
+    <string name="facebook">Facebook</string>
+    <string name="twitter">Twitter</string>
+    <string name="linked_in">LinkedIn</string>
+    <string name="mail">Mail</string>
+
+</resources>
