@@ -46,4 +46,10 @@ public final class Constants {
 		public static final String INTERNAL_SERVER_ERROR = "Internal Server error. Pleas try again...";
 	}
 
+	/**
+	 * Consumer Key and Consumer Secret for Twitter4j
+	 */
+	public static final String CONSUMER_KEY = "ZjfnEnPpjJnRcCRHSi9juaopQ";
+	public static final String CONSUMER_SECRET = "q43VbT1WAHW9pyyZqtkOwruru0BBnP4pSNzaNqP557qj4wb2sD";
+
 }

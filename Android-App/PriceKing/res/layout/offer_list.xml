@@ -34,11 +34,20 @@
             android:textColor="@color/white" />
     </RelativeLayout>
 
+    <ImageView
+        android:id="@+id/img_camera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/search_layout"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="5dip"
+        android:src="@drawable/camera" />
+
     <Button
         android:id="@+id/btn_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/search_layout"
+        android:layout_below="@+id/img_camera"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dip"
         android:text="@string/search"

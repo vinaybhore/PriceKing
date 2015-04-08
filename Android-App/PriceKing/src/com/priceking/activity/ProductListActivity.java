@@ -33,7 +33,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageButton;
@@ -68,12 +67,14 @@ public class ProductListActivity extends Activity implements
 	private ProgressDialog pd;
 	private String query = "";
 	private TextView noDataTextView;
-	private EditText searchEditText;
 	private Button searchButton;
 	private ImageButton audioInputButton;
+	private ImageView cameraImageView;
+	private AutoCompleteTextView searchEditText;
 
 	// Voice Input Details
 	private static final int REQUEST_CODE = 1234;
+	private static final int CAMERA_REQUEST_CODE = 1111;
 	private Dialog match_text_dialog;
 	private ArrayList<String> matches_text;
 
@@ -189,17 +190,14 @@ public class ProductListActivity extends Activity implements
 		imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 
 		noDataTextView = (TextView) findViewById(R.id.no_data);
-		searchEditText = (EditText) findViewById(R.id.et_search_query);
 		searchButton = (Button) findViewById(R.id.btn_search);
 		audioInputButton = (ImageButton) findViewById(R.id.audio_input);
+		cameraImageView = (ImageView) findViewById(R.id.img_camera);
 
-		searchButton.setOnClickListener(onClickListener);
-		audioInputButton.setOnClickListener(onClickListener);
-
-		AutoCompleteTextView autoCompView = (AutoCompleteTextView) findViewById(R.id.et_search_query);
-		autoCompView.setAdapter(new PlacesAutoCompleteAdapter(this,
+		searchEditText = (AutoCompleteTextView) findViewById(R.id.et_search_query);
+		searchEditText.setAdapter(new PlacesAutoCompleteAdapter(this,
 				R.layout.list_item));
-		autoCompView.setOnItemClickListener(new OnItemClickListener() {
+		searchEditText.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> adapterView, View view,
 					int position, long id) {
 				// User selected text
@@ -210,7 +208,7 @@ public class ProductListActivity extends Activity implements
 
 		});
 
-		autoCompView.setOnKeyListener(new OnKeyListener() {
+		searchEditText.setOnKeyListener(new OnKeyListener() {
 
 			@Override
 			public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -235,6 +233,10 @@ public class ProductListActivity extends Activity implements
 		productListView.setAdapter(productListAdapter);
 
 		productListView.setOnItemClickListener(onItemClickListener);
+
+		searchButton.setOnClickListener(onClickListener);
+		audioInputButton.setOnClickListener(onClickListener);
+		cameraImageView.setOnClickListener(onClickListener);
 	}
 
 	private OnClickListener onClickListener = new OnClickListener() {
@@ -242,6 +244,7 @@ public class ProductListActivity extends Activity implements
 		@Override
 		public void onClick(View view) {
 			int id = view.getId();
+			Intent intent;
 			switch (id) {
 
 			case R.id.btn_search:
@@ -254,7 +257,7 @@ public class ProductListActivity extends Activity implements
 
 				if (PriceKingUtils
 						.isConnectionAvailable(ProductListActivity.this)) {
-					Intent intent = new Intent(
+					intent = new Intent(
 							RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
 					intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
 							RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
@@ -267,11 +270,23 @@ public class ProductListActivity extends Activity implements
 
 				break;
 
+			case R.id.img_camera:
+				imm.hideSoftInputFromWindow(searchEditText.getWindowToken(), 0);
+				intent = new Intent(ProductListActivity.this,
+						CaptureActivity.class);
+				startActivityForResult(intent, CAMERA_REQUEST_CODE);
+				break;
+
 			default:
 				break;
 			}
 
 		}
+	};
+
+	public void onConfigurationChanged(
+			android.content.res.Configuration newConfig) {
+		System.out.println("orientation changed");
 	};
 
 	/**
@@ -453,6 +468,11 @@ public class ProductListActivity extends Activity implements
 						}
 					});
 			match_text_dialog.show();
+		} else if (requestCode == CAMERA_REQUEST_CODE
+				&& resultCode == RESULT_OK) {
+			PriceKingUtils.showToast(ProductListActivity.this, data.getExtras()
+					.getString("ocr_result"));
+
 		}
 		super.onActivityResult(requestCode, resultCode, data);
 	}

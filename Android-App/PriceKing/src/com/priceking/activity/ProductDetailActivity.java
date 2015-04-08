@@ -3,15 +3,10 @@ package com.priceking.activity;
 import java.util.List;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
@@ -64,7 +59,6 @@ public class ProductDetailActivity extends Activity implements
 	private Animation anim;
 	private Animation fade_anim;
 	private Button webSiteButton;
-	
 
 	/** Called when the activity is first created. */
 	@Override
@@ -187,10 +181,36 @@ public class ProductDetailActivity extends Activity implements
 			finish();
 			break;
 		case R.id.facebook:
-			Intent settingIntent = new Intent(ProductDetailActivity.this,
-					FacebookShareActivity.class);
-			settingIntent.putExtra("facebook_url", product.getProductURL());
-			startActivity(settingIntent);
+			tweetIntent = new Intent(Intent.ACTION_SEND);
+			tweetIntent.putExtra(Intent.EXTRA_TEXT, product.getProductURL());
+			tweetIntent.setType("text/plain");
+
+			packManager = getPackageManager();
+			resolvedInfoList = packManager.queryIntentActivities(tweetIntent,
+					PackageManager.MATCH_DEFAULT_ONLY);
+
+			resolved = false;
+			for (ResolveInfo resolveInfo : resolvedInfoList) {
+				if (resolveInfo.activityInfo.packageName
+						.startsWith("com.facebook.katana")) {
+					tweetIntent.setClassName(
+							resolveInfo.activityInfo.packageName,
+							resolveInfo.activityInfo.name);
+					resolved = true;
+					break;
+				}
+			}
+			if (resolved) {
+				startActivity(tweetIntent);
+			} else {
+				Toast.makeText(ProductDetailActivity.this,
+						"Facebook app isn't found", Toast.LENGTH_LONG).show();
+
+				Intent settingIntent = new Intent(ProductDetailActivity.this,
+						FacebookShareActivity.class);
+				settingIntent.putExtra("facebook_url", product.getProductURL());
+				startActivity(settingIntent);
+			}
 			break;
 		case R.id.twitter:
 			tweetIntent = new Intent(Intent.ACTION_SEND);
@@ -217,6 +237,7 @@ public class ProductDetailActivity extends Activity implements
 			} else {
 				Toast.makeText(ProductDetailActivity.this,
 						"Twitter app isn't found", Toast.LENGTH_LONG).show();
+
 			}
 			break;
 		case R.id.linked_in:

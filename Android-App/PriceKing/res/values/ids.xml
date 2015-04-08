@@ -4,4 +4,17 @@
     <item name="id_name" type="id"/>
     <item name="offer_id" type="id"/>
 
+    <!-- OCR Ids -->
+    <item name="decode" type="id"/>
+    <item name="decode_failed" type="id"/>
+    <item name="decode_succeeded" type="id"/>
+    <item name="ocr_continuous_decode" type="id"/>
+    <item name="ocr_continuous_decode_failed" type="id"/>
+    <item name="ocr_continuous_decode_succeeded" type="id"/>
+    <item name="ocr_decode" type="id"/>
+    <item name="ocr_decode_failed" type="id"/>
+    <item name="ocr_decode_succeeded" type="id"/>
+    <item name="quit" type="id"/>
+    <item name="restart_preview" type="id"/>
+
 </resources>
