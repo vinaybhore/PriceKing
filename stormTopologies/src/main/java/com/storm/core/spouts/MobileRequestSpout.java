@@ -27,7 +27,7 @@ public class MobileRequestSpout extends KafkaSpout{
 	private static final long serialVersionUID = 1L;
 	public static SpoutConfig kafkaConfig = null;
 	static{
-		BrokerHosts brokerHosts = new ZkHosts("brokerZkStr");
+		BrokerHosts brokerHosts = new ZkHosts("127.0.0.1");
 		kafkaConfig = new SpoutConfig(brokerHosts, Constants.KAFKA_SEARCH_BUS, "", "uniqueIdentifier");
 		kafkaConfig.scheme = new SchemeAsMultiScheme(new StringScheme());
 		List<String>zkList = new ArrayList<String>();

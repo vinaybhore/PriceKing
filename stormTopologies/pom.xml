@@ -9,12 +9,12 @@
 
 	<name>stormTopologies</name>
 	<url>http://maven.apache.org</url>
-
+	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<org.springframework.version>4.1.4.RELEASE</org.springframework.version>
 	</properties>
-
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -53,7 +53,9 @@
 			<groupId>org.apache.storm</groupId>
 			<artifactId>storm-core</artifactId>
 			<version>0.9.1-incubating</version>
+			<scope>provided</scope>
 		</dependency>
+		
 
 		<!-- Utilities -->
 
@@ -85,4 +87,49 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+	<build>
+	<plugins>
+		<plugin>
+			<artifactId>maven-assembly-plugin</artifactId>
+			<configuration>
+				<archive>
+					<manifest>
+						<mainClass>com.storm.core.SearchTopology</mainClass>
+					</manifest>
+				</archive>
+				<descriptorRefs>
+					<descriptorRef>jar-with-dependencies</descriptorRef>
+				</descriptorRefs>
+			</configuration>
+			<executions>
+				<execution>
+					<id>make-assembly</id> <!-- this is used for inheritance merges -->
+					<phase>package</phase> <!-- bind to the packaging phase -->
+					<goals>
+						<goal>single</goal>
+					</goals>
+				</execution>
+			</executions>
+		</plugin>
+		<plugin>
+	<groupId>org.codehaus.mojo</groupId>
+	<artifactId>exec-maven-plugin</artifactId>
+	<version>1.2.1</version>
+	<executions>
+		<execution>
+			<goals>
+				<goal>exec</goal>
+			</goals>
+		</execution>
+	</executions>
+	<configuration>
+		<executable>java</executable>
+		<includeProjectDependencies>true</includeProjectDependencies>
+		<includePluginDependencies>false</includePluginDependencies>
+		<classpathScope>compile</classpathScope>
+		<mainClass>${storm.topology}</mainClass>
+	</configuration>
+</plugin>
+	</plugins>
+	</build>
 </project>
