@@ -2,6 +2,7 @@
 <%@ page session="false" %>
 <html ng-app="myModule">
 <head>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <link rel="stylesheet" href = "http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
 <script src="<c:url value="/resources/js/angular-route.min.js" />"></script>
@@ -10,7 +11,7 @@
 <script src="<c:url value="/resources/js/ng-table.min.js" />"></script>
 <script src="<c:url value="/resources/js/angular-file-upload-shim.js" />"></script>
 <script src="<c:url value="/resources/js/angular-file-upload.js" />"></script>
-
+<script src="<c:url value="/resources/js/file-upload.js" />"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
@@ -23,7 +24,7 @@
     
     <!-- MetisMenu CSS -->
     <link href="<c:url value="/resources/css/metisMenu.min.css" />" rel="stylesheet">
-    
+    <link href="<c:url value="/resources/css/fileupload.css" />" rel="stylesheet">
         <!-- Timeline CSS -->
     <link href="<c:url value="/resources/css/timeline.css" />" rel="stylesheet">
 
@@ -37,22 +38,26 @@
     <link href="<c:url value="/resources/css/font-awesome.min.css" />" rel="stylesheet">
     
     <link href="<c:url value="/resources/css/isteven-multi-select.css" />" rel="stylesheet">
+     <link href="<c:url value="/resources/css/angular-chart.css" />" rel="stylesheet">
     
      <script src="<c:url value="/resources/js/isteven-multi-select.js" />"></script>  
     
-     
+      <script src="<c:url value="/resources/js/angular-chart.js" />"></script>  
     
   <script src="<c:url value="/resources/js/ui-bootstrap-tpls-0.12.1.min.js" />"></script>
   
 	<script src="<c:url value="/resources/js/vendorDashboard.js" />"></script>
-	
+		<script src="<c:url value="/resources/js/charts.js" />"></script>
 	<link href="<c:url value="/resources/css/xeditable.css" />" rel="stylesheet">
 	
 	<script src="<c:url value="/resources/js/xeditable.js" />"></script>
 	
-	
+	<script src="<c:url value="/resources/js/jquery-ui-timepicker-addon.js" />"></script>
+	<link href="<c:url value="/resources/css/datetimepicker.css" />" rel="stylesheet">
+	<script src="<c:url value="/resources/js/date.js" />"></script>
 	<title>Home</title>
 	
+		
 </head>
 <body>
 <div id="wrapper">
@@ -71,196 +76,9 @@
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-messages">
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a class="text-center" href="#">
-                                <strong>Read All Messages</strong>
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-messages -->
-                </li>
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-tasks fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-tasks">
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <p>
-                                        <strong>Task 1</strong>
-                                        <span class="pull-right text-muted">40% Complete</span>
-                                    </p>
-                                    <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                                            <span class="sr-only">40% Complete (success)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <p>
-                                        <strong>Task 2</strong>
-                                        <span class="pull-right text-muted">20% Complete</span>
-                                    </p>
-                                    <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                                            <span class="sr-only">20% Complete</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <p>
-                                        <strong>Task 3</strong>
-                                        <span class="pull-right text-muted">60% Complete</span>
-                                    </p>
-                                    <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-                                            <span class="sr-only">60% Complete (warning)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <p>
-                                        <strong>Task 4</strong>
-                                        <span class="pull-right text-muted">80% Complete</span>
-                                    </p>
-                                    <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                                            <span class="sr-only">80% Complete (danger)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a class="text-center" href="#">
-                                <strong>See All Tasks</strong>
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-tasks -->
-                </li>
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-alerts">
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-comment fa-fw"></i> New Comment
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                    <span class="pull-right text-muted small">12 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-envelope fa-fw"></i> Message Sent
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-tasks fa-fw"></i> New Task
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a class="text-center" href="#">
-                                <strong>See All Alerts</strong>
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-alerts -->
-                </li>
-                <!-- /.dropdown -->
+                
+               
+                
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
@@ -391,7 +209,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Dashboard</h1>
+                    <h1 class="page-header">Welcome!</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -688,7 +506,8 @@
 		<div ng-controller="ModalDemoCtrl">
     <script type="text/ng-template" id="addProduct.html">
         <div class="modal-header">
-            <h3 class="modal-title">Add Product</h3>
+			<h3 class="modal-title" ng-show="showSaveProduct">Add Product</h3>
+            <h3 class="modal-title" ng-show="showEditProduct">Edit Product</h3>
         </div>
         <div class="modal-body">
            <table class="table">
@@ -697,7 +516,7 @@
 					<td><input type="text" ng-model="product.price" class="form-control" placeholder="Price"></td>
 				</tr>
 				<tr>
-					<td><input type="text" ng-model="product.url" class="form-control" placeholder="Product URL"></td>
+					<td><input type="text" ng-model="product.producturl" class="form-control" placeholder="Product URL"></td>
 				</tr>
 				<tr>
 					<td colspan="2"><textarea placeholder="Description" rows="3" ng-model="product.description" class="form-control"></textarea></td>
@@ -727,7 +546,8 @@
 			</table>
         </div>
         <div class="modal-footer">
-            <button class="btn btn-primary" ng-click="saveProduct(product)">Save</button>
+            <button class="btn btn-primary" ng-show="showSaveProduct" ng-click="saveProduct(product)">Save</button>
+			<button class="btn btn-primary" ng-show="showEditProduct" ng-click="updateProduct(product)">Update</button>
             <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
         </div>
     </script>
@@ -743,34 +563,27 @@
 <h3>Products</h3>
 
 
-<table class="table table-striped" ng-table="tableParams" >
+<table class="table table-striped" ng-table="productTableParams" >
  
  
-    <tr ng-repeat="product in products">
+    <tr ng-repeat="product in productsList track by $index">
     <td data-title="'Name'" sortable="'fName'" filter="{'fName':'text'}">{{ product.name}}</td>
-      <td data-title="'Price'">{{ product.price}}</td>
+      <td data-title="'Price'">{{ product.price | currency}}</td>
       <td>
-      
-        <!-- <button class="btn" ng-click="editUser(user.id)">
-          <span class="glyphicon glyphicon-pencil"></span>  Edit
-          
-        </button> -->
-      
-    <button class="btn" ng-click="openProductModal()">
-          <span class="glyphicon glyphicon-pencil"></span>  Edit
-          
-        </button> 
+	    <button class="btn" ng-click="openProductModal('',product)">
+	          <span class="glyphicon glyphicon-pencil"></span>  Edit
+	     </button> 
       </td>
       <td>
-        <button class="btn" ng-click="editUser(user.id)">
-          <span class=""></span>  Delete
+        <button class="btn" ng-click="openProductModal('',product)">
+          <span class="glyphicon glyphicon-remove"></span>  Delete
         </button>
       </td>
-      <td>
-        <button class="btn" ng-click="editUser(user.id)">
-          <span class=""></span>  View
+   <!--    <td> 
+        <button class="btn" ng-click="editUser(product)">
+          <span class="glyphicon glyphicon-file"></span>  View
         </button>
-      </td>
+      </td> -->
     </tr>
   
 </table>
@@ -785,28 +598,44 @@
 		<div ng-controller="ModalDemoCtrl">
     <script type="text/ng-template" id="addCoupon.html">
         <div class="modal-header">
-            <h3 class="modal-title">Add Coupons</h3>
+            <h3 class="modal-title">Edit Coupons</h3>
         </div>
         <div class="modal-body">
            <table class="table">
 				<tr>
-					<td><input type="text" ng-model="product.name" class="form-control" placeholder="Product Name"></td>
-					<td><input type="text" ng-model="product.category" class="form-control" placeholder="Category"></td>
+					<td style="width:260px"><input type="text" ng-model="coupon.name" class="form-control" placeholder="Name"></td>
+					
 				</tr>
 				<tr>
-					<td colspan="2"><textarea placeholder="Description" rows="3" ng-model="product.description" class="form-control"></textarea></td>
+					<td colspan="2"><textarea placeholder="Description" rows="3" ng-model="coupon.description" class="form-control"></textarea></td>
 				</tr>
 				<tr>
-					<td colspan="2"><div isteven-multi-select input-model="inputList" button-label="firstName" item-label="firstName" tick-property="selected"></div></td>
+					<td><input type="text" ng-model="coupon.originalPrice" class="form-control" placeholder="Original Price"></td>
+					<td><input type="text" ng-model="coupon.discountedPrice" class="form-control" placeholder="Discounted Price"></td>
 				</tr>
 				<tr>
-					<td><input type="text" ng-model="product.category" class="form-control" placeholder="Category"></td>
+					<td><input type="text" ng-model="coupon.couponCode" class="form-control" placeholder="Coupon Code"></td>
+					<td>
+						<div class="row">
+       					 <div class="col-md-12">
+           					 <p class="input-group">
+            				  <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="coupon.expiryDate" is-open="opened" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+              					<span class="input-group-btn">
+              					  <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+             					 </span>
+           					 </p>
+        				</div>
+    					</div>
+            		</td>
 				</tr>
-				
+				<tr>
+					
+				</tr>
+		
 			</table>
         </div>
         <div class="modal-footer">
-            <button class="btn btn-primary" ng-click="ok()">OK</button>
+            <button class="btn btn-primary" ng-click="saveCoupon(coupon)">Save</button>
             <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
         </div>
     </script>
@@ -842,12 +671,12 @@
       </td>
       <td>
         <button class="btn" ng-click="editUser(user.id)">
-          <span class=""></span>  Delete
+          <span class="glyphicon glyphicon-remove"></span>  Delete
         </button>
       </td>
       <td>
         <button class="btn" ng-click="editUser(user.id)">
-          <span class=""></span>  View
+          <span class="glyphicon glyphicon-file"></span>  View
         </button>
       </td>
       
@@ -858,8 +687,8 @@
 
 
 
-
 </div>
+
 
 <!-- coupon table ends -->
     </div>

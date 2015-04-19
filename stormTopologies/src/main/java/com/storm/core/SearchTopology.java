@@ -5,7 +5,6 @@ package com.storm.core;
 
 import java.util.Arrays;
 
-import scala.tools.nsc.backend.icode.analysis.CopyPropagation.Const;
 import storm.kafka.ZkHosts;
 import backtype.storm.Config;
 import backtype.storm.LocalCluster;

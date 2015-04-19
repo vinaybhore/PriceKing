@@ -51,6 +51,9 @@ public class HomeController {
 		
 		return "adminDashboard";
 	}
+	
+	
+	
 	@RequestMapping(value = "/vendorDashboard", method = RequestMethod.GET)
 	public String dashboard(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
@@ -71,8 +74,7 @@ public class HomeController {
 	fields.put("_id", 0);
 	fields.put("firstname", 1);
 	fields.put("lastname", 1);
-	fields.put("email", 1);
-	fields.put("phone", 1);
+		
 	DBCursor profileDoc = collec.find(new BasicDBObject(),fields);
 	Gson gson = new Gson();
 	ArrayList<DBObject> users = new ArrayList<DBObject>();
@@ -94,7 +96,30 @@ public class HomeController {
 		adduser.put("email", user.getEmail());
 		adduser.put("phone", user.getPhone());
 		System.out.println(adduser);
+		MongoClient mongoClient = MongoConnection.getNewMongoClient();
+		DB configDB = mongoClient.getDB("priceking");
+		DBCollection collec = configDB.getCollection("profiles");
+		DBCollection collec1 = configDB.getCollection("counters");
 		
+		BasicDBObject query = new BasicDBObject("_id", "vendorid");
+
+		BasicDBObject sort = new BasicDBObject();
+
+		BasicDBObject update = new BasicDBObject("$inc", new BasicDBObject("seq", 1));
+
+		BasicDBObject fields = new BasicDBObject();
+		
+		System.out.println(adduser);;
+
+
+
+		DBObject productid = collec1.findAndModify(query, fields,sort, false, update, true, false);
+		String id =  productid.get("seq").toString();
+		int pid = (int) Float.valueOf(id).floatValue();
+		System.out.println(pid);
+		adduser.put("_id", pid);
+		collec.insert(adduser);
+
 		return null;
 				
 	}
@@ -159,5 +184,27 @@ public class HomeController {
 		collec.remove(doc);
 		System.out.println(doc);
 	}
-	
+	/*@RequestMapping(value = "/getProducts", method = RequestMethod.GET)
+	public @ResponseBody String getProducts(Locale locale, Model model) {
+		logger.info("Fetching products from database:");
+		
+		MongoClient mongoClient = MongoConnection.getNewMongoClient();
+
+	DB configDB = mongoClient.getDB("priceking");
+	DBCollection collec = configDB.getCollection("products");
+	BasicDBObject fields = new BasicDBObject();
+	fields.put("_id", 0);
+	fields.put("name", 1);
+	fields.put("brand", 1);
+	DBCursor profileDoc = collec.find(new BasicDBObject(),fields);
+	Gson gson = new Gson();
+	ArrayList<DBObject> products = new ArrayList<DBObject>();
+	while(profileDoc.hasNext())
+	{
+		products.add(profileDoc.next());
+	}
+
+	return gson.toJson(products);
+}*/
+		
 }

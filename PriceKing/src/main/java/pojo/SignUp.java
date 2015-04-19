@@ -3,10 +3,10 @@ package pojo;
 public class SignUp {
 	private String firstname;
 	private String lastname;
+	private String username;
 	private String email;
 	private String phone;
 	private String password;
-	private String password1;
 	
 	public String getEmail() {
 		return email;
@@ -20,12 +20,6 @@ public class SignUp {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getPassword1() {
-		return password1;
-	}
-	public void setPassword1(String password1) {
-		this.password1 = password1;
-	}
 	public String getFirstname() {
 		return firstname;
 	}
@@ -37,6 +31,12 @@ public class SignUp {
 	}
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	public String getPhone() {
 		return phone;

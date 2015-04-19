@@ -13,99 +13,103 @@ app.controller('ModalDemoCtrl', ['$scope','$modal','$log','ngTableParams','$filt
 
   $scope.items = ['item1', 'item2', 'item3'];
   $scope.inputList = [
-                      { firstName: "Peter",    lastName: "Parker", selected: false },
-                      { firstName: "Mary",     lastName: "Jane",   selected: false },
-                      { firstName: "Bruce",    lastName: "Wayne",  selected: false  },
-                      { firstName: "David",    lastName: "Banner",  selected: false },
-                      { firstName: "Natalia",  lastName: "Romanova", selected: false },
+                      { firstName: "Electronics",    lastName: "Parker", selected: false },
+                      { firstName: "Clothing",     lastName: "Jane",   selected: false },
+                      { firstName: "Home",    lastName: "Wayne",  selected: false  },
+                      { firstName: "Furniture",    lastName: "Banner",  selected: false },
+                      { firstName: "footware",  lastName: "Romanova", selected: false },
                       { firstName: "Clark",    lastName: "Kent",  selected: true  }
    ];
+  
   getProducts();
   
   function getProducts(){
  	 $http.get('/getProducts').then(function(response) {
- 		 $scope.products = response.data;
+ 		 $scope.productsList = response.data;
+ 		 console.log($scope.productsList);
+ 		 $scope.productTable();
+ 		 
  	 });
 
   } 
   
-getCoupons();
+ getCoupons();
   
   function getCoupons(){
  	 $http.get('/getCoupons').then(function(response) {
  		 $scope.coupons = response.data;
+ 		 
  	 });
 
   } 
-
-  $scope.tableParams = new ngTableParams(
-
-  {
-
-		  page : 1, // show first page
-
-		  count : 10, // count per page
-
-		  filter : {
-
-			  fName : '' // initial
-
-		  // filter
-
-		  },
-
-		  sorting : {
-
-			  fName : 'asc' // initial
-
-		  // sorting
-
-		  	}
-
-		  },
-
-		  {
-
-			  total : $scope.inputList.length, // length
-
-		  // of
-
-		  // data
-
-			  getData : function($defer, params) {
-
-			  console.log($scope.inputList);
-
-		  // use build-in angular filter
-
-			  var filteredData = params.filter() ? $filter('filter')($scope.inputList,params.filter()): $scope.inputList;
-
-			  var orderedData = params.sorting() ? $filter('orderBy')(filteredData,params.orderBy()): $scope.inputList;
-
-			  params.total(orderedData.length); // set
-
-		  // total
-
-		  // for
-
-		  // recalc
-
-		  // pagination
-
-		  $scope.tbrPlans = orderedData.slice((params.page() - 1) * params.count(),
-
-		  params.page() * params.count());
-
-		  	$defer.resolve($scope.tbrPlans);
-
-		  }
-
-	});
-
+  $scope.productTable = function(){
+	  $scope.productTableParams = new ngTableParams(
+	  {
+	
+			  page : 1, // show first page
+	
+			  count : 10, // count per page
+	
+			  filter : {
+	
+				  fName : '' // initial
+	
+			  // filter
+	
+			  },
+	
+			  sorting : {
+	
+				  fName : 'asc' // initial
+	
+			  // sorting
+	
+			  	}
+	
+			  },
+	
+			  {
+	
+				  total : $scope.productsList.length, // length
+	
+			  // of
+	
+			  // data
+	
+				  getData : function($defer, params) {
+	
+	
+			  // use build-in angular filter
+	
+				  var filteredData = params.filter() ? $filter('filter')($scope.inputList,params.filter()): $scope.productsList;
+	
+				  var orderedData = params.sorting() ? $filter('orderBy')(filteredData,params.orderBy()): $scope.productsList;
+	
+				  params.total(orderedData.length); // set
+	
+			  // total
+	
+			  // for
+	
+			  // recalc
+	
+			  // pagination
+	
+			  $scope.products = orderedData.slice((params.page() - 1) * params.count(),
+	
+			  params.page() * params.count());
+	
+			  	$defer.resolve($scope.products);
+	
+			  }
+	
+		});
+  }
 
 
-  $scope.openProductModal = function (size) {
-	  
+
+  $scope.openProductModal = function (size,productEdit) {
+	console.log(productEdit);
     var modalInstance = $modal.open({
       templateUrl: 'addProduct.html',
       controller: 'productController',
@@ -114,11 +118,14 @@ getCoupons();
         items: function () {
           return $scope.items;
         },
-        inputList: function (){
-        	return $scope.inputList;
+        productsList: function (){
+        	return $scope.productsList;
         },
         fileReader: function(){
         	return fileReader;
+        },
+        productEdit:function(){
+        	return productEdit;
         }
       }
     });
@@ -130,7 +137,7 @@ getCoupons();
     });
   };
   
-  $scope.openCouponModal = function (size) {
+  $scope.openCouponModal = function (size,couponEdit) {
 	  
 	    var modalInstance = $modal.open({
 	      templateUrl: 'addCoupon.html',
@@ -140,8 +147,11 @@ getCoupons();
 	        items: function () {
 	          return $scope.items;
 	        },
-	        inputList: function (){
-	        	return $scope.inputList;
+	        couponsList: function (){
+	        	return $scope.couponsList;
+	        },
+	        couponEdit: function(){
+	        	return $scope.couponEdit;
 	        }
 	      }
 	    });
@@ -161,10 +171,25 @@ getCoupons();
 // Please note that $modalInstance represents a modal window (instance) dependency.
 // It is not the same as the $modal service used above.
 
-app.controller('productController', function ($scope, $http, $modalInstance, items, inputList) {
+app.controller('productController', function ($scope, $http, $modalInstance, productsList, productEdit) {
 
-  $scope.items = items;
-  $scope.inputList = inputList;
+  $scope.productsList = productsList;
+  
+  var prodIndex = $scope.productsList.indexOf(productEdit);
+  console.log(prodIndex);
+  
+  
+  
+  if(prodIndex == -1) {
+	  $scope.showSaveProduct = true;
+	  $scope.showEditProduct = false;
+  }else {
+	  $scope.showEditProduct = true;
+	  $scope.showSaveProduct = false;
+	  $scope.product = $scope.productsList[prodIndex];
+	  
+  }
+	  
   
   $scope.pictures = [];
   
@@ -203,49 +228,96 @@ app.controller('productController', function ($scope, $http, $modalInstance, ite
          
 	  }
   }
-  $scope.selected = {
-    item: $scope.items[0]
-  };
-  
-  
 
   $scope.saveProduct = function (product) {
-	  var login = {};
-	  login.username='test';
-	  login.password = 'test';
-	  var formData = angular.toJson(login);
-	  console.log(formData);
-	  $http.post('/signin', formData,{headers: {'Content-Type': 'application/json'}})
-	    .success(function(response) {
-	        console.log(response);
-	     });
 	  
-    $modalInstance.close($scope.selected.item);
+	  product.category='test';
+	  product.picture='test';
+	  var formData = angular.toJson(product);
+	  
+	  console.log(formData);
+	  $http.post('/product', formData,
+			  {headers: {'Content-Type': 'application/json'}
+	  }).success(function(response) {
+	        console.log(response);
+	   	});
+	  
+    $modalInstance.close();
   };
+  
+  $scope.updateProduct = function (product){
+	  product.category='test';
+	  product.picture='test';
+	  id = product._id;
+	  delete product["_id"];
+	  var formData = angular.toJson(product);
+	  
+	  console.log(formData);
+	  $http.put('/product/'+id, formData,
+			  {headers: {'Content-Type': 'application/json'}
+	  }).success(function(response) {
+	        console.log(response);
+	  });
+	  
+    $modalInstance.close();
+  }
 
   $scope.cancel = function () {
     $modalInstance.dismiss('cancel');
   };
 });
 
-app.controller('couponController', function ($scope, $modalInstance, items, inputList) {
+app.controller('couponController', function ($scope, $modalInstance, couponsList,$http, couponEdit) {
+		
+	$scope.open = function($event) {
+	    $event.preventDefault();
+	    $event.stopPropagation();
 
-	  $scope.items = items;
-	  $scope.inputList = inputList;
-	  $scope.selected = {
-	    item: $scope.items[0]
+	    $scope.opened = true;
 	  };
-	  
-	  
-
+	  $scope.format = 'dd-MMMM-yyyy';
+	  $scope.couponsList = couponsList;
 	  $scope.ok = function () {
 	    $modalInstance.close($scope.selected.item);
 	  };
-
+	  $scope.saveCoupon = function (coupon) {
+		
+		  var formData = angular.toJson(coupon);
+		  
+		  console.log(formData);
+		  $http.post('/coupon', formData,
+				  {headers: {'Content-Type': 'application/json'}
+		  }).success(function(response) {
+		        console.log(response);
+		     });
+		  
+	  };
+  
 	  $scope.cancel = function () {
 	    $modalInstance.dismiss('cancel');
 	  };
 	});
+
+app.directive("jqdatepicker", function () {
+	  return {
+	    restrict: "A",
+	    require: "ngModel",
+	    link: function (scope, elem, attrs, ngModelCtrl) {
+	      var updateModel = function (dateText) {
+	        scope.$apply(function () {
+	          ngModelCtrl.$setViewValue(dateText);
+	        });
+	      };
+	      var options = {
+	        dateFormat: "dd/mm/yy",
+	        onSelect: function (dateText) {
+	          updateModel(dateText);
+	        }
+	      };
+	      elem.datepicker(options);
+	    }
+	  }
+});
 
 $.fn.pageMe = function(opts){
     var $this = this,

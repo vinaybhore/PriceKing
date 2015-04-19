@@ -1,5 +1,6 @@
 package com.priceking.cmpe295B;
 
+
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,7 +28,7 @@ import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
-
+@Controller
 public class ProductController {
 	private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 	
@@ -38,11 +40,8 @@ public class ProductController {
 
 	DB configDB = mongoClient.getDB("priceking");
 	DBCollection collec = configDB.getCollection("products");
-	BasicDBObject fields = new BasicDBObject();
-	fields.put("_id", 0);
-	fields.put("name", 1);
-	fields.put("brand", 1);
-	DBCursor profileDoc = collec.find(new BasicDBObject(),fields);
+	
+	DBCursor profileDoc = collec.find(new BasicDBObject());
 	Gson gson = new Gson();
 	ArrayList<DBObject> products = new ArrayList<DBObject>();
 	while(profileDoc.hasNext())
@@ -78,7 +77,7 @@ public class ProductController {
 		System.out.println(id);
 		
 		find.put("_id", id);
-		update.put("$set",new BasicDBObject("name","shahahahahahaha"));
+		
 		String name = product.getName();
 		String description = product.getDescription();
 		
@@ -94,20 +93,20 @@ public class ProductController {
 		DBCollection collec = configDB.getCollection("products");
 		//add to database
 		BasicDBObject doc = new BasicDBObject();
-		doc.put("product_name", name);
-		doc.put("product_description", description);
+		doc.put("name", name);
+		doc.put("description", description);
 		
-		doc.put("product_category", category);
+		doc.put("category", category);
 		
-		doc.put("product_picture", pic);
-		doc.put("product_url", url);
-		doc.put("product_price", price);
+		doc.put("picture", pic);
+		doc.put("producturl", url);
+		doc.put("price", price);
+		update.put("$set",doc);
 		System.out.println(doc);
-		/*DB configDB = mongoClient.getDB("priceking");
-		DBCollection collec = configDB.getCollection("products");
-		collec.update(find, update);*/
+		collec.update(find, update);
 		
 	}
+	
 	@RequestMapping(value = "/product", method = RequestMethod.POST, consumes = "application/json")
 	public void add_prod(
 			@RequestBody Product prod, Model model,
@@ -116,9 +115,7 @@ public class ProductController {
 		
 		String name = prod.getName();
 		String description = prod.getDescription();
-		
 		String category = prod.getCategory();
-		
 		String pic = prod.getPicture();
 		String url = prod.getProducturl();
 		String price = prod.getPrice();
@@ -129,35 +126,35 @@ public class ProductController {
 		DBCollection collec = configDB.getCollection("products");
 		//add to database
 		BasicDBObject doc = new BasicDBObject();
-		doc.put("product_name", name);
-		doc.put("product_description", description);
+		doc.put("name", name);
+		doc.put("description", description);
 		
-		doc.put("product_category", category);
+		doc.put("category", category);
 		
-		doc.put("product_picture", pic);
-		doc.put("product_url", url);
-		doc.put("product_price", price);
+		doc.put("picture", pic);
+		doc.put("producturl", url);
+		doc.put("price", price);
 		
 		DBCollection collec1 = configDB.getCollection("counters");
 		
-		BasicDBObject query = new BasicDBObject("_id", "productid");
+		BasicDBObject query = new BasicDBObject("_id", "productId");
 
 		BasicDBObject sort = new BasicDBObject();
 
-		BasicDBObject update = new BasicDBObject("$inc", new BasicDBObject("seq", 1));
+		BasicDBObject update = new BasicDBObject("$inc", new BasicDBObject("sequenceValue", 1));
 
 		BasicDBObject fields = new BasicDBObject();
 		
 		System.out.println(doc);;
 
 
-
-		/*DBObject productid = collec1.findAndModify(query, fields,sort, false, update, true, false);
-		String id =  productid.get("seq").toString();
+		System.out.println(collec1.findOne());
+		DBObject productid = collec1.findAndModify(query, fields,sort, false, update, true, false);
+		String id =  productid.get("sequenceValue").toString();
 		int pid = (int) Float.valueOf(id).floatValue();
 		System.out.println(pid);
 		doc.put("_id", pid);
-		collec.insert(doc);*/
+		collec.insert(doc);
 						
 	}
 

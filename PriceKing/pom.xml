@@ -17,13 +17,13 @@
 		<!-- Spring -->
 		<dependency>
 
-<groupId>org.apache.httpcomponents</groupId>
+			<groupId>org.apache.httpcomponents</groupId>
 
-<artifactId>httpclient</artifactId>
+			<artifactId>httpclient</artifactId>
 
-<version>4.3.6</version>
+			<version>4.3.6</version>
 
-</dependency>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
@@ -33,36 +33,39 @@
 				<exclusion>
 					<groupId>commons-logging</groupId>
 					<artifactId>commons-logging</artifactId>
-				 </exclusion>
+				</exclusion>
 			</exclusions>
 		</dependency>
 		<dependency>
 
-<groupId>org.mongodb</groupId>
+			<groupId>org.mongodb</groupId>
 
-<artifactId>mongo-java-driver</artifactId>
+			<artifactId>mongo-java-driver</artifactId>
 
-<version>2.12.4</version>
+			<version>2.12.4</version>
 
-</dependency>
-<dependency>
-	<groupId>com.google.code.gson</groupId>
-	<artifactId>gson</artifactId>
-	<version>2.3</version>
-</dependency>
-	<dependency>
+		</dependency>
+		
+		<!-- Semantic S3 -->
+		    <dependency>
+		        <groupId>com.semantics3</groupId>
+		        <artifactId>Sem3Java</artifactId>
+		        <version>1.2.1</version>
+		    </dependency>
+
+		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-				
+
 		<!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
 			<version>${org.aspectj-version}</version>
-		</dependency>	
-		
+		</dependency>
+
 		<!-- Logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -112,7 +115,7 @@
 			<artifactId>javax.inject</artifactId>
 			<version>1</version>
 		</dependency>
-				
+
 		<!-- Servlet -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -131,100 +134,202 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-	
+
 		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.7</version>
 			<scope>test</scope>
-		</dependency>  
+		</dependency>
+		
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20141113</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.2.3</version>
+		</dependency>
+
 		<dependency>
 
-<groupId>org.json</groupId>
+			<groupId>com.fasterxml.jackson.core</groupId>
 
-<artifactId>json</artifactId>
+			<artifactId>jackson-databind</artifactId>
 
-<version>20141113</version>
+			<version>2.2.3</version>
 
-</dependency>
+		</dependency>
 
-<dependency>
+		<dependency>
 
-<groupId>com.fasterxml.jackson.core</groupId>
+			<groupId>com.fasterxml.jackson.core</groupId>
 
-<artifactId>jackson-core</artifactId>
+			<artifactId>jackson-annotations</artifactId>
 
-<version>2.2.3</version>
+			<version>2.2.3</version>
 
-</dependency>
+		</dependency>
 
-<dependency>
+		<dependency>
 
-<groupId>com.fasterxml.jackson.core</groupId>
+			<groupId>org.codehaus.jackson</groupId>
 
-<artifactId>jackson-databind</artifactId>
+			<artifactId>jackson-mapper-asl</artifactId>
 
-<version>2.2.3</version>
+			<version>1.9.13</version>
 
-</dependency>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.3</version>
+		</dependency>
+		
+		<!-- Storm Kafka dependencies -->
+		
+		<!-- Dependency for Storm-Kafka spout -->
 
-<dependency>
 
-<groupId>com.fasterxml.jackson.core</groupId>
+		<!-- Dependency for Storm -->
 
-<artifactId>jackson-annotations</artifactId>
+		<dependency>
+			<groupId>org.apache.storm</groupId>
+			<artifactId>storm-core</artifactId>
+			<version>0.9.1-incubating</version>
+			<scope>provided</scope>
+		</dependency>
+		<!-- Utilities -->
 
-<version>2.2.3</version>
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>3.2.1</version>
+		</dependency>
 
-</dependency>
-
-<dependency>
-
-<groupId>org.codehaus.jackson</groupId>
-
-<artifactId>jackson-mapper-asl</artifactId>
-
-<version>1.9.13</version>
-
-</dependency>      
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>15.0</version>
+		</dependency>
+		<dependency>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>log4j-over-slf4j</artifactId>
+                    <version>1.6.6</version>
+                </dependency>
+                
+                
+		
+		<!--  -->
+		<!-- kafka dependencies -->
+			<dependency>
+			<groupId>org.apache.kafka</groupId>
+			<artifactId>kafka_2.10</artifactId>
+			<version>0.8.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.zookeeper</groupId>
+			<artifactId>zookeeper</artifactId>
+			<version>3.3.2</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.sun.jmx</groupId>
+					<artifactId>jmxri</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.sun.jdmk</groupId>
+					<artifactId>jmxtools</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>javax.jms</groupId>
+					<artifactId>jms</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!--  -->
 	</dependencies>
-    <build>
-        <plugins>
-            <plugin>
-                <artifactId>maven-eclipse-plugin</artifactId>
-                <version>2.9</version>
-                <configuration>
-                    <additionalProjectnatures>
-                        <projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
-                    </additionalProjectnatures>
-                    <additionalBuildcommands>
-                        <buildcommand>org.springframework.ide.eclipse.core.springbuilder</buildcommand>
-                    </additionalBuildcommands>
-                    <downloadSources>true</downloadSources>
-                    <downloadJavadocs>true</downloadJavadocs>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.5.1</version>
-                <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
-                    <compilerArgument>-Xlint:all</compilerArgument>
-                    <showWarnings>true</showWarnings>
-                    <showDeprecation>true</showDeprecation>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>1.2.1</version>
-                <configuration>
-                    <mainClass>org.test.int1.Main</mainClass>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.9</version>
+				<configuration>
+					<additionalProjectnatures>
+						<projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
+					</additionalProjectnatures>
+					<additionalBuildcommands>
+						<buildcommand>org.springframework.ide.eclipse.core.springbuilder</buildcommand>
+					</additionalBuildcommands>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>true</downloadJavadocs>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.5.1</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+					<compilerArgument>-Xlint:all</compilerArgument>
+					<showWarnings>true</showWarnings>
+					<showDeprecation>true</showDeprecation>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.2.1</version>
+				<configuration>
+					<mainClass>org.test.int1.Main</mainClass>
+				</configuration>
+			</plugin>
+			<plugin>
+			<artifactId>maven-assembly-plugin</artifactId>
+			<configuration>
+				<archive>
+					<manifest>
+						<mainClass>com.storm.core.SearchTopology</mainClass>
+					</manifest>
+				</archive>
+				<descriptorRefs>
+					<descriptorRef>jar-with-dependencies</descriptorRef>
+				</descriptorRefs>
+			</configuration>
+			<executions>
+				<execution>
+					<id>make-assembly</id> <!-- this is used for inheritance merges -->
+					<phase>package</phase> <!-- bind to the packaging phase -->
+					<goals>
+						<goal>single</goal>
+					</goals>
+				</execution>
+			</executions>
+		</plugin>
+		<plugin>
+	<groupId>org.codehaus.mojo</groupId>
+	<artifactId>exec-maven-plugin</artifactId>
+	<version>1.2.1</version>
+	<executions>
+		<execution>
+			<goals>
+				<goal>exec</goal>
+			</goals>
+		</execution>
+	</executions>
+	<configuration>
+		<executable>java</executable>
+		<includeProjectDependencies>true</includeProjectDependencies>
+		<includePluginDependencies>false</includePluginDependencies>
+		<classpathScope>compile</classpathScope>
+		<mainClass>${storm.topology}</mainClass>
+	</configuration>
+</plugin>
+		</plugins>
+	</build>
 </project>

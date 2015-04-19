@@ -19,11 +19,7 @@ app.controller('ModalDemoCtrl', ['$scope','$modal','$log','ngTableParams','$filt
 	 });
 
  } 
-  
- 
-
-  
-  $scope.tableParams = new ngTableParams(
+ $scope.tableParams = new ngTableParams(
 
   {
 
