@@ -1,39 +1,41 @@
 package com.priceking.activity;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.TimeZone;
 
-import android.app.Activity;
-import android.content.Context;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
+import android.provider.CalendarContract;
+import android.provider.CalendarContract.Events;
+import android.text.Html;
+import android.text.TextUtils;
 import android.util.Log;
-import android.view.GestureDetector;
-import android.view.GestureDetector.OnGestureListener;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.Animation.AnimationListener;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.analytics.tracking.android.EasyTracker;
 import com.priceking.ApplicationEx;
 import com.priceking.R;
+import com.priceking.data.DatabaseHandler;
 import com.priceking.entity.Product;
+import com.priceking.utils.PriceKingUtils;
 
 /**
  * Represents the offer in detail. (Integrated with View Pager)
@@ -41,84 +43,103 @@ import com.priceking.entity.Product;
  * @author DEVEN
  * 
  */
-public class ProductDetailActivity extends Activity implements
-		OnGestureListener, AnimationListener {
+public class ProductDetailActivity extends BaseActivity {
 
-	private MyFragmentAdapter myFragmentAdapter;
-	private ViewPager mPager;
-	private TextView pageIndicator;
-	private int currentPage = 0;
-	private static final int SWIPE_MIN_DISTANCE = 50;
-	private static final int SWIPE_MAX_OFF_PATH = 250;
-	private static final int SWIPE_THRESHOLD_VELOCITY = 200;
-	private GestureDetector detector = new GestureDetector(this);
+	private TextView nameTextView;
+	private ImageView ratingImageView;
+	private ImageView thumbnailImageView;
+	private TextView msrpTextView;
+	private TextView salePriceTextView;
+	private TextView savingTextView;
+	private TextView shortDescriptionTextView;
+	private Button addToCalendarButton;
+	private Button addToWishListButton;
+	private Button buyNowButton;
 
 	private Product product;
 
 	private RelativeLayout mainLayout;
-	private Animation anim;
-	private Animation fade_anim;
-	private Button webSiteButton;
+	private DatabaseHandler db;
 
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.offer);
+		mMenuDrawer.setContentView(R.layout.offer_detail);
 
-		ApplicationEx.isFirstLoad = false;
+		product = ApplicationEx.product;
 
-		getActionBar().setHomeButtonEnabled(false);
-		/**
-		 * whether to show Standard Home Icon or not
-		 */
-		getActionBar().setDisplayHomeAsUpEnabled(true);
+		nameTextView = (TextView) findViewById(R.id.product_title);
+		ratingImageView = (ImageView) findViewById(R.id.img_rating);
+		thumbnailImageView = (ImageView) findViewById(R.id.img_thumbnail);
+		msrpTextView = (TextView) findViewById(R.id.msrp);
+		salePriceTextView = (TextView) findViewById(R.id.sale_price);
+		savingTextView = (TextView) findViewById(R.id.saving);
+		shortDescriptionTextView = (TextView) findViewById(R.id.description);
+		addToCalendarButton = (Button) findViewById(R.id.add_to_calendar);
+		addToWishListButton = (Button) findViewById(R.id.add_to_wish_list);
+		buyNowButton = (Button) findViewById(R.id.buy_now);
 
-		pageIndicator = (TextView) findViewById(R.id.text);
-		mPager = (ViewPager) findViewById(R.id.pager);
-		myFragmentAdapter = new MyFragmentAdapter(getApplicationContext());
-		mPager.setAdapter(myFragmentAdapter);
+		addToCalendarButton.setOnClickListener(onClickListener);
+		addToWishListButton.setOnClickListener(onClickListener);
+		buyNowButton.setOnClickListener(onClickListener);
 
-		/**
-		 * sets the current page at the position which you want.
-		 */
-		mPager.setCurrentItem(ApplicationEx.selectedPosition);
-
-		/**
-		 * Sets the page indicator
-		 */
-		pageIndicator.setText("" + (ApplicationEx.selectedPosition + 1) + " /"
-				+ ApplicationEx.productList.size());
-
-		/**
-		 * Set the touch event listener
-		 */
-		mPager.setOnTouchListener(new View.OnTouchListener() {
-
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				return detector.onTouchEvent(event);
-			}
-		});
-
-		mPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-			@Override
-			public void onPageSelected(int position) {
-				currentPage = position;
-				currentPage = currentPage % ApplicationEx.productList.size();
-				pageIndicator.setText((currentPage + 1) + " /"
-						+ ApplicationEx.productList.size());
-
+		if (product != null) {
+			nameTextView.setText(product.getName());
+			if (product.getThumbnailBlob() != null) {
+				thumbnailImageView.setImageDrawable(new BitmapDrawable(
+						BitmapFactory.decodeByteArray(
+								product.getThumbnailBlob(), 0,
+								product.getThumbnailBlob().length)));
+			} else {
+				thumbnailImageView.setImageResource(R.drawable.noimage);
 			}
 
-			@Override
-			public void onPageScrollStateChanged(int state) {
+			if (product.getCustomerRatingBlob() != null) {
+				ratingImageView.setImageDrawable(new BitmapDrawable(
+						BitmapFactory.decodeByteArray(
+								product.getCustomerRatingBlob(), 0,
+								product.getCustomerRatingBlob().length)));
 			}
 
-			@Override
-			public void onPageScrolled(int arg0, float arg1, int arg2) {
+			msrpTextView.setText(PriceKingUtils.formatCurrencyUSD(product
+					.getMsrp()));
+
+			shortDescriptionTextView.setText(product.getShortDescription());
+
+			String salePriceText = "<font color=#000000>Deal Price: </font> <font color=#990000>"
+					+ PriceKingUtils.formatCurrencyUSD(product.getSalePrice())
+					+ "</font>";
+
+			salePriceTextView.setText(Html.fromHtml(salePriceText));
+
+			if (product.getMsrp() == 0.0) {
+				savingTextView.setVisibility(View.GONE);
+			} else {
+				savingTextView.setVisibility(View.VISIBLE);
+				String savingText = "<font color=#000000>You Save: </font> <font color=#990000>"
+						+ PriceKingUtils.calculateSavings(product.getMsrp(),
+								product.getSalePrice()) + "</font>";
+				savingTextView.setText(Html.fromHtml(savingText));
+
 			}
-		});
+
+			if (!TextUtils.isEmpty(ApplicationEx.userName)) {
+				addToWishListButton.setVisibility(View.VISIBLE);
+				db = new DatabaseHandler(getApplicationContext());
+				db.openInternalDB();
+
+				if (db.isInWishList(ApplicationEx.userName,
+						product.getProductURL())) {
+					addToWishListButton.setText("Added to wish list");
+				}
+				db.close();
+			} else {
+				addToWishListButton.setVisibility(View.GONE);
+			}
+
+			getActionBar().setTitle("Product Details");
+		}
 
 	}
 
@@ -153,7 +174,7 @@ public class ProductDetailActivity extends Activity implements
 		/**
 		 * Start Google Analytics Tracking
 		 */
-		// EasyTracker.getInstance(this).activityStart(this);
+		EasyTracker.getInstance(this).activityStart(this);
 	}
 
 	@Override
@@ -162,11 +183,11 @@ public class ProductDetailActivity extends Activity implements
 		/**
 		 * Stop Google Analytics Tracking
 		 */
-		// EasyTracker.getInstance(this).activityStop(this);
+		EasyTracker.getInstance(this).activityStop(this);
 	}
 
 	/**
-	 * Handles back press
+	 * Handles Menu Clicks
 	 */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -176,10 +197,6 @@ public class ProductDetailActivity extends Activity implements
 		boolean resolved;
 
 		switch (item.getItemId()) {
-
-		case android.R.id.home:
-			finish();
-			break;
 		case R.id.facebook:
 			tweetIntent = new Intent(Intent.ACTION_SEND);
 			tweetIntent.putExtra(Intent.EXTRA_TEXT, product.getProductURL());
@@ -287,230 +304,107 @@ public class ProductDetailActivity extends Activity implements
 	}
 
 	/**
-	 * View Pager Adapter that allows user to see other Product details by
-	 * swipping
-	 * 
-	 * @author DEVEN
-	 * 
+	 * Onclick listener
 	 */
-	public class MyFragmentAdapter extends PagerAdapter {
-		private Context context;
-		private View layout = null;
-		private TextView name;
-		private TextView shortDescription;
-		private TextView msrp;
-		private TextView salePrice;
-		private TextView customerRating;
-		private ImageView thumbnailImageView;
-		protected static final float SHAKE_THRESHOLD = 1000;
-
-		public MyFragmentAdapter(Context context) {
-			this.context = context;
-			/**
-			 * load the animation
-			 */
-			anim = AnimationUtils.loadAnimation(getApplicationContext(),
-					R.anim.bounce);
-			fade_anim = AnimationUtils.loadAnimation(getApplicationContext(),
-					R.anim.fade_in);
-			fade_anim.setDuration(1000);
-
-			/**
-			 * set animation listener
-			 */
-			anim.setAnimationListener(ProductDetailActivity.this);
-			fade_anim.setAnimationListener(ProductDetailActivity.this);
-
-		}
+	private OnClickListener onClickListener = new OnClickListener() {
 
 		@Override
-		public int getCount() {
-			return ApplicationEx.productList.size() * 2;
-		}
+		public void onClick(View view) {
+			Intent intent = null;
+			int id = view.getId();
+			switch (id) {
+			case R.id.buy_now:
+				/**
+				 * for opening the links in browser.
+				 */
+				Intent myIntent = new Intent(Intent.ACTION_VIEW,
+						Uri.parse(product.getProductURL()));
+				startActivity(myIntent);
+				break;
+			case R.id.add_to_wish_list:
+				try {
+					if (!TextUtils.isEmpty(ApplicationEx.userName)) {
+						addToWishListButton.setVisibility(View.VISIBLE);
+						db = new DatabaseHandler(getApplicationContext());
+						db.openInternalDB();
+						if (!db.isInWishList(ApplicationEx.userName,
+								product.getProductURL())) {
+							db.addToWishList(product, ApplicationEx.userName);
+							addToWishListButton.setText("Added to wish list");
+						} else {
+							PriceKingUtils.showToast(
+									ProductDetailActivity.this,
+									"Already added to wish list");
+						}
+					} else {
+						addToWishListButton.setVisibility(View.GONE);
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					db.close();
+				}
+				break;
+			case R.id.add_to_calendar:
+				try {
+					Calendar cal = Calendar.getInstance(TimeZone.getDefault());
+					DatePickerDialog datePicker = new DatePickerDialog(
+							ProductDetailActivity.this, datePickerListener,
+							cal.get(Calendar.YEAR), cal.get(Calendar.MONTH),
+							cal.get(Calendar.DAY_OF_MONTH));
+					datePicker.setCancelable(false);
+					datePicker.setTitle("Select the date");
+					datePicker.show();
 
-		@Override
-		public void destroyItem(ViewGroup container, int position, Object object) {
-			((ViewGroup) container).removeView((View) object);
-		}
-
-		@Override
-		public boolean isViewFromObject(View arg0, Object arg1) {
-			return arg0 == ((View) arg1);
-		}
-
-		@Override
-		public Object instantiateItem(ViewGroup container, int position) {
-			LayoutInflater inflater = (LayoutInflater) context
-					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			layout = inflater.inflate(R.layout.offer_detail, null);
-			mainLayout = (RelativeLayout) layout.findViewById(R.id.main_layout);
-
-			name = (TextView) layout.findViewById(R.id.title);
-			msrp = (TextView) layout.findViewById(R.id.msrp);
-			salePrice = (TextView) layout.findViewById(R.id.sale_price);
-			customerRating = (TextView) layout.findViewById(R.id.rating);
-			thumbnailImageView = (ImageView) layout
-					.findViewById(R.id.img_thumbnail);
-
-			webSiteButton = (Button) layout.findViewById(R.id.web_site);
-			webSiteButton.setOnClickListener(onClickListener);
-
-			if (position == ApplicationEx.productList.size())
-				product = ApplicationEx.productList
-						.get(ApplicationEx.productList.size() - 1);
-			else if (position > ApplicationEx.productList.size())
-				product = ApplicationEx.productList.get(1);
-			else
-				product = ApplicationEx.productList.get(position);
-
-			if (product != null) {
-				name.setText(product.getName());
-				msrp.setText("" + product.getMsrp());
-				salePrice.setText("" + product.getSalePrice());
-				customerRating.setText("" + product.getCustomerRating());
-				thumbnailImageView.setImageDrawable(ApplicationEx.images
-						.get(product.getThumbnailImage()));
-
-				getActionBar().setTitle("Product Details");
-			}
-
-			webSiteButton.setVisibility(View.VISIBLE);
-			if (!ApplicationEx.isFirstLoad) {
-				mainLayout.setAnimation(fade_anim);
-				webSiteButton.setAnimation(anim);
-				ApplicationEx.isFirstLoad = true;
-			} else {
-				mainLayout.setVisibility(View.VISIBLE);
-				webSiteButton.setVisibility(View.VISIBLE);
-			}
-
-			container.addView(layout);
-			return layout;
-		}
-
-		/**
-		 * Onclick listener
-		 */
-		private OnClickListener onClickListener = new OnClickListener() {
-
-			@Override
-			public void onClick(View view) {
-				Intent intent = null;
-				int id = view.getId();
-				switch (id) {
-				case R.id.web_site:
-					intent = new Intent(ProductDetailActivity.this,
-							WebViewActivity.class);
-					intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-					intent.putExtra("url", product.getProductURL());
-					startActivity(intent);
-					break;
-				default:
-					break;
+				} catch (Exception e) {
+					PriceKingUtils.showToast(ProductDetailActivity.this,
+							"An error occured while showing Date Picker\n\n"
+									+ " Error Details:\n" + e.toString());
 				}
 
+				break;
+			default:
+				break;
 			}
-		};
-
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.view.animation.Animation.AnimationListener#onAnimationEnd
-	 * (android .view.animation.Animation)
-	 */
-	@Override
-	public void onAnimationEnd(Animation animation) {
-		if (mainLayout.getVisibility() == View.INVISIBLE) {
-			mainLayout.setVisibility(View.VISIBLE);
 
 		}
-		if (webSiteButton.getVisibility() == View.INVISIBLE)
-			webSiteButton.setVisibility(View.VISIBLE);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * android.view.animation.Animation.AnimationListener#onAnimationRepeat(
-	 * android.view.animation.Animation)
-	 */
-	@Override
-	public void onAnimationRepeat(Animation animation) {
-
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.view.animation.Animation.AnimationListener#onAnimationStart
-	 * (android .view.animation.Animation)
-	 */
-	@Override
-	public void onAnimationStart(Animation animation) {
-
-	}
-
-	@Override
-	public boolean onDown(MotionEvent e) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	};
 
 	/**
-	 * method to identify gesture (left or right swipe)
+	 * Date Picker Dialog
 	 */
-	@Override
-	public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
-			float velocityY) {
-		try {
-			if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MAX_OFF_PATH) {
+	private DatePickerDialog.OnDateSetListener datePickerListener = new DatePickerDialog.OnDateSetListener() {
 
-				return false;
-			}
+		// when dialog box is closed, below method will be called.
+		public void onDateSet(DatePicker view, int selectedYear,
+				int selectedMonth, int selectedDay) {
+			String year = String.valueOf(selectedYear);
+			String month = String.valueOf(selectedMonth + 1);
+			String day = String.valueOf(selectedDay);
 
-			// right to left swipe
-			if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE
-					&& Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY
-					&& currentPage == (ApplicationEx.productList.size() - 1)) {
+			addEventToCalendar(Integer.parseInt(year), Integer.parseInt(month),
+					Integer.parseInt(day));
 
-				mPager.setCurrentItem(0, false);
-				return true;
-			} else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE
-					&& Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY
-					&& currentPage == 0) {
-				mPager.setCurrentItem(ApplicationEx.productList.size() - 1,
-						false);
-				return true;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
+	};
 
-		return false;
-	}
+	/**
+	 * Add Event to Calendar
+	 */
+	public void addEventToCalendar(int year, int month, int day) {
+		Intent calIntent = new Intent(Intent.ACTION_INSERT);
+		calIntent.setType("vnd.android.cursor.item/event");
+		calIntent.putExtra(Events.TITLE, "Reminder: " + product.getName());
+		calIntent.putExtra(Events.DESCRIPTION, product.getShortDescription());
 
-	@Override
-	public void onLongPress(MotionEvent e) {
+		GregorianCalendar calDate = new GregorianCalendar(2012, 7, 15);
+		calIntent.putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, true);
+		calIntent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME,
+				calDate.getTimeInMillis());
+		calIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME,
+				calDate.getTimeInMillis());
 
-	}
-
-	@Override
-	public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX,
-			float distanceY) {
-		return false;
-	}
-
-	@Override
-	public void onShowPress(MotionEvent e) {
-
-	}
-
-	@Override
-	public boolean onSingleTapUp(MotionEvent e) {
-		return false;
+		startActivity(calIntent);
 	}
 
 }

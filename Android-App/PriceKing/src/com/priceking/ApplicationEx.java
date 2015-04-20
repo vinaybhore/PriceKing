@@ -1,17 +1,16 @@
 package com.priceking;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 
+import com.priceking.entity.Categories;
 import com.priceking.entity.Product;
 import com.priceking.utils.PriceKingUtils;
 
@@ -49,20 +48,39 @@ public class ApplicationEx extends android.app.Application {
 	public static int selectedPosition = 0;
 
 	/**
-	 * True if the detailed screen is opened first time from list view (used for
-	 * controlling animation)
-	 */
-	public static boolean isFirstLoad = false;
-
-	/**
 	 * Contains Product Items
 	 */
 	public static List<Product> productList = new ArrayList<Product>();
 
-	public static Map<String, Drawable> images = new HashMap<String, Drawable>(); // Drawables
-																					// in
-																					// HashMap
-																					// should
+	/**
+	 * Contains Product Items
+	 */
+	public static List<Product> advertisementList = new ArrayList<Product>();
+
+	/**
+	 * Boolean that checks login status
+	 */
+	public static boolean isLoggedIn = false;
+
+	/**
+	 * contains the saved user name when logged in
+	 */
+	public static String userName;
+
+	/**
+	 * Product Instance
+	 */
+	public static Product product;
+
+	/**
+	 * List of Advertisements Categories
+	 */
+	public static List<String> advertisementCategories;
+
+	/**
+	 * List of different categories
+	 */
+	public static List<Categories> categoryList;
 
 	// be saved as WeakReference or
 	// SoftReference
@@ -83,21 +101,48 @@ public class ApplicationEx extends android.app.Application {
 				MAXIMUM_POOL_SIZE, 100000L, TimeUnit.MILLISECONDS,
 				new LinkedBlockingQueue<Runnable>());
 
-		// getSharedPreferencesValue();
+		/**
+		 * Get the Login Status
+		 */
+		isLoggedIn();
+
+		/**
+		 * Set Advertisement List
+		 */
+		PriceKingUtils.setAdvertisementList();
+
+		/**
+		 * Set Category List
+		 */
+		PriceKingUtils.setCategoriesList();
 
 	}
 
-	// /**
-	// * Get the current city from shared preference
-	// */
-	// public static void getSharedPreferencesValue() {
-	// sharedPreference = context.getSharedPreferences(context.getResources()
-	// .getString(R.string.area), context.MODE_WORLD_READABLE);
-	//
-	// if (sharedPreference != null) {
-	// myCity = sharedPreference.getString(context.getResources()
-	// .getString(R.string.city), "");
-	// }
-	// }
+	/**
+	 * returns the user name saved in shared preference
+	 */
+	public static void getSharedPreferencesValue() {
+		sharedPreference = context.getSharedPreferences(context.getResources()
+				.getString(R.string.app_user_credentials),
+				context.MODE_WORLD_READABLE);
 
+		if (sharedPreference != null) {
+			userName = sharedPreference.getString(context.getResources()
+					.getString(R.string.app_user_name), userName);
+		}
+	}
+
+	/**
+	 * Check Login Status
+	 */
+	public static void isLoggedIn() {
+		ApplicationEx.getSharedPreferencesValue();
+
+		if (TextUtils.isEmpty(ApplicationEx.userName)) {
+			isLoggedIn = false;
+
+		} else {
+			isLoggedIn = true;
+		}
+	}
 }

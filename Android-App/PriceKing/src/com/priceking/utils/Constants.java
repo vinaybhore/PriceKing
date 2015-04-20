@@ -1,30 +1,12 @@
 package com.priceking.utils;
 
+/**
+ * File having all the constants used
+ * 
+ * @author DEVEN
+ * 
+ */
 public final class Constants {
-
-	public interface AnalyticsConstants {
-		final static String API_KEY = "?apiKey=38b518ece0076d053e231a6f68c1a0fd";
-		String prefixAnalytics = "app/android/herald";
-	}
-
-	public interface GoogleTracker {
-		public static String GA_ACCOUNT_ID = "UA-50366908-1";
-		public static String GA_APP_START = AnalyticsConstants.prefixAnalytics
-				+ "/AppLaunched";
-		public static String GA_NEWS_CATEGORY_VIEWED = AnalyticsConstants.prefixAnalytics
-				+ "/News Category Viewed";
-		public static String GA_NEWS_LIST_VIEWED = AnalyticsConstants.prefixAnalytics
-				+ "/News List Viewed";
-		public static String GA_NEWS_DETAIL_VIEWED = AnalyticsConstants.prefixAnalytics
-				+ "/News Details Viewed";
-		public static String GA_WEATHER_INFO_VIEWED = AnalyticsConstants.prefixAnalytics
-				+ "/Weather Info Viewed";
-
-		public static String GA_SERVICE = "?service=";
-		public static String GA_TITLE = "?title=";
-		public static String GA_URL = "&url=";
-	}
-
 	/** Error dialog codes */
 	public static final class PriceKingDialogCodes {
 		public static final int ACTIVITYSUCCESS = 201;
@@ -46,10 +28,32 @@ public final class Constants {
 		public static final String INTERNAL_SERVER_ERROR = "Internal Server error. Pleas try again...";
 	}
 
+	/** String identifiers for serialize json of User entity */
+	public static final String FIRST_NAME = "firstname";
+	public static final String LAST_NAME = "lastname";
+	public static final String USER_NAME = "username";
+	public static final String EMAIL = "email";
+	public static final String PHONE = "phone";
+	public static final String PASSWORD = "password";
+
 	/**
 	 * Consumer Key and Consumer Secret for Twitter4j
 	 */
 	public static final String CONSUMER_KEY = "ZjfnEnPpjJnRcCRHSi9juaopQ";
 	public static final String CONSUMER_SECRET = "q43VbT1WAHW9pyyZqtkOwruru0BBnP4pSNzaNqP557qj4wb2sD";
+
+	/**
+	 * Categories in Sliding Menu
+	 */
+	public static final class Categories {
+		public static final String HOME_CATEGORY = "Home";
+		public static final String RECENTLY_VIEWED_CATEGORY = "Recently Viewed Items";
+		public static final String STORES_CATEGORY = "Stores";
+		public static final String WISHLIST_CATEGORY = "Your Wish List";
+		public static final String ORDERS_CATEGORY = "Your Orders";
+		public static final String CONTACT_US_CATEGORY = "Contact Us";
+		public static final String SIGN_IN_CATEGORY = "Sign In";
+		public static final String SIGN_OUT_CATEGORY = "Sign Out";
+	}
 
 }

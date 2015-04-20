@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/repos/android/!svn/ver/1322/Twitter_Library/TwitterDemo/src/twitter4j/http
+END
+OAuth.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/repos/android/!svn/ver/1322/Twitter_Library/TwitterDemo/src/twitter4j/http/OAuth.java
+END
+HTMLEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/repos/android/!svn/ver/1322/Twitter_Library/TwitterDemo/src/twitter4j/http/HTMLEntity.java
+END
+OAuthToken.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/repos/android/!svn/ver/1322/Twitter_Library/TwitterDemo/src/twitter4j/http/OAuthToken.java
+END
+AccessToken.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/repos/android/!svn/ver/1322/Twitter_Library/TwitterDemo/src/twitter4j/http/AccessToken.java
+END
+BASE64Encoder.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/repos/android/!svn/ver/1322/Twitter_Library/TwitterDemo/src/twitter4j/http/BASE64Encoder.java
+END
+PostParameter.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/repos/android/!svn/ver/1322/Twitter_Library/TwitterDemo/src/twitter4j/http/PostParameter.java
+END
+RequestToken.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/repos/android/!svn/ver/1322/Twitter_Library/TwitterDemo/src/twitter4j/http/RequestToken.java
+END
+HttpClient.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/repos/android/!svn/ver/1322/Twitter_Library/TwitterDemo/src/twitter4j/http/HttpClient.java
+END
+Response.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/repos/android/!svn/ver/1322/Twitter_Library/TwitterDemo/src/twitter4j/http/Response.java
+END

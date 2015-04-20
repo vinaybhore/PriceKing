@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffff"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/images"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Images" />
+
+    <Button
+        android:id="@+id/slideshow"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="SlideShow" />
+
+</LinearLayout>

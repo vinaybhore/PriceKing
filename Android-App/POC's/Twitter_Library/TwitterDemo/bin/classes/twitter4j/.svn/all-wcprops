@@ -1,0 +1,161 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/repos/android/!svn/ver/1322/Twitter_Library/TwitterDemo/src/twitter4j
+END
+Trends.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/repos/android/!svn/ver/1322/Twitter_Library/TwitterDemo/src/twitter4j/Trends.java
+END
+StatusStream.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/repos/android/!svn/ver/1322/Twitter_Library/TwitterDemo/src/twitter4j/StatusStream.java
+END
+TwitterSupport.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/repos/android/!svn/ver/1322/Twitter_Library/TwitterDemo/src/twitter4j/TwitterSupport.java
+END
+AsyncTwitter.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/repos/android/!svn/ver/1322/Twitter_Library/TwitterDemo/src/twitter4j/AsyncTwitter.java
+END
+Twitter.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/repos/android/!svn/ver/1322/Twitter_Library/TwitterDemo/src/twitter4j/Twitter.java
+END
+TwitterAdapter.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/repos/android/!svn/ver/1322/Twitter_Library/TwitterDemo/src/twitter4j/TwitterAdapter.java
+END
+QueryResult.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/repos/android/!svn/ver/1322/Twitter_Library/TwitterDemo/src/twitter4j/QueryResult.java
+END
+Query.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/repos/android/!svn/ver/1322/Twitter_Library/TwitterDemo/src/twitter4j/Query.java
+END
+Paging.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/repos/android/!svn/ver/1322/Twitter_Library/TwitterDemo/src/twitter4j/Paging.java
+END
+Configuration.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/repos/android/!svn/ver/1322/Twitter_Library/TwitterDemo/src/twitter4j/Configuration.java
+END
+TwitterListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/repos/android/!svn/ver/1322/Twitter_Library/TwitterDemo/src/twitter4j/TwitterListener.java
+END
+Trend.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/repos/android/!svn/ver/1322/Twitter_Library/TwitterDemo/src/twitter4j/Trend.java
+END
+TwitterStream.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/repos/android/!svn/ver/1322/Twitter_Library/TwitterDemo/src/twitter4j/TwitterStream.java
+END
+User.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/repos/android/!svn/ver/1322/Twitter_Library/TwitterDemo/src/twitter4j/User.java
+END
+DirectMessage.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/repos/android/!svn/ver/1322/Twitter_Library/TwitterDemo/src/twitter4j/DirectMessage.java
+END
+IDs.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/repos/android/!svn/ver/1322/Twitter_Library/TwitterDemo/src/twitter4j/IDs.java
+END
+TwitterException.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/repos/android/!svn/ver/1322/Twitter_Library/TwitterDemo/src/twitter4j/TwitterException.java
+END
+TwitterResponse.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/repos/android/!svn/ver/1322/Twitter_Library/TwitterDemo/src/twitter4j/TwitterResponse.java
+END
+Status.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/repos/android/!svn/ver/1322/Twitter_Library/TwitterDemo/src/twitter4j/Status.java
+END
+RetweetDetails.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/repos/android/!svn/ver/1322/Twitter_Library/TwitterDemo/src/twitter4j/RetweetDetails.java
+END
+Version.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/repos/android/!svn/ver/1322/Twitter_Library/TwitterDemo/src/twitter4j/Version.java
+END
+Dispatcher.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/repos/android/!svn/ver/1322/Twitter_Library/TwitterDemo/src/twitter4j/Dispatcher.java
+END
+SavedSearch.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/repos/android/!svn/ver/1322/Twitter_Library/TwitterDemo/src/twitter4j/SavedSearch.java
+END
+Tweet.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/repos/android/!svn/ver/1322/Twitter_Library/TwitterDemo/src/twitter4j/Tweet.java
+END
+StatusListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/repos/android/!svn/ver/1322/Twitter_Library/TwitterDemo/src/twitter4j/StatusListener.java
+END
+RateLimitStatus.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/repos/android/!svn/ver/1322/Twitter_Library/TwitterDemo/src/twitter4j/RateLimitStatus.java
+END

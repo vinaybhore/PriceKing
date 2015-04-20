@@ -3,165 +3,164 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_gradient"
+    android:background="@color/white"
     android:orientation="vertical" >
 
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_above="@+id/tab_base_layout"
         android:fadingEdge="none"
         android:foregroundGravity="right" >
 
         <RelativeLayout
             android:id="@+id/main_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="invisible" >
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/product_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dip"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="Apple Iphone 6"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/img_rating"
+                android:layout_width="80dip"
+                android:layout_height="20dip"
+                android:layout_below="@+id/product_title"
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="10dip"
+                android:layout_marginLeft="10dip" >
+            </ImageView>
 
             <ImageView
                 android:id="@+id/img_thumbnail"
                 android:layout_width="200dip"
                 android:layout_height="200dip"
+                android:layout_below="@+id/img_rating"
                 android:layout_centerHorizontal="true"
-                android:layout_marginBottom="10dip"
-                android:layout_marginTop="30dip"
+                android:layout_margin="10dip"
                 android:background="@drawable/ic_launcher" />
-
-            <TextView
-                android:id="@+id/title_key"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/img_thumbnail"
-                android:layout_marginBottom="5dip"
-                android:layout_marginLeft="15dip"
-                android:layout_marginRight="10dip"
-                android:layout_marginTop="20dip"
-                android:ellipsize="end"
-                android:gravity="center_vertical"
-                android:singleLine="true"
-                android:text="Title:"
-                android:textColor="@color/blue"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/title_key"
-                android:layout_marginBottom="5dip"
-                android:layout_marginRight="10dip"
-                android:ellipsize="end"
-                android:gravity="center_vertical"
-                android:padding="15dip"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/msrp_key"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/title"
-                android:layout_marginBottom="5dip"
-                android:layout_marginLeft="15dip"
+                android:layout_below="@+id/img_thumbnail"
+                android:layout_marginLeft="10dip"
                 android:layout_marginRight="10dip"
-                android:layout_marginTop="20dip"
-                android:ellipsize="end"
+                android:layout_marginTop="10dip"
                 android:gravity="center_vertical"
-                android:singleLine="true"
-                android:text="MSRP:"
-                android:textColor="@color/blue"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:text="M.S.R.P.: "
+                android:textColor="@color/black"
+                android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/msrp"
+            <FrameLayout
+                android:id="@+id/frame_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/msrp_key"
-                android:layout_marginBottom="5dip"
-                android:layout_marginRight="10dip"
-                android:ellipsize="end"
-                android:gravity="center_vertical"
-                android:padding="15dip"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:layout_below="@+id/img_thumbnail"
+                android:layout_marginTop="10dip"
+                android:layout_toRightOf="@+id/msrp_key" >
 
-            <TextView
-                android:id="@+id/sale_price_key"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/msrp"
-                android:layout_marginBottom="5dip"
-                android:layout_marginLeft="15dip"
-                android:layout_marginRight="10dip"
-                android:layout_marginTop="20dip"
-                android:ellipsize="end"
-                android:gravity="center_vertical"
-                android:singleLine="true"
-                android:text="Sale Price:"
-                android:textColor="@color/blue"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/msrp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="$650.00"
+                    android:textColor="#808080"
+                    android:textSize="16sp" />
+
+                <View
+                    android:id="@+id/horizontal_line"
+                    android:layout_width="50dip"
+                    android:layout_height="1dip"
+                    android:layout_gravity="center_vertical"
+                    android:background="#808080" />
+            </FrameLayout>
 
             <TextView
                 android:id="@+id/sale_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/sale_price_key"
-                android:layout_marginBottom="5dip"
-                android:layout_marginRight="10dip"
-                android:ellipsize="end"
+                android:layout_below="@+id/msrp_key"
+                android:layout_marginLeft="10dip"
+                android:layout_marginTop="5dip"
                 android:gravity="center_vertical"
-                android:padding="15dip"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:text="$400.00"
+                android:textColor="@color/sale_price_color"
+                android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/rating_key"
+                android:id="@+id/saving"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/sale_price"
-                android:layout_marginBottom="5dip"
-                android:layout_marginLeft="15dip"
-                android:layout_marginRight="10dip"
-                android:layout_marginTop="20dip"
-                android:ellipsize="end"
+                android:layout_marginLeft="10dip"
+                android:layout_marginTop="5dip"
                 android:gravity="center_vertical"
-                android:singleLine="true"
-                android:text="Customer Rating:"
-                android:textColor="@color/blue"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:text="$400.00"
+                android:textColor="@color/sale_price_color"
+                android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/rating"
+                android:id="@+id/description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/rating_key"
-                android:layout_marginBottom="5dip"
-                android:layout_marginRight="10dip"
-                android:ellipsize="end"
-                android:gravity="center_vertical"
-                android:padding="15dip"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:layout_below="@+id/saving"
+                android:layout_margin="10dip"
+                android:text="Apple Iphone 6"
+                android:textColor="@color/grey_dark"
+                android:textSize="16sp" />
 
             <Button
-                android:id="@+id/web_site"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="40dip"
-                android:text="Go to Source"
-                android:textStyle="bold"
-                android:visibility="invisible" />
+                android:id="@+id/add_to_calendar"
+                android:layout_width="match_parent"
+                android:layout_height="55dip"
+                android:layout_below="@+id/description"
+                android:layout_margin="10dip"
+                android:drawableRight="@drawable/calendar"
+                android:gravity="left|center_vertical"
+                android:paddingBottom="10dip"
+                android:paddingLeft="20dip"
+                android:paddingTop="10dip"
+                android:text="Add Reminder"
+                android:textColor="@color/black" />
+
+            <Button
+                android:id="@+id/add_to_wish_list"
+                android:layout_width="match_parent"
+                android:layout_height="55dip"
+                android:layout_below="@+id/add_to_calendar"
+                android:layout_margin="10dip"
+                android:drawableRight="@drawable/wishlist"
+                android:gravity="left|center_vertical"
+                android:paddingBottom="10dip"
+                android:paddingLeft="20dip"
+                android:paddingTop="10dip"
+                android:text="Add to wishlist"
+                android:textColor="@color/black" />
+
+            <Button
+                android:id="@+id/buy_now"
+                android:layout_width="match_parent"
+                android:layout_height="55dip"
+                android:layout_below="@+id/add_to_wish_list"
+                android:layout_margin="10dip"
+                android:drawableRight="@drawable/purchase"
+                android:gravity="left|center_vertical"
+                android:paddingBottom="10dip"
+                android:paddingLeft="20dip"
+                android:paddingTop="10dip"
+                android:text="Buy Now"
+                android:textColor="@color/black" />
         </RelativeLayout>
     </ScrollView>
 

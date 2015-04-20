@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="120dip"
+        android:layout_height="120dip"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dip"
+        android:paddingRight="5dip" >
+    </ImageView>
+
+    <RelativeLayout
+        android:id="@+id/sub_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/image"
+        android:layout_margin="10dip" >
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dip"
+            android:layout_marginTop="10dip"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="Apple Iphone 6"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/sale_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title"
+            android:layout_marginRight="20dip"
+            android:layout_marginTop="3dip"
+            android:gravity="center_vertical"
+            android:text="$400.00"
+            android:textColor="@color/sale_price_color"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <FrameLayout
+            android:id="@+id/frame_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title"
+            android:layout_marginTop="3dip"
+            android:layout_toRightOf="@+id/sale_price" >
+
+            <TextView
+                android:id="@+id/msrp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="$650.00"
+                android:textColor="#808080"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/horizontal_line"
+                android:layout_width="50dip"
+                android:layout_height="1dip"
+                android:layout_gravity="center_vertical"
+                android:background="#808080" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/sale_price"
+            android:layout_marginRight="20dip"
+            android:layout_marginTop="3dip"
+            android:gravity="center_vertical"
+            android:text="Cellphones/GSM Phones"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/img_rating"
+            android:layout_width="80dip"
+            android:layout_height="20dip"
+            android:layout_below="@+id/category"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="3dip" >
+        </ImageView>
+    </RelativeLayout>
+
+</RelativeLayout>

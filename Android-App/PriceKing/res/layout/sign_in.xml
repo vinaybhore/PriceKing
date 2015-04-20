@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#F0F0F0"
+    android:fadingEdge="none"
+    android:foregroundGravity="right" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dip"
+            android:text="Sign In"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/credentials_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dip"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:layout_marginTop="10dip"
+            android:background="@drawable/rounded_corner"
+            android:orientation="vertical" >
+
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:background="@color/transparent"
+                android:ems="10"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:paddingLeft="10dip"
+                android:paddingRight="10dip"
+                android:singleLine="true" >
+
+                <requestFocus />
+            </EditText>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:background="@color/grey" />
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:background="@color/transparent"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:paddingLeft="10dip"
+                android:paddingRight="10dip"
+                android:singleLine="true" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/sign_in"
+            android:layout_width="match_parent"
+            android:layout_height="55dip"
+            android:layout_margin="10dip"
+            android:background="@color/orange"
+            android:drawableRight="@drawable/signin_icon"
+            android:gravity="left|center_vertical"
+            android:paddingBottom="10dip"
+            android:paddingLeft="20dip"
+            android:paddingRight="10dip"
+            android:paddingTop="10dip"
+            android:text="Sign In"
+            android:textColor="@color/white" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dip"
+            android:orientation="horizontal"
+            android:weightSum="3" >
+
+            <View
+                android:layout_width="0dip"
+                android:layout_height="2dip"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="@color/grey_dark" />
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="New Customer?"
+                android:textSize="11sp" />
+
+            <View
+                android:layout_width="0dip"
+                android:layout_height="2dip"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="@color/grey_dark" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/create_account"
+            android:layout_width="match_parent"
+            android:layout_height="55dip"
+            android:layout_margin="10dip"
+            android:drawableRight="@drawable/signup"
+            android:gravity="left|center_vertical"
+            android:paddingBottom="10dip"
+            android:paddingLeft="20dip"
+            android:paddingTop="10dip"
+            android:text="Create an Account"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+</ScrollView>

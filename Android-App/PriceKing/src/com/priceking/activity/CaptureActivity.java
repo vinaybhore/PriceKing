@@ -57,6 +57,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.analytics.tracking.android.EasyTracker;
 import com.googlecode.tesseract.android.TessBaseAPI;
 import com.priceking.R;
 import com.priceking.camera.CameraManager;
@@ -241,7 +242,7 @@ public final class CaptureActivity extends Activity implements
 		registerForContextMenu(statusViewBottom);
 		statusViewTop = (TextView) findViewById(R.id.status_view_top);
 		registerForContextMenu(statusViewTop);
-		
+
 		handler = null;
 		lastResult = null;
 		hasSurface = false;
@@ -441,6 +442,24 @@ public final class CaptureActivity extends Activity implements
 			// We already have the engine initialized, so just start the camera.
 			resumeOCR();
 		}
+	}
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+		/**
+		 * Start Google Analytics Tracking
+		 */
+		EasyTracker.getInstance(this).activityStart(this);
+	}
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+		/**
+		 * Stop Google Analytics Tracking
+		 */
+		EasyTracker.getInstance(this).activityStop(this);
 	}
 
 	/**
@@ -1010,7 +1029,7 @@ public final class CaptureActivity extends Activity implements
 		super.onCreateContextMenu(menu, v, menuInfo);
 		if (v.equals(ocrResultView)) {
 			menu.add(Menu.NONE, OPTIONS_COPY_RECOGNIZED_TEXT_ID, Menu.NONE,
-					"Get Data");
+					"Done");
 			// menu.add(Menu.NONE, OPTIONS_SHARE_RECOGNIZED_TEXT_ID, Menu.NONE,
 			// "Share recognized text");
 		} else if (v.equals(translationView)) {
@@ -1103,8 +1122,8 @@ public final class CaptureActivity extends Activity implements
 	 * language.
 	 */
 	void showLanguageName() {
-		Toast toast = Toast.makeText(this, "OCR: " + sourceLanguageReadable,
-				Toast.LENGTH_LONG);
+		Toast toast = Toast.makeText(this,
+				"OCR Initialized. Capture Product photo...", Toast.LENGTH_LONG);
 		toast.setGravity(Gravity.TOP, 0, 0);
 		toast.show();
 	}

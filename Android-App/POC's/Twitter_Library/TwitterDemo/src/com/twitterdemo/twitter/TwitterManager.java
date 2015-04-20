@@ -1,0 +1,171 @@
+package com.twitterdemo.twitter;
+
+import twitter4j.Twitter;
+import twitter4j.TwitterException;
+import twitter4j.http.AccessToken;
+import android.content.SharedPreferences;
+import android.text.TextUtils;
+import android.util.Log;
+
+public class TwitterManager {
+	private static TwitterManager instance = null;
+	private Twitter twitter;
+	private String userName;
+	private SharedPreferences settings;
+	private int MAX_CHARACTERS = 140;
+	
+	/** keys from twitter to uniquely identify your application. Should be obtained from twitter by registering your app there.*/
+	public static String CONSUMER_KEY = "jAmHuDOnbezHNQoKegoyQA";
+	public static String CONSUMER_SECRET = "45W9gQNdfWivneZxPeClTx2wcyIuJ9NTI2QRr156k";
+	
+	public static TwitterManager getInstance() {
+		if (instance == null)
+			instance = new TwitterManager();
+		return instance;
+	}
+
+	/**
+	 * Checks If user is already Authenticated by Twitter.
+	 */
+	public boolean checkIfAlreadyAuthenticated() {
+		String token = "";
+		try {
+			token = settings.getString("Token", "");
+		}
+		catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//Log.d("TwitterManager", "checkIfAlreadyAuthenticated :: " + "token :: "+token);
+		return (!token.equals(""));
+	}
+	
+	/**
+	 * Creates a new object of Twitter.
+	 */
+	public void createNew() {
+		if (twitter != null)
+			twitter = new Twitter();
+	}
+
+	/**
+	 * Creates (If necessary) a new object and returns
+	 * @return Twitter object
+	 */
+	public Twitter getTwitter() {
+		if (twitter == null)
+			twitter = new Twitter();
+		return twitter;
+	}
+	
+	/**
+	 * Gets the Twitter User Id of the Use
+	 */
+	public String getUserName() {
+		return userName;
+	}
+	
+	/**
+	 * Sets Up user after Authorization by Oauth of Twitter.
+	 */
+	public Boolean setUp(AccessToken accessToken) {
+		try {
+			twitter = getTwitter();
+			twitter.setOAuthConsumer(CONSUMER_KEY, CONSUMER_SECRET);
+			twitter.setOAuthAccessToken(accessToken);
+			userName = accessToken.getScreenName();
+			Log.d("TwitterManager", "setUp :: " + "userName :: "+userName);
+			if (!TextUtils.isEmpty(userName))
+				storeUserCreds(accessToken);
+			return true;
+		} catch (Exception e) {
+			Log.v("", e.toString());
+			e.printStackTrace();
+			return false;
+		}
+
+	}
+
+	/**
+	 * Creates the twitter Object from stored User Creds
+	 */
+	public Boolean loadUser() {
+		try {
+			String token = settings.getString("Token", "");
+	        String tokenSecret = settings.getString("TokenSecret", "");
+	        userName = settings.getString("UserName", "");
+	        getTwitter().setOAuthConsumer(CONSUMER_KEY,CONSUMER_SECRET);
+	        AccessToken a = new AccessToken(token, tokenSecret);
+	        //AccessToken a = twitter.getOAuthAccessToken(token,tokenSecret,"oauth_verifier");
+	        twitter.setOAuthAccessToken(a);
+	        return true;
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+    }
+	
+	/**
+	 * Stores the Twitter Credentials of User
+	 */
+	private void storeUserCreds(AccessToken token) {
+		//Log.d("TwitterManager", "storeUserCreds :: " + "token.getToken() :: "+token.getToken());
+		//Log.d("TwitterManager", "storeUserCreds :: " + "token.getTokenSecret() :: "+token.getTokenSecret());
+		SharedPreferences.Editor editor = settings.edit();
+		editor.putString("Token", token.getToken());
+		editor.putString("TokenSecret", token.getTokenSecret());
+		editor.putString("UserName", userName);
+		editor.commit();
+		//Log.d("TwitterManager", "storeUserCreds :: " + "After token is :: "+settings.getString("Token", ""));	
+	}
+
+	/**
+	 * Logs Out Session for Current User
+	 */
+	public Boolean logout() {
+		try {
+			SharedPreferences.Editor editor = settings.edit();
+			editor.putString("Token", "");
+			editor.putString("TokenSecret", "");
+			editor.putString("UserName", "");
+			editor.commit();
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	/**
+	 * Creates the twitter Object from stored User Creds
+	 */
+	public Boolean updateStatus(TwitterResponseListener listener, String twit) {
+		try {
+			String twitText;
+			if (twit.length() > MAX_CHARACTERS)
+				twitText = twit.substring(0, MAX_CHARACTERS - 1);
+			else
+				twitText = twit;
+			getTwitter().updateStatus(twitText);
+			listener.twitterResponseSuccess();
+			return true;
+		} catch (TwitterException e) {
+			e.printStackTrace();
+			listener.twitterResponseFailure();
+			return false;
+		}
+
+	}
+	
+	/**
+	 * Listener to get twitter responses
+	 */
+	public interface TwitterResponseListener {
+		public void twitterResponseSuccess();
+		public void twitterResponseFailure();
+	}
+
+	public void setPreferences(SharedPreferences settings) {
+		if (this.settings == null)
+			this.settings = settings;
+	}
+}

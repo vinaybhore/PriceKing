@@ -2,65 +2,58 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_gradient"
-    tools:context=".ProductListActivity" >
+    android:background="@color/white"
+    tools:context=".HomeActivity" >
 
     <RelativeLayout
-        android:id="@+id/search_layout"
-        android:layout_width="fill_parent"
+        android:id="@+id/header_view"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="20dip" >
+        android:background="@color/white"
+        android:padding="10dip" >
 
-        <AutoCompleteTextView
-            android:id="@+id/et_search_query"
-            android:layout_width="fill_parent"
+        <TextView
+            android:id="@+id/result_view"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/search_query"
-            android:inputType="text"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textColor="@color/white"
-            android:textCursorDrawable="@null" />
+            android:layout_marginLeft="10dip"
+            android:layout_marginTop="3dip"
+            android:gravity="center_vertical"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
-        <ImageButton
-            android:id="@+id/audio_input"
-            android:layout_width="35dip"
-            android:layout_height="32dip"
+        <ImageView
+            android:id="@+id/view_icon"
+            android:layout_width="36dip"
+            android:layout_height="36dip"
+            android:layout_marginLeft="35dip"
+            android:layout_marginRight="5dip"
+            android:layout_toRightOf="@+id/result_view"
+            android:src="@drawable/list_icon"
+            android:tag="list" />
+
+        <Spinner
+            android:id="@+id/filter_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_margin="5dp"
-            android:src="@android:drawable/ic_btn_speak_now"
-            android:textColor="@color/white" />
+            android:layout_toRightOf="@+id/view_icon"
+            android:entries="@array/filter_options"
+            android:gravity="center_vertical"
+            android:prompt="@string/filter_prompt" />
     </RelativeLayout>
-
-    <ImageView
-        android:id="@+id/img_camera"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/search_layout"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="5dip"
-        android:src="@drawable/camera" />
-
-    <Button
-        android:id="@+id/btn_search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/img_camera"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dip"
-        android:text="@string/search"
-        android:textColor="@color/white" />
 
     <ListView
         android:id="@+id/product_list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/btn_search"
+        android:layout_below="@+id/header_view"
         android:cacheColorHint="#00000000"
-        android:divider="@color/grey_dark_color"
+        android:divider="@color/grey"
         android:dividerHeight="1dip"
+        android:fadingEdge="none"
+        android:listSelector="@drawable/list_item_selected"
         android:visibility="visible" >
     </ListView>
 
@@ -73,6 +66,7 @@
         android:gravity="center_horizontal"
         android:padding="15dip"
         android:text="@string/data_not_found"
+        android:textColor="@color/black"
         android:textSize="25sp"
         android:textStyle="bold"
         android:visibility="gone" />

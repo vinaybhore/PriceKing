@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/repos/android/!svn/ver/1321/Facebook_Library/FacebookDemo/src/com/facebook/android
+END
+BaseDialogListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/repos/android/!svn/ver/1321/Facebook_Library/FacebookDemo/src/com/facebook/android/BaseDialogListener.java
+END
+SessionStore.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/repos/android/!svn/ver/1321/Facebook_Library/FacebookDemo/src/com/facebook/android/SessionStore.java
+END
+AsyncFacebookRunner.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/repos/android/!svn/ver/1321/Facebook_Library/FacebookDemo/src/com/facebook/android/AsyncFacebookRunner.java
+END
+FacebookError.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/repos/android/!svn/ver/1321/Facebook_Library/FacebookDemo/src/com/facebook/android/FacebookError.java
+END
+FbDialog.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/repos/android/!svn/ver/1321/Facebook_Library/FacebookDemo/src/com/facebook/android/FbDialog.java
+END
+SessionEvents.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/repos/android/!svn/ver/1321/Facebook_Library/FacebookDemo/src/com/facebook/android/SessionEvents.java
+END
+BaseRequestListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/repos/android/!svn/ver/1321/Facebook_Library/FacebookDemo/src/com/facebook/android/BaseRequestListener.java
+END
+DialogError.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/repos/android/!svn/ver/1321/Facebook_Library/FacebookDemo/src/com/facebook/android/DialogError.java
+END
+Facebook.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/repos/android/!svn/ver/1321/Facebook_Library/FacebookDemo/src/com/facebook/android/Facebook.java
+END
+Util.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/repos/android/!svn/ver/1321/Facebook_Library/FacebookDemo/src/com/facebook/android/Util.java
+END

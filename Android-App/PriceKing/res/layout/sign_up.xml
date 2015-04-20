@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#F0F0F0"
+    android:fadingEdge="none"
+    android:foregroundGravity="right" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dip"
+            android:text="Create Account"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/first_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dip"
+            android:background="@drawable/rounded_corner"
+            android:ems="10"
+            android:hint="Your first name"
+            android:inputType="textPersonName"
+            android:padding="10dip"
+            android:textColor="@color/black" >
+
+            <requestFocus />
+        </EditText>
+
+        <EditText
+            android:id="@+id/last_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dip"
+            android:background="@drawable/rounded_corner"
+            android:ems="10"
+            android:hint="Your last name"
+            android:inputType="textPersonName"
+            android:padding="10dip"
+            android:textColor="@color/black" >
+        </EditText>
+
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dip"
+            android:background="@drawable/rounded_corner"
+            android:ems="10"
+            android:hint="Your username"
+            android:inputType="text"
+            android:padding="10dip"
+            android:textColor="@color/black" >
+        </EditText>
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dip"
+            android:background="@drawable/rounded_corner"
+            android:ems="10"
+            android:hint="Your email address"
+            android:inputType="textEmailAddress"
+            android:padding="10dip"
+            android:textColor="@color/black" >
+        </EditText>
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dip"
+            android:background="@drawable/rounded_corner"
+            android:ems="10"
+            android:hint="Create a password"
+            android:inputType="textPassword"
+            android:padding="10dip"
+            android:textColor="@color/black" >
+        </EditText>
+
+        <EditText
+            android:id="@+id/confirm_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dip"
+            android:background="@drawable/rounded_corner"
+            android:ems="10"
+            android:hint="Re-enter password"
+            android:inputType="textPassword"
+            android:padding="10dip"
+            android:textColor="@color/black" >
+        </EditText>
+
+        <EditText
+            android:id="@+id/phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dip"
+            android:background="@drawable/rounded_corner"
+            android:ems="10"
+            android:hint="Mobile phone"
+            android:inputType="phone"
+            android:padding="10dip"
+            android:textColor="@color/black" >
+        </EditText>
+
+        <Button
+            android:id="@+id/create_account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dip"
+            android:background="@color/orange"
+            android:text="Create your PriceKing Account"
+            android:textColor="@color/white" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dip"
+            android:orientation="horizontal"
+            android:weightSum="4" >
+
+            <View
+                android:layout_width="0dip"
+                android:layout_height="2dip"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="@color/grey_dark" />
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center_horizontal"
+                android:text="Already have an account?"
+                android:textSize="11sp" />
+
+            <View
+                android:layout_width="0dip"
+                android:layout_height="2dip"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="@color/grey_dark" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/sign_in_now"
+            android:layout_width="match_parent"
+            android:layout_height="55dip"
+            android:layout_margin="10dip"
+            android:drawableRight="@drawable/signin_icon"
+            android:gravity="left|center_vertical"
+            android:paddingBottom="10dip"
+            android:paddingLeft="20dip"
+            android:paddingRight="10dip"
+            android:paddingTop="10dip"
+            android:text="Sign In"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+</ScrollView>

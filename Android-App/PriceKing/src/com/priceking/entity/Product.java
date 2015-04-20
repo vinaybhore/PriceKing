@@ -20,6 +20,9 @@ public class Product implements Entitiy, Parcelable {
 	private String thumbnailImage;
 	private String productURL;
 	private double customerRating;
+	private String customerRatingImage;
+	private byte[] thumbnailBlob;
+	private byte[] customerRatingBlob;
 
 	public Product() {
 
@@ -89,13 +92,37 @@ public class Product implements Entitiy, Parcelable {
 		this.customerRating = customerRating;
 	}
 
+	public String getCustomerRatingImage() {
+		return customerRatingImage;
+	}
+
+	public void setCustomerRatingImage(String customerRatingImage) {
+		this.customerRatingImage = customerRatingImage;
+	}
+
+	public byte[] getThumbnailBlob() {
+		return thumbnailBlob;
+	}
+
+	public void setThumbnailBlob(byte[] thumbnailBlob) {
+		this.thumbnailBlob = thumbnailBlob;
+	}
+
+	public byte[] getCustomerRatingBlob() {
+		return customerRatingBlob;
+	}
+
+	public void setCustomerRatingBlob(byte[] customerRatingBlob) {
+		this.customerRatingBlob = customerRatingBlob;
+	}
+
 	@Override
 	public JSONObject serializeJSON() throws Exception {
 		return null;
 	}
 
 	/**
-	 * Method used to deserialize json for Weather object
+	 * Method used to deserialize json for Product object
 	 */
 	@Override
 	public void deserializeJSON(JSONObject myProduct) throws Exception {
@@ -114,6 +141,8 @@ public class Product implements Entitiy, Parcelable {
 				.getString("productUrl") : "");
 		this.setCustomerRating(myProduct.has("customerRating") ? myProduct
 				.getDouble("customerRating") : 0.0);
+		this.setCustomerRatingImage(myProduct.has("customerRatingImage") ? myProduct
+				.getString("customerRatingImage") : "");
 
 	}
 
@@ -135,22 +164,26 @@ public class Product implements Entitiy, Parcelable {
 	}
 
 	/**
-	 * write Location Object to parcel
+	 * write Product Object to parcel
 	 */
 	@Override
 	public void writeToParcel(Parcel out, int flags) {
 		out.writeString(name);
 		out.writeDouble(msrp);
 		out.writeDouble(salePrice);
+		out.writeString(category);
 		out.writeString(shortDescription);
 		out.writeString(thumbnailImage);
 		out.writeString(productURL);
 		out.writeDouble(customerRating);
+		out.writeString(customerRatingImage);
+		out.writeByteArray(thumbnailBlob);
+		out.writeByteArray(customerRatingBlob);
 
 	}
 
 	/**
-	 * read Reason Object from Parcel
+	 * read Product Object from Parcel
 	 * 
 	 * @param in
 	 */
@@ -158,10 +191,14 @@ public class Product implements Entitiy, Parcelable {
 		name = in.readString();
 		msrp = in.readDouble();
 		salePrice = in.readDouble();
+		category = in.readString();
 		shortDescription = in.readString();
 		thumbnailImage = in.readString();
 		productURL = in.readString();
 		customerRating = in.readDouble();
+		customerRatingImage = in.readString();
+		thumbnailBlob = new byte[in.readInt()];
+		customerRatingBlob = new byte[in.readInt()];
 	}
 
 	public static final Parcelable.Creator<Product> CREATOR = new Parcelable.Creator<Product>() {

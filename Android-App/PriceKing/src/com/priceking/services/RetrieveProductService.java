@@ -14,16 +14,17 @@ import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.priceking.data.DatabaseHandler;
 import com.priceking.entity.Product;
 import com.priceking.services.utils.HTTPRequest;
 import com.priceking.utils.Constants;
 
 /**
- * Service to retrieve weather details of the destination location.
+ * Service to retrieve Product List of user selected input
  */
 public class RetrieveProductService implements Runnable {
 	/**
-	 * Listener for WeatherService
+	 * Listener for ProductService
 	 */
 	public interface RetrieveProductServiceListener {
 		void onRetrieveProductFinished(List<Product> productList);
@@ -40,6 +41,7 @@ public class RetrieveProductService implements Runnable {
 	private Context context;
 	private String query;
 	private List<Product> productList = new ArrayList<Product>();
+	private DatabaseHandler db;
 
 	public RetrieveProductService(Context context, String query) {
 		this.context = context;
@@ -83,7 +85,7 @@ public class RetrieveProductService implements Runnable {
 			switch (msg.what) {
 			case Constants.PriceKingDialogCodes.SUCCESS:
 				if (!TextUtils.isEmpty(jsonResponse)) {
-					listener.onRetrieveProductFinished(parseRetrievedWeather(jsonResponse));
+					listener.onRetrieveProductFinished(parseRetrievedProduct(jsonResponse));
 				} else {
 					listener.onRetrieveProductFailed(
 							Constants.PriceKingDialogCodes.NETWORK_ERROR,
@@ -138,9 +140,13 @@ public class RetrieveProductService implements Runnable {
 	 * @param response
 	 * @return
 	 */
-	private List<Product> parseRetrievedWeather(String response) {
+	private List<Product> parseRetrievedProduct(String response) {
 
 		try {
+			db = new DatabaseHandler(context);
+			db.openInternalDB();
+			db.deleteAllTableEntries(DatabaseHandler.TABLE_PRODUCT);
+
 			JSONObject jsonObject = new JSONObject(jsonResponse);
 			JSONObject myProductObject = null;
 
@@ -152,6 +158,7 @@ public class RetrieveProductService implements Runnable {
 					myProductObject = productArray.getJSONObject(i);
 					product.deserializeJSON(myProductObject);
 					productList.add(product);
+					db.addProduct(DatabaseHandler.TABLE_PRODUCT, product);
 				}
 			} else {
 				listener.onRetrieveProductFailed(
@@ -170,7 +177,7 @@ public class RetrieveProductService implements Runnable {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-
+			db.close();
 		}
 		return null;
 	}

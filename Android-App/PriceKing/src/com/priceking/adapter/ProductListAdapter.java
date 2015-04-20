@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.priceking.ApplicationEx;
 import com.priceking.R;
 import com.priceking.entity.Product;
+import com.priceking.utils.PriceKingUtils;
 
 /**
  * News Adapter that holds News list in a list view
@@ -27,15 +27,18 @@ public class ProductListAdapter extends BaseAdapter {
 	private List<Product> productList = new ArrayList<Product>();
 	private int lastPosition = -1;
 	private Context context;
+	private String viewMode;
 
 	/**
 	 * 
 	 * @param NewsList
 	 * @param applicationContext
 	 */
-	public ProductListAdapter(List<Product> productList, Context applicationContext) {
+	public ProductListAdapter(List<Product> productList,
+			Context applicationContext, String viewMode) {
 		this.productList = productList;
 		this.context = applicationContext;
+		this.viewMode = viewMode;
 	}
 
 	/**
@@ -65,53 +68,76 @@ public class ProductListAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		ContactsViewHolder contactsViewHolder;
+		ProductViewHolder productsViewHolder;
 		if (convertView == null) {
 			LayoutInflater inflater = (LayoutInflater) context
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			convertView = inflater.inflate(R.layout.offer_list_row, null);
-			contactsViewHolder = new ContactsViewHolder();
-			contactsViewHolder.name = (TextView) convertView
-					.findViewById(R.id.item);
-			contactsViewHolder.thumbnailImage = (ImageView) convertView
+			if (viewMode.equalsIgnoreCase("list")) {
+				convertView = inflater.inflate(R.layout.offer_list_row, null);
+			} else {
+				convertView = inflater.inflate(R.layout.grid_list_row, null);
+			}
+			productsViewHolder = new ProductViewHolder();
+			productsViewHolder.name = (TextView) convertView
+					.findViewById(R.id.title);
+			productsViewHolder.salePrice = (TextView) convertView
+					.findViewById(R.id.sale_price);
+			productsViewHolder.msrp = (TextView) convertView
+					.findViewById(R.id.msrp);
+			productsViewHolder.horizontalView = (View) convertView
+					.findViewById(R.id.horizontal_line);
+			productsViewHolder.category = (TextView) convertView
+					.findViewById(R.id.category);
+			productsViewHolder.thumbnailImage = (ImageView) convertView
 					.findViewById(R.id.image);
+			productsViewHolder.custRatingImage = (ImageView) convertView
+					.findViewById(R.id.img_rating);
 		} else {
-			contactsViewHolder = (ContactsViewHolder) convertView.getTag();
+			productsViewHolder = (ProductViewHolder) convertView.getTag();
 		}
 		Product product = productList.get(position);
-		contactsViewHolder.name.setText(product.getName());
+		productsViewHolder.name.setText(product.getName());
+		productsViewHolder.msrp.setText(PriceKingUtils
+				.formatCurrencyUSD(product.getMsrp()));
+		productsViewHolder.salePrice.setText(PriceKingUtils
+				.formatCurrencyUSD(product.getSalePrice()));
+		productsViewHolder.category.setText(product.getCategory());
 		convertView.setTag(R.id.offer_id, product);
-		convertView.setTag(contactsViewHolder);
+		convertView.setTag(productsViewHolder);
 
-		String imageURL = product.getThumbnailImage();
-		contactsViewHolder.thumbnailImage.setTag(imageURL);
-
-		if (ApplicationEx.images.containsKey(imageURL)
-				&& ApplicationEx.images.get(imageURL) != null) {
-			contactsViewHolder.thumbnailImage
-					.setImageDrawable(ApplicationEx.images.get(imageURL));
+		if (product.getThumbnailBlob() != null) {
+			productsViewHolder.thumbnailImage
+					.setImageDrawable(new BitmapDrawable(BitmapFactory
+							.decodeByteArray(product.getThumbnailBlob(), 0,
+									product.getThumbnailBlob().length)));
 		} else {
-			contactsViewHolder.thumbnailImage
+			productsViewHolder.thumbnailImage
 					.setImageResource(R.drawable.noimage);
 		}
 
-		Animation animation = AnimationUtils.loadAnimation(context,
-				(position > lastPosition) ? R.anim.up_from_bottom
-						: R.anim.down_from_top);
-		convertView.startAnimation(animation);
-		lastPosition = position;
+		if (product.getCustomerRatingBlob() != null) {
+			productsViewHolder.custRatingImage
+					.setImageDrawable(new BitmapDrawable(BitmapFactory
+							.decodeByteArray(product.getCustomerRatingBlob(),
+									0, product.getCustomerRatingBlob().length)));
+		}
 
 		return convertView;
 	}
 
 	/**
-	 * View holder for News title
+	 * View holder for Product stuff
 	 * 
 	 * @author DEVEN
 	 * 
 	 */
-	private class ContactsViewHolder {
+	private class ProductViewHolder {
 		TextView name;
 		ImageView thumbnailImage;
+		ImageView custRatingImage;
+		TextView salePrice;
+		TextView msrp;
+		TextView category;
+		View horizontalView;
 	}
 }
