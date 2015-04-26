@@ -20,7 +20,7 @@ public class Constants {
 
 	
 	//Kafka topic
-	public static final String KAFKA_SEARCH_BUS = "searchTopic";
+	public static final String KAFKA_SEARCH_BUS = "walmartTopic";
 	
 	//Spout and Bolt
 	public static final String MOBILE_REQUEST_SPOUT_ID ="mobile_request_spout";

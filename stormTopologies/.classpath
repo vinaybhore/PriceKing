@@ -22,6 +22,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="storm-kafka-0.8-plus-0.4.0.jar"/>
+	<classpathentry kind="lib" path="/storage/295b/priceking/storm-kafka-0.8-plus-0.4.0.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
