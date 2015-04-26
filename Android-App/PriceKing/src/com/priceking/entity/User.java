@@ -85,6 +85,13 @@ public class User implements Entitiy, Parcelable {
 		return jsonObject;
 	}
 
+	public JSONObject serializeSignIn() throws Exception {
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put(Constants.USER_NAME, username);
+		jsonObject.put(Constants.PASSWORD, password);
+		return jsonObject;
+	}
+
 	/**
 	 * Method used to deserialize json for User object
 	 */

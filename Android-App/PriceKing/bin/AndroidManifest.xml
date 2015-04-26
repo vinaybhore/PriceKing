@@ -99,7 +99,7 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".activity.OrdersActivity"
+            android:name=".activity.DealsActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
         </activity>

@@ -9,11 +9,15 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.google.analytics.tracking.android.EasyTracker;
+import com.priceking.ApplicationEx;
 import com.priceking.R;
 import com.priceking.entity.User;
+import com.priceking.services.SignUpService;
+import com.priceking.services.SignUpService.SignUpServiceListener;
 import com.priceking.utils.PriceKingUtils;
 
-public class SignUpActivity extends BaseActivity {
+public class SignUpActivity extends BaseActivity implements
+		SignUpServiceListener {
 	private EditText firstNameEditText;
 	private EditText lastNameEditText;
 	private EditText userNameEditText;
@@ -31,6 +35,8 @@ public class SignUpActivity extends BaseActivity {
 	private String conformPassword;
 	private String phoneNumber;
 	private String userName;
+
+	private User user;
 
 	/**
 	 * @author devpawar
@@ -118,15 +124,19 @@ public class SignUpActivity extends BaseActivity {
 				}
 
 				if (!isError) {
-					User user = new User();
+					user = new User();
 					user.setFirstname(firstName);
 					user.setLastname(lastName);
 					user.setUsername(userName);
 					user.setEmail(email);
 					user.setPassword(password);
 					user.setPhone(phoneNumber);
-					PriceKingUtils.showToast(SignUpActivity.this,
-							"Account Successfully Created...");
+
+					/**
+					 * Call web service to sign up
+					 */
+					getSignUp();
+
 				}
 
 				break;
@@ -137,6 +147,16 @@ public class SignUpActivity extends BaseActivity {
 
 		}
 	};
+
+	/**
+	 * Sign Up Service
+	 */
+	private void getSignUp() {
+		SignUpService service = new SignUpService(SignUpActivity.this, user,
+				"sign_up");
+		service.setListener(this);
+		ApplicationEx.operationsQueue.execute(service);
+	}
 
 	@Override
 	protected void onStart() {
@@ -154,6 +174,17 @@ public class SignUpActivity extends BaseActivity {
 		 * Stop Google Analytics Tracking
 		 */
 		EasyTracker.getInstance(this).activityStop(this);
+	}
+
+	@Override
+	public void onSignUpFinished() {
+		PriceKingUtils.showToast(SignUpActivity.this,
+				"Account Successfully Created...");
+	}
+
+	@Override
+	public void onSignUpFailed(int error, String message) {
+		PriceKingUtils.showToast(SignUpActivity.this, "User already exists...");
 	}
 
 }

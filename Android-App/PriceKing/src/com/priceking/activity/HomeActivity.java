@@ -1,6 +1,5 @@
 package com.priceking.activity;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -18,8 +17,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
@@ -42,6 +39,7 @@ import android.widget.Filterable;
 import android.widget.Gallery;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.analytics.tracking.android.EasyTracker;
@@ -56,8 +54,6 @@ import com.priceking.services.RetrieveImageService;
 import com.priceking.services.RetrieveImageService.RetrieveImageServiceListener;
 import com.priceking.services.RetrieveProductService;
 import com.priceking.services.RetrieveProductService.RetrieveProductServiceListener;
-import com.priceking.services.RetrieveRatingImageService;
-import com.priceking.services.RetrieveRatingImageService.RetrieveRatingImageServiceListener;
 import com.priceking.utils.PriceKingUtils;
 import com.priceking.views.ExpandableHeightGridView;
 
@@ -68,8 +64,7 @@ import com.priceking.views.ExpandableHeightGridView;
  * 
  */
 public class HomeActivity extends BaseActivity implements
-		RetrieveProductServiceListener, RetrieveImageServiceListener,
-		RetrieveRatingImageServiceListener {
+		RetrieveProductServiceListener, RetrieveImageServiceListener {
 
 	private static final String LOG_TAG = "Home Activity";
 	private ProgressDialog pd;
@@ -93,6 +88,9 @@ public class HomeActivity extends BaseActivity implements
 	// For Advertisements
 	private List<Product> advertisementList = new ArrayList<Product>();
 	private ExpandableHeightGridView gridView;
+
+	// Textview to show username
+	private TextView usernameTextView;
 
 	// Autocomplete Text View
 	private static final String URL = "http://api.bing.com/osjson.aspx";
@@ -217,26 +215,29 @@ public class HomeActivity extends BaseActivity implements
 			db.close();
 		}
 
-		// if (ApplicationEx.isLoggedIn)
-		// PriceKingUtils.showToast(HomeActivity.this, "Logged In"
-		// + ApplicationEx.userName);
-		// else
-		// PriceKingUtils.showToast(HomeActivity.this, "Not Logged In...");
-
 		imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 
 		audioInputButton = (ImageView) findViewById(R.id.audio_input);
 		cameraImageView = (ImageView) findViewById(R.id.img_camera);
 		gridView = (ExpandableHeightGridView) findViewById(R.id.grid_view);
 
+		usernameTextView = (TextView) findViewById(R.id.username);
+
+		if (ApplicationEx.isLoggedIn)
+			usernameTextView.setText("Hello, " + ApplicationEx.userName);
+		else
+			usernameTextView.setText("Hello, ");
+
 		searchEditText = (AutoCompleteTextView) findViewById(R.id.et_search_query);
 		searchEditText.setAdapter(new PlacesAutoCompleteAdapter(this,
 				R.layout.list_item));
 
 		gridView.setExpanded(true);
+		GridCategoryAdapter gridAdapter = new GridCategoryAdapter(this,
+				ApplicationEx.categoryList);
 		// Instance of GridTextAdapter Class
-		gridView.setAdapter(new GridCategoryAdapter(this,
-				ApplicationEx.categoryList));
+		gridView.setAdapter(gridAdapter);
+		gridAdapter.notifyDataSetChanged();
 
 		/**
 		 * On Click event for Single Gridview Item
@@ -423,6 +424,7 @@ public class HomeActivity extends BaseActivity implements
 	 * Products web service call
 	 */
 	private void getProducts() {
+		// ApplicationEx.productImages.clear();
 		count = 0;
 		pd = ProgressDialog.show(HomeActivity.this, "", "Loading...");
 		RetrieveProductService service = new RetrieveProductService(
@@ -449,25 +451,6 @@ public class HomeActivity extends BaseActivity implements
 		EasyTracker.getInstance(this).activityStop(this);
 	}
 
-	/**
-	 * Handles on item click of a list view
-	 */
-	private OnItemClickListener onItemClickListener = new OnItemClickListener() {
-
-		@Override
-		public void onItemClick(AdapterView<?> arg0, View view, int position,
-				long arg3) {
-			Product product = (Product) view.getTag(R.id.offer_id);
-			ApplicationEx.selectedPosition = position;
-			Intent intent = new Intent(HomeActivity.this,
-					ProductDetailActivity.class);
-			intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-			intent.putExtra("product", product);
-			startActivity(intent);
-
-		}
-	};
-
 	/*
 	 * Success Callback (non-Javadoc)
 	 * 
@@ -481,27 +464,24 @@ public class HomeActivity extends BaseActivity implements
 		System.out.println("*****Reached Success*****");
 
 		for (int i = 0; i < productList.size(); i++) {
+			count++;
 			Product product = productList.get(i);
-			if (!TextUtils.isEmpty(product.getThumbnailImage()))
+			if (product.getThumbnailImage() != null
+					|| !TextUtils.isEmpty(product.getThumbnailImage()))
 				getImage(product.getThumbnailImage());
 		}
 
 	}
 
 	private void getImage(String imageURL) {
-		RetrieveImageService service = new RetrieveImageService(
-				HomeActivity.this);
-		service.setListener(this);
-		service.setImageURL(imageURL);
-		ApplicationEx.operationsQueue.execute(service);
-	}
+		if (!ApplicationEx.productImages.containsKey(imageURL)) {
+			RetrieveImageService service = new RetrieveImageService(
+					HomeActivity.this);
+			service.setListener(this);
+			service.setImageURL(imageURL);
+			ApplicationEx.operationsQueue.execute(service);
+		}
 
-	private void getRatingImage(String imageURL) {
-		RetrieveRatingImageService service = new RetrieveRatingImageService(
-				HomeActivity.this);
-		service.setListener(this);
-		service.setImageURL(imageURL);
-		ApplicationEx.operationsQueue.execute(service);
 	}
 
 	/*
@@ -565,16 +545,25 @@ public class HomeActivity extends BaseActivity implements
 	@Override
 	public void onGetImageFinished(RetrieveImageService getImageService,
 			Drawable image) {
-		count++;
 		try {
-			db = new DatabaseHandler(HomeActivity.this);
-			db.openInternalDB();
-			Bitmap bitmap = ((BitmapDrawable) image).getBitmap();
-			ByteArrayOutputStream stream = new ByteArrayOutputStream();
-			bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-			byte[] thumbnailBlob = stream.toByteArray();
-			db.updateProductTable(DatabaseHandler.TABLE_PRODUCT,
-					getImageService.getImageURL(), thumbnailBlob);
+
+			if (image != null) {
+				ApplicationEx.productImages.put(getImageService.getImageURL(),
+						image);
+			}
+			// db = new DatabaseHandler(HomeActivity.this);
+			// db.openInternalDB();
+			// Bitmap bitmap = ((BitmapDrawable) image).getBitmap();
+			// bitmap = Bitmap.createScaledBitmap(bitmap, 50, 50, true);
+			// ByteArrayOutputStream stream = new ByteArrayOutputStream();
+			// bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+			// byte[] thumbnailBlob = stream.toByteArray();
+			// db.updateProductTable(DatabaseHandler.TABLE_PRODUCT,
+			// getImageService.getImageURL(), thumbnailBlob);
+			// stream.flush();
+			// bitmap.recycle();
+			// thumbnailBlob = null;
+			// db.close();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -584,15 +573,12 @@ public class HomeActivity extends BaseActivity implements
 
 		if (count == ApplicationEx.productList.size()) {
 			count = 0;
-			db.close();
-			ratingCount = 0;
-			for (int i = 0; i < ApplicationEx.productList.size(); i++) {
-				Product product = ApplicationEx.productList.get(i);
-				if (!TextUtils.isEmpty(product.getCustomerRatingImage())) {
-					ratingCount++;
-					getRatingImage(product.getCustomerRatingImage());
-				}
-			}
+			if (pd != null || pd.isShowing())
+				pd.dismiss();
+			Intent intent = new Intent(HomeActivity.this,
+					ProductListActivity.class);
+			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			startActivity(intent);
 
 		}
 
@@ -604,48 +590,6 @@ public class HomeActivity extends BaseActivity implements
 		if (pd != null || pd.isShowing())
 			pd.dismiss();
 		PriceKingUtils.showToast(HomeActivity.this, error);
-	}
-
-	@Override
-	public void onGetRatingImageFinished(
-			RetrieveRatingImageService getImageService, Drawable image) {
-		count++;
-		try {
-			db = new DatabaseHandler(HomeActivity.this);
-			db.openInternalDB();
-			Bitmap bitmap = ((BitmapDrawable) image).getBitmap();
-			ByteArrayOutputStream stream = new ByteArrayOutputStream();
-			bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-			byte[] thumbnailBlob = stream.toByteArray();
-			db.updateProductTable(DatabaseHandler.TABLE_PRODUCT,
-					getImageService.getImageURL(), thumbnailBlob);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-
-		}
-
-		if (count == ratingCount) {
-			count = 0;
-			db.close();
-			if (pd != null || pd.isShowing())
-				pd.dismiss();
-			Intent intent = new Intent(HomeActivity.this,
-					ProductListActivity.class);
-			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-			startActivity(intent);
-		}
-
-	}
-
-	@Override
-	public void onGetRatingImageFailed(
-			RetrieveRatingImageService getImageService, String error) {
-		if (pd != null || pd.isShowing())
-			pd.dismiss();
-		PriceKingUtils.showToast(HomeActivity.this, error);
-
 	}
 
 }

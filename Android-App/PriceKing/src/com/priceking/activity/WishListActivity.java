@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.Button;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -23,10 +24,14 @@ import android.widget.TextView;
 import com.google.analytics.tracking.android.EasyTracker;
 import com.priceking.ApplicationEx;
 import com.priceking.R;
-import com.priceking.adapter.ProductListAdapter;
+import com.priceking.adapter.WishListAdapter;
 import com.priceking.data.DatabaseHandler;
 import com.priceking.entity.Product;
 import com.priceking.utils.PriceKingUtils;
+import com.priceking.views.DragListener;
+import com.priceking.views.DragNDropListView;
+import com.priceking.views.DropListener;
+import com.priceking.views.RemoveListener;
 
 /**
  * @author devpawar
@@ -41,7 +46,7 @@ public class WishListActivity extends BaseActivity {
 	 */
 	private RelativeLayout wishListLayout;
 	private ListView wishListView;
-	private ProductListAdapter wishListAdapter;
+	private WishListAdapter wishListAdapter;
 	private List<Product> wishList = new ArrayList<Product>();
 	private TextView noDataTextView;
 	private DatabaseHandler db;
@@ -83,11 +88,22 @@ public class WishListActivity extends BaseActivity {
 
 			checkViewStatus();
 
-			wishListAdapter = new ProductListAdapter(wishList, this, "list");
+			wishListAdapter = new WishListAdapter(this,
+					new int[] { R.layout.offer_list_row },
+					new int[] { R.id.image }, wishList);
 			wishListView.setDrawSelectorOnTop(true);
 			wishListView.setAdapter(wishListAdapter);
 			wishListView.setOnItemClickListener(onItemClickListener);
 			wishListView.setOnItemLongClickListener(onItemLongClickListener);
+
+			if (wishListView instanceof DragNDropListView) {
+				((DragNDropListView) wishListView)
+						.setDropListener(mDropListener);
+				((DragNDropListView) wishListView)
+						.setRemoveListener(mRemoveListener);
+				((DragNDropListView) wishListView)
+						.setDragListener(mDragListener);
+			}
 
 		} else {
 			wishListLayout.setVisibility(View.GONE);
@@ -271,6 +287,65 @@ public class WishListActivity extends BaseActivity {
 		 * Stop Google Analytics Tracking
 		 */
 		EasyTracker.getInstance(this).activityStop(this);
+	}
+
+	private DropListener mDropListener = new DropListener() {
+		public void onDrop(int from, int to) {
+			ListAdapter adapter = wishListAdapter;
+			if (adapter instanceof WishListAdapter) {
+				((WishListAdapter) adapter).onDrop(from, to);
+				wishListView.invalidateViews();
+				System.out.println("***********updated wishlist***********"
+						+ wishList);
+			}
+		}
+	};
+
+	private RemoveListener mRemoveListener = new RemoveListener() {
+		public void onRemove(int which) {
+			ListAdapter adapter = wishListAdapter;
+			if (adapter instanceof WishListAdapter) {
+				((WishListAdapter) adapter).onRemove(which);
+				wishListView.invalidateViews();
+			}
+		}
+	};
+
+	private DragListener mDragListener = new DragListener() {
+
+		int backgroundColor = 0xe0FFFFFF;
+		int defaultBackgroundColor;
+
+		public void onDrag(int x, int y, ListView listView) {
+			// TODO Auto-generated method stub
+		}
+
+		public void onStartDrag(View itemView) {
+			itemView.setVisibility(View.INVISIBLE);
+			defaultBackgroundColor = itemView.getDrawingCacheBackgroundColor();
+			itemView.setBackgroundColor(backgroundColor);
+		}
+
+		public void onStopDrag(View itemView) {
+			itemView.setVisibility(View.VISIBLE);
+			itemView.setBackgroundColor(defaultBackgroundColor);
+		}
+
+	};
+
+	@Override
+	protected void onPause() {
+		db = new DatabaseHandler(getApplicationContext());
+		db.openInternalDB();
+		db.deleteWishListTableEntries(DatabaseHandler.TABLE_WISH_LIST,
+				ApplicationEx.userName);
+		/**
+		 * Add wish list to Database
+		 */
+		for (Product product : wishList) {
+			db.addToWishList(product, ApplicationEx.userName);
+		}
+		super.onPause();
 	}
 
 }

@@ -3,8 +3,6 @@ package com.priceking.adapter;
 import java.util.List;
 
 import android.content.Context;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.priceking.ApplicationEx;
 import com.priceking.R;
 import com.priceking.entity.Product;
 
@@ -61,11 +60,14 @@ public class AdvertisementGalleryAdapter extends BaseAdapter {
 		convertView.setTag(R.id.offer_id, product);
 		convertView.setTag(advertisementViewHolder);
 
-		if (product.getThumbnailBlob() != null) {
+		if (ApplicationEx.productImages.containsKey(product
+				.getThumbnailImage())
+				&& ApplicationEx.productImages.get(product
+						.getThumbnailImage()) != null) {
+
 			advertisementViewHolder.thumbnailImage
-					.setImageDrawable(new BitmapDrawable(BitmapFactory
-							.decodeByteArray(product.getThumbnailBlob(), 0,
-									product.getThumbnailBlob().length)));
+					.setImageDrawable(ApplicationEx.productImages
+							.get(product.getThumbnailImage()));
 		} else {
 			advertisementViewHolder.thumbnailImage
 					.setImageResource(R.drawable.noimage);

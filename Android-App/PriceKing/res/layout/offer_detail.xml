@@ -45,8 +45,7 @@
                 android:layout_height="200dip"
                 android:layout_below="@+id/img_rating"
                 android:layout_centerHorizontal="true"
-                android:layout_margin="10dip"
-                android:background="@drawable/ic_launcher" />
+                android:layout_margin="10dip" />
 
             <TextView
                 android:id="@+id/msrp_key"

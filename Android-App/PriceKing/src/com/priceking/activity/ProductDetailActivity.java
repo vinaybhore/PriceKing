@@ -9,8 +9,6 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.CalendarContract;
@@ -86,20 +84,40 @@ public class ProductDetailActivity extends BaseActivity {
 
 		if (product != null) {
 			nameTextView.setText(product.getName());
-			if (product.getThumbnailBlob() != null) {
-				thumbnailImageView.setImageDrawable(new BitmapDrawable(
-						BitmapFactory.decodeByteArray(
-								product.getThumbnailBlob(), 0,
-								product.getThumbnailBlob().length)));
+			if (ApplicationEx.productImages.containsKey(product
+					.getThumbnailImage())
+					&& ApplicationEx.productImages.get(product
+							.getThumbnailImage()) != null) {
+
+				thumbnailImageView.setImageDrawable(ApplicationEx.productImages
+						.get(product.getThumbnailImage()));
 			} else {
 				thumbnailImageView.setImageResource(R.drawable.noimage);
 			}
 
-			if (product.getCustomerRatingBlob() != null) {
-				ratingImageView.setImageDrawable(new BitmapDrawable(
-						BitmapFactory.decodeByteArray(
-								product.getCustomerRatingBlob(), 0,
-								product.getCustomerRatingBlob().length)));
+			if (product.getCustomerRating() > 0
+					&& product.getCustomerRating() < 1.1) {
+				ratingImageView.setImageDrawable(getResources().getDrawable(
+						R.drawable.one_star));
+			} else if (product.getCustomerRating() > 1
+					&& product.getCustomerRating() < 2.1) {
+				ratingImageView.setImageDrawable(getResources().getDrawable(
+						R.drawable.two_star));
+			} else if (product.getCustomerRating() > 2
+					&& product.getCustomerRating() < 3.1) {
+				ratingImageView.setImageDrawable(getResources().getDrawable(
+						R.drawable.three_star));
+			} else if (product.getCustomerRating() > 3
+					&& product.getCustomerRating() < 4.1) {
+				ratingImageView.setImageDrawable(getResources().getDrawable(
+						R.drawable.four_star));
+			} else if (product.getCustomerRating() > 4
+					&& product.getCustomerRating() < 5.1) {
+				ratingImageView.setImageDrawable(getResources().getDrawable(
+						R.drawable.five_star));
+			} else {
+				ratingImageView.setImageDrawable(getResources().getDrawable(
+						R.drawable.four_star));
 			}
 
 			msrpTextView.setText(PriceKingUtils.formatCurrencyUSD(product

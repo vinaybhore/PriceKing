@@ -11,12 +11,19 @@ import android.widget.EditText;
 import com.google.analytics.tracking.android.EasyTracker;
 import com.priceking.ApplicationEx;
 import com.priceking.R;
+import com.priceking.entity.User;
+import com.priceking.services.SignUpService;
+import com.priceking.services.SignUpService.SignUpServiceListener;
+import com.priceking.utils.PriceKingUtils;
 
-public class SignInActivity extends BaseActivity {
+public class SignInActivity extends BaseActivity implements
+		SignUpServiceListener {
 	private Button signInButton;
 	private Button signUpButton;
 	private EditText emailEditText;
 	private EditText passwordEditText;
+	private String userName;
+	private String passsword;
 	private SharedPreferences.Editor prefEditor;
 
 	/**
@@ -48,17 +55,9 @@ public class SignInActivity extends BaseActivity {
 			Intent intent = null;
 			switch (id) {
 			case R.id.sign_in:
-				String userName = emailEditText.getText().toString();
-				prefEditor = ApplicationEx.sharedPreference.edit();
-				prefEditor.putString(
-						getResources().getString(R.string.app_user_name),
-						userName).commit();
-				ApplicationEx.isLoggedIn = true;
-				ApplicationEx.userName = userName;
-				intent = new Intent(SignInActivity.this, HomeActivity.class);
-				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-				startActivity(intent);
-
+				userName = emailEditText.getText().toString();
+				passsword = passwordEditText.getText().toString();
+				getSignIn();
 				break;
 			case R.id.create_account:
 				intent = new Intent(SignInActivity.this, SignUpActivity.class);
@@ -72,6 +71,19 @@ public class SignInActivity extends BaseActivity {
 
 		}
 	};
+
+	/**
+	 * Sign In Service
+	 */
+	private void getSignIn() {
+		User user = new User();
+		user.setUsername(userName);
+		user.setPassword(passsword);
+		SignUpService service = new SignUpService(SignInActivity.this, user,
+				"sign_in");
+		service.setListener(this);
+		ApplicationEx.operationsQueue.execute(service);
+	}
 
 	@Override
 	protected void onStart() {
@@ -89,6 +101,26 @@ public class SignInActivity extends BaseActivity {
 		 * Stop Google Analytics Tracking
 		 */
 		EasyTracker.getInstance(this).activityStop(this);
+	}
+
+	@Override
+	public void onSignUpFinished() {
+		prefEditor = ApplicationEx.sharedPreference.edit();
+		prefEditor.putString(getResources().getString(R.string.app_user_name),
+				userName).commit();
+		ApplicationEx.isLoggedIn = true;
+		ApplicationEx.userName = userName;
+		Intent intent = new Intent(SignInActivity.this, HomeActivity.class);
+		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		startActivity(intent);
+
+	}
+
+	@Override
+	public void onSignUpFailed(int error, String message) {
+		PriceKingUtils.showToast(SignInActivity.this,
+				"Invalid Credentials. Please try again");
+
 	}
 
 }

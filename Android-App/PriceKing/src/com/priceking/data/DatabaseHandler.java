@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.priceking.entity.Coupon;
 import com.priceking.entity.Product;
 
 /**
@@ -21,7 +22,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	/**
 	 * Database Version
 	 */
-	private static final int DATABASE_VERSION = 5;
+	private static final int DATABASE_VERSION = 9;
 	/**
 	 * Database Name
 	 */
@@ -40,6 +41,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	public static final String TABLE_RECENTLY_VIEWED = "recently_viewed";
 	public static final String TABLE_WISH_LIST = "wish_list";
 	public static final String TABLE_ADVERTISEMENT = "advertisement";
+	public static final String TABLE_COUPON = "coupon";
 	private static final String KEY_PRODUCT_NAME = "NAME";
 	private static final String KEY_MSRP = "MSRP";
 	private static final String KEY_SALE_PRICE = "SALE_PRICE";
@@ -48,9 +50,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	private static final String KEY_THUMBNAIL_IMAGE = "THUMBNAIL_IMAGE";
 	private static final String KEY_PRODUCT_URL = "PRODUCT_URL";
 	private static final String KEY_CUSTOMER_RATING = "CUSTOMER_RATING";
-	private static final String KEY_CUSTOMER_RATING_IMAGE = "CUSTOMER_RATING_IMAGE";
 	private static final String KEY_THUMBNAIL_BLOB = "THUMBNAIL_BLOB";
-	private static final String KEY_CUSTOMER_RATING_BLOB = "CUSTOMER_RATING_BLOB";
+
+	/**
+	 * Fields for Coupon Table
+	 */
+	private static final String KEY_COUPON_TITLE = "COUPON_TITLE";
+	private static final String KEY_COUPON_THUMBNAIL_IMAGE = "COUPON_THUMBNAIL_IMAGE";
+	private static final String KEY_IS_NOW_DEAL = "IS_NOW_DEAL";
+	private static final String KEY_DEAL_URL = "DEAL_URL";
+	private static final String KEY_COUPON_THUMBNAIL_BLOB = "COUPON_THUMBNAIL_BLOB";
 
 	/**
 	 * User Fields
@@ -80,8 +89,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 				+ " INTEGER," + KEY_CATEGORY + " TEXT," + KEY_SHORT_DESCRIPTION
 				+ " TEXT," + KEY_THUMBNAIL_IMAGE + " TEXT," + KEY_PRODUCT_URL
 				+ " TEXT," + KEY_CUSTOMER_RATING + " INTEGER,"
-				+ KEY_CUSTOMER_RATING_IMAGE + " TEXT," + KEY_THUMBNAIL_BLOB
-				+ " BLOB," + KEY_CUSTOMER_RATING_BLOB + " BLOB" + ")";
+				+ KEY_THUMBNAIL_BLOB + " BLOB" + ")";
 
 		/**
 		 * Creating Recently Viewed Items Table
@@ -92,9 +100,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 				+ KEY_MSRP + " INTEGER," + KEY_SALE_PRICE + " INTEGER,"
 				+ KEY_CATEGORY + " TEXT," + KEY_SHORT_DESCRIPTION + " TEXT,"
 				+ KEY_THUMBNAIL_IMAGE + " TEXT," + KEY_PRODUCT_URL + " TEXT,"
-				+ KEY_CUSTOMER_RATING + " INTEGER," + KEY_CUSTOMER_RATING_IMAGE
-				+ " TEXT," + KEY_THUMBNAIL_BLOB + " BLOB,"
-				+ KEY_CUSTOMER_RATING_BLOB + " BLOB" + ")";
+				+ KEY_CUSTOMER_RATING + " INTEGER," + KEY_THUMBNAIL_BLOB
+				+ " BLOB" + ")";
 
 		/**
 		 * Creating Wish List Table
@@ -105,9 +112,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 				+ KEY_SALE_PRICE + " INTEGER," + KEY_CATEGORY + " TEXT,"
 				+ KEY_SHORT_DESCRIPTION + " TEXT," + KEY_THUMBNAIL_IMAGE
 				+ " TEXT," + KEY_PRODUCT_URL + " TEXT," + KEY_CUSTOMER_RATING
-				+ " INTEGER," + KEY_CUSTOMER_RATING_IMAGE + " TEXT,"
-				+ KEY_THUMBNAIL_BLOB + " BLOB," + KEY_CUSTOMER_RATING_BLOB
-				+ " BLOB" + ")";
+				+ " INTEGER," + KEY_THUMBNAIL_BLOB + " BLOB" + ")";
 
 		/**
 		 * Creating Advertisement Table
@@ -118,14 +123,22 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 				+ KEY_SALE_PRICE + " INTEGER," + KEY_CATEGORY + " TEXT,"
 				+ KEY_SHORT_DESCRIPTION + " TEXT," + KEY_THUMBNAIL_IMAGE
 				+ " TEXT," + KEY_PRODUCT_URL + " TEXT," + KEY_CUSTOMER_RATING
-				+ " INTEGER," + KEY_CUSTOMER_RATING_IMAGE + " TEXT,"
-				+ KEY_THUMBNAIL_BLOB + " BLOB," + KEY_CUSTOMER_RATING_BLOB
-				+ " BLOB" + ")";
+				+ " INTEGER," + KEY_THUMBNAIL_BLOB + " BLOB" + ")";
+
+		/**
+		 * Creating Coupon Table
+		 */
+		String CREATE_COUPON_TABLE = "CREATE TABLE " + TABLE_COUPON + "("
+				+ KEY_ID + " INTEGER PRIMARY KEY," + KEY_COUPON_TITLE
+				+ " TEXT," + KEY_COUPON_THUMBNAIL_IMAGE + " TEXT,"
+				+ KEY_IS_NOW_DEAL + " INTEGER," + KEY_DEAL_URL + " TEXT,"
+				+ KEY_COUPON_THUMBNAIL_BLOB + " BLOB" + ")";
 
 		db.execSQL(CREATE_PRODUCT_TABLE);
 		db.execSQL(CREATE_RECENTLY_VIEWED_TABLE);
 		db.execSQL(CREATE_WISH_LIST_TABLE);
 		db.execSQL(CREATE_ADVERTISEMENT_TABLE);
+		db.execSQL(CREATE_COUPON_TABLE);
 	}
 
 	@Override
@@ -137,6 +150,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		db.execSQL("DROP TABLE IF EXISTS " + TABLE_RECENTLY_VIEWED);
 		db.execSQL("DROP TABLE IF EXISTS " + TABLE_WISH_LIST);
 		db.execSQL("DROP TABLE IF EXISTS " + TABLE_ADVERTISEMENT);
+		db.execSQL("DROP TABLE IF EXISTS " + TABLE_COUPON);
 
 		/**
 		 * Create tables again
@@ -191,6 +205,17 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	}
 
 	/**
+	 * Deletes all wish list elements based on user
+	 * 
+	 * @param TABLE_NAME
+	 */
+	public void deleteWishListTableEntries(String TABLE_NAME, String userEmail) {
+		int rows = m_db.delete(TABLE_NAME, KEY_USER_EMAIL + "=?",
+				new String[] { userEmail });
+		System.out.println("****deleted rows******" + rows);
+	}
+
+	/**
 	 * Deletes all table entries of the table with given Table Name.
 	 * 
 	 * @param TABLE_NAME
@@ -206,16 +231,32 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		try {
 			ContentValues values = new ContentValues();
 
-			if (productImage.contains("CustRating")) {
-				values.put(KEY_CUSTOMER_RATING_BLOB, imageBlob);
-				db.update(TABLE_NAME, values, KEY_CUSTOMER_RATING_IMAGE + "=?",
-						new String[] { productImage });
-			} else {
-				values.put(KEY_THUMBNAIL_BLOB, imageBlob);
-				db.update(TABLE_NAME, values, KEY_THUMBNAIL_IMAGE + "=?",
-						new String[] { productImage });
+			values.put(KEY_THUMBNAIL_BLOB, imageBlob);
+			db.update(TABLE_NAME, values, KEY_THUMBNAIL_IMAGE + "=?",
+					new String[] { productImage });
 
-			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			db.close();
+		}
+	}
+
+	/**
+	 * Update Deals Table
+	 * 
+	 * @param TABLE_NAME
+	 * @param productImage
+	 * @param imageBlob
+	 */
+	public void updateDealsTable(String TABLE_NAME, String dealsImage,
+			byte[] imageBlob) {
+		SQLiteDatabase db = this.getWritableDatabase();
+		try {
+			ContentValues values = new ContentValues();
+			values.put(KEY_COUPON_THUMBNAIL_BLOB, imageBlob);
+			db.update(TABLE_NAME, values, KEY_COUPON_THUMBNAIL_IMAGE + "=?",
+					new String[] { dealsImage });
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -237,9 +278,26 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		values.put(KEY_THUMBNAIL_IMAGE, product.getThumbnailImage());
 		values.put(KEY_PRODUCT_URL, product.getProductURL());
 		values.put(KEY_CUSTOMER_RATING, product.getCustomerRating());
-		values.put(KEY_CUSTOMER_RATING_IMAGE, product.getCustomerRatingImage());
 		values.put(KEY_THUMBNAIL_BLOB, product.getThumbnailBlob());
-		values.put(KEY_CUSTOMER_RATING_BLOB, product.getCustomerRatingBlob());
+		long result = db.insert(TABLE_NAME, null, values);
+		System.out.println("Product Insertion Result" + result);
+		db.close();
+	}
+
+	/**
+	 * Adds Coupon to Database.
+	 */
+	public void addCoupon(String TABLE_NAME, Coupon coupon) {
+		SQLiteDatabase db = this.getWritableDatabase();
+		ContentValues values = new ContentValues();
+		values.put(KEY_COUPON_TITLE, coupon.getTitle());
+		values.put(KEY_COUPON_THUMBNAIL_IMAGE, coupon.getThumbnailImage());
+		if (coupon.isNowDeal())
+			values.put(KEY_IS_NOW_DEAL, 1);
+		else
+			values.put(KEY_IS_NOW_DEAL, 0);
+		values.put(KEY_DEAL_URL, coupon.getDealURL());
+		values.put(KEY_COUPON_THUMBNAIL_BLOB, coupon.getThumbnailBlob());
 		long result = db.insert(TABLE_NAME, null, values);
 		System.out.println("Product Insertion Result" + result);
 		db.close();
@@ -260,9 +318,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		values.put(KEY_THUMBNAIL_IMAGE, product.getThumbnailImage());
 		values.put(KEY_PRODUCT_URL, product.getProductURL());
 		values.put(KEY_CUSTOMER_RATING, product.getCustomerRating());
-		values.put(KEY_CUSTOMER_RATING_IMAGE, product.getCustomerRatingImage());
 		values.put(KEY_THUMBNAIL_BLOB, product.getThumbnailBlob());
-		values.put(KEY_CUSTOMER_RATING_BLOB, product.getCustomerRatingBlob());
 		long result = db.insert(DatabaseHandler.TABLE_WISH_LIST, null, values);
 		System.out.println("Added to WishList" + result);
 		db.close();
@@ -340,12 +396,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 						.getColumnIndex(DatabaseHandler.KEY_PRODUCT_URL)));
 				product.setCustomerRating(cursor.getDouble(cursor
 						.getColumnIndex(DatabaseHandler.KEY_CUSTOMER_RATING)));
-				product.setCustomerRatingImage(cursor.getString(cursor
-						.getColumnIndex(DatabaseHandler.KEY_CUSTOMER_RATING_IMAGE)));
 				product.setThumbnailBlob(cursor.getBlob(cursor
 						.getColumnIndex(DatabaseHandler.KEY_THUMBNAIL_BLOB)));
-				product.setCustomerRatingBlob(cursor.getBlob(cursor
-						.getColumnIndex(DatabaseHandler.KEY_CUSTOMER_RATING_BLOB)));
 				productList.add(product);
 			} while (cursor.moveToNext());
 		}
@@ -356,11 +408,46 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 	/**
 	 * 
+	 * @return Coupon list from database.
+	 */
+	public List<Coupon> getCouponList(String TABLE_NAME) {
+
+		List<Coupon> couponList = new ArrayList<Coupon>();
+		String selectQuery = "SELECT  * FROM " + TABLE_NAME;
+		SQLiteDatabase db = this.getWritableDatabase();
+
+		Cursor cursor = db.rawQuery(selectQuery, null);
+		if (cursor.moveToFirst()) {
+			do {
+				Coupon coupon = new Coupon();
+				coupon.setTitle(cursor.getString(cursor
+						.getColumnIndex(DatabaseHandler.KEY_COUPON_TITLE)));
+				coupon.setThumbnailImage(cursor.getString(cursor
+						.getColumnIndex(DatabaseHandler.KEY_COUPON_THUMBNAIL_IMAGE)));
+				if (Integer.parseInt(cursor.getString(cursor
+						.getColumnIndex(DatabaseHandler.KEY_IS_NOW_DEAL))) == 1)
+					coupon.setNowDeal(true);
+				else
+					coupon.setNowDeal(false);
+				coupon.setDealURL(cursor.getString(cursor
+						.getColumnIndex(DatabaseHandler.KEY_DEAL_URL)));
+				coupon.setThumbnailBlob(cursor.getBlob(cursor
+						.getColumnIndex(DatabaseHandler.KEY_COUPON_THUMBNAIL_BLOB)));
+				couponList.add(coupon);
+			} while (cursor.moveToNext());
+		}
+		cursor.close();
+		db.close();
+		return couponList;
+	}
+
+	/**
+	 * 
 	 * @return User Wish List from database.
 	 */
-	public List<Product> getMyWishList(String userEmail) {
+	public ArrayList<Product> getMyWishList(String userEmail) {
 
-		List<Product> wishList = new ArrayList<Product>();
+		ArrayList<Product> wishList = new ArrayList<Product>();
 		SQLiteDatabase db = this.getWritableDatabase();
 		Cursor cursor = db.rawQuery(
 				"select * from wish_list where USER_EMAIL=?",
@@ -385,12 +472,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 						.getColumnIndex(DatabaseHandler.KEY_PRODUCT_URL)));
 				product.setCustomerRating(cursor.getDouble(cursor
 						.getColumnIndex(DatabaseHandler.KEY_CUSTOMER_RATING)));
-				product.setCustomerRatingImage(cursor.getString(cursor
-						.getColumnIndex(DatabaseHandler.KEY_CUSTOMER_RATING_IMAGE)));
 				product.setThumbnailBlob(cursor.getBlob(cursor
 						.getColumnIndex(DatabaseHandler.KEY_THUMBNAIL_BLOB)));
-				product.setCustomerRatingBlob(cursor.getBlob(cursor
-						.getColumnIndex(DatabaseHandler.KEY_CUSTOMER_RATING_BLOB)));
 				wishList.add(product);
 			} while (cursor.moveToNext());
 		}

@@ -1,13 +1,10 @@
 package com.priceking.services;
 
-import java.net.URLEncoder;
-
 import org.json.JSONObject;
 
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
-import android.text.TextUtils;
 import android.util.Log;
 
 import com.priceking.entity.User;
@@ -34,14 +31,14 @@ public class SignUpService implements Runnable {
 	private String jsonResponse;
 	private int statusCode;
 	private Context context;
-	private String query;
 	private User user;
+	private String type = "";
 	private String inputdata = "";
 
-	public SignUpService(Context context, String query, User user) {
+	public SignUpService(Context context, User user, String type) {
 		this.context = context;
-		this.query = query;
 		this.user = user;
+		this.type = type;
 	}
 
 	/**
@@ -50,16 +47,24 @@ public class SignUpService implements Runnable {
 	public void run() {
 		Message message = new Message();
 		try {
-			this.query = URLEncoder.encode(query, "utf-8");
-			SIGN_UP_URL = Services.PRODUCT_API_URL + query + Services.FORMAT
-					+ Services.API_KEY;
+			if (type.equalsIgnoreCase("sign_up")) {
+				SIGN_UP_URL = Services.SIGN_UP_URL;
+			} else {
+				SIGN_UP_URL = Services.SIGN_IN_URL;
+			}
 			HTTPRequest request = new HTTPRequest(SIGN_UP_URL, context);
 			request.addHeader("Content-Type", "application/json");
-			//request.addHeader("Content-Encoding", "gzip");
+			// request.addHeader("Content-Encoding", "gzip");
 			request.addHeader("Accept", "application/json");
 
-			JSONObject userJSONObject = user.serializeJSON();
-			inputdata = userJSONObject.toString();
+			JSONObject userJSONObject = null;
+			if (type.equalsIgnoreCase("sign_up")) {
+				userJSONObject = user.serializeJSON();
+				inputdata = userJSONObject.toString();
+			} else {
+				userJSONObject = user.serializeSignIn();
+				inputdata = userJSONObject.toString();
+			}
 
 			request.setInputData(inputdata);
 
@@ -82,13 +87,9 @@ public class SignUpService implements Runnable {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case Constants.PriceKingDialogCodes.SUCCESS:
-				if (!TextUtils.isEmpty(jsonResponse)) {
-					listener.onSignUpFinished();
-				} else {
-					listener.onSignUpFailed(
-							Constants.PriceKingDialogCodes.NETWORK_ERROR,
-							Constants.PriceKingDialogMessages.NETWORK_ERROR);
-				}
+				System.out
+						.println("**************************Success***************************");
+				listener.onSignUpFinished();
 				break;
 			case Constants.PriceKingDialogCodes.DATA_NOT_FOUND:
 				listener.onSignUpFailed(

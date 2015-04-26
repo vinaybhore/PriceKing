@@ -62,8 +62,7 @@ public class RetrieveProductService implements Runnable {
 
 		Message message = new Message();
 		try {
-			RETRIEVE_PRODUCT_URL = Services.PRODUCT_API_URL + query
-					+ Services.FORMAT + Services.API_KEY;
+			RETRIEVE_PRODUCT_URL = Services.PRODUCT_API_URL + query;
 			HTTPRequest request = new HTTPRequest(RETRIEVE_PRODUCT_URL, context);
 			Log.d("Product Service", "URL::" + RETRIEVE_PRODUCT_URL);
 			statusCode = request.execute(HTTPRequest.RequestMethod.GET);
@@ -147,26 +146,16 @@ public class RetrieveProductService implements Runnable {
 			db.openInternalDB();
 			db.deleteAllTableEntries(DatabaseHandler.TABLE_PRODUCT);
 
-			JSONObject jsonObject = new JSONObject(jsonResponse);
 			JSONObject myProductObject = null;
+			JSONArray productArray = new JSONArray(response);
 
-			if (jsonObject.has("items")) {
-				JSONArray productArray = jsonObject.getJSONArray("items");
-
-				for (int i = 0; i < productArray.length(); i++) {
-					Product product = new Product();
-					myProductObject = productArray.getJSONObject(i);
-					product.deserializeJSON(myProductObject);
-					productList.add(product);
-					db.addProduct(DatabaseHandler.TABLE_PRODUCT, product);
-				}
-			} else {
-				listener.onRetrieveProductFailed(
-						Constants.PriceKingDialogCodes.DATA_NOT_FOUND,
-						Constants.PriceKingDialogMessages.NOT_FOUND);
-
+			for (int i = 0; i < productArray.length(); i++) {
+				Product product = new Product();
+				myProductObject = productArray.getJSONObject(i);
+				product.deserializeJSON(myProductObject);
+				productList.add(product);
+				db.addProduct(DatabaseHandler.TABLE_PRODUCT, product);
 			}
-
 			return productList;
 		} catch (JSONException e) {
 			e.printStackTrace();

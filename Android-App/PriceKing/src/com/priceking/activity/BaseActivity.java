@@ -59,12 +59,17 @@ public class BaseActivity extends Activity {
 		mMenuDrawer.setMenuView(R.layout.activity_sliding_menu);
 		mMenuDrawer.setMenuSize(1000);
 
+	}
+
+	@Override
+	protected void onResume() {
 		// Set Category List on Slider Menu
 		listView = (ListView) findViewById(R.id.list);
 		adapter = new CategoryAdapter(this, PriceKingUtils.getCategoryList());
 		listView.setDrawSelectorOnTop(true);
 		listView.setAdapter(adapter);
 		listView.setOnItemClickListener(onItemClickListner);
+		super.onResume();
 	}
 
 	/**
@@ -153,9 +158,9 @@ public class BaseActivity extends Activity {
 					startActivity(intent);
 				}
 			} else if (selectedCategory
-					.equalsIgnoreCase(Constants.Categories.ORDERS_CATEGORY)) {
-				if (!(BaseActivity.this instanceof OrdersActivity)) {
-					intent = new Intent(BaseActivity.this, OrdersActivity.class);
+					.equalsIgnoreCase(Constants.Categories.DEALS_CATEGORY)) {
+				if (!(BaseActivity.this instanceof DealsActivity)) {
+					intent = new Intent(BaseActivity.this, DealsActivity.class);
 					intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 					startActivity(intent);
 				}
@@ -186,6 +191,8 @@ public class BaseActivity extends Activity {
 					intent = new Intent(BaseActivity.this, HomeActivity.class);
 					intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 					startActivity(intent);
+				} else {
+					onResume();
 				}
 			}
 
@@ -275,11 +282,14 @@ public class BaseActivity extends Activity {
 						.getDrawable(R.drawable.favorite));
 			else if (position == 4)
 				activitiesViewHolder.imageView.setImageDrawable(getResources()
-						.getDrawable(R.drawable.orders));
+						.getDrawable(R.drawable.gift));
 			else if (position == 5)
 				activitiesViewHolder.imageView.setImageDrawable(getResources()
 						.getDrawable(R.drawable.contact));
-			else if (position == 6)
+			else if (position == 6 && ApplicationEx.isLoggedIn)
+				activitiesViewHolder.imageView.setImageDrawable(getResources()
+						.getDrawable(R.drawable.signout));
+			else if (position == 6 && !ApplicationEx.isLoggedIn)
 				activitiesViewHolder.imageView.setImageDrawable(getResources()
 						.getDrawable(R.drawable.signin));
 			convertView.setTag(activitiesViewHolder);

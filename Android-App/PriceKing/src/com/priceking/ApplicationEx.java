@@ -1,13 +1,16 @@
 package com.priceking;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 
 import com.priceking.entity.Categories;
@@ -82,6 +85,26 @@ public class ApplicationEx extends android.app.Application {
 	 */
 	public static List<Categories> categoryList;
 
+	/**
+	 * Current location Latitude
+	 */
+	public static double latitude = 37.3382;
+
+	/**
+	 * Current location longitude
+	 */
+	public static double longitude = -121.8863;
+
+	/**
+	 * Map for Product Images
+	 */
+	public static Map<String, Drawable> productImages;
+
+	// /**
+	// * Map for Advertisements Images
+	// */
+	// public static Map<String, Drawable> advertisementImages;
+
 	// be saved as WeakReference or
 	// SoftReference
 
@@ -115,6 +138,10 @@ public class ApplicationEx extends android.app.Application {
 		 * Set Category List
 		 */
 		PriceKingUtils.setCategoriesList();
+
+		productImages = new HashMap<String, Drawable>();
+
+//		advertisementImages = new HashMap<String, Drawable>();
 
 	}
 

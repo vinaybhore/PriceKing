@@ -145,7 +145,7 @@ public class PriceKingUtils {
 		categoryList.add(Constants.Categories.RECENTLY_VIEWED_CATEGORY);
 		categoryList.add(Constants.Categories.STORES_CATEGORY);
 		categoryList.add(Constants.Categories.WISHLIST_CATEGORY);
-		categoryList.add(Constants.Categories.ORDERS_CATEGORY);
+		categoryList.add(Constants.Categories.DEALS_CATEGORY);
 		categoryList.add(Constants.Categories.CONTACT_US_CATEGORY);
 		if (ApplicationEx.isLoggedIn)
 			categoryList.add(Constants.Categories.SIGN_OUT_CATEGORY);
@@ -256,6 +256,10 @@ public class PriceKingUtils {
 		ApplicationEx.advertisementCategories.add("shoes");
 		ApplicationEx.advertisementCategories.add("perfumes");
 		ApplicationEx.advertisementCategories.add("sunglasses");
+		ApplicationEx.advertisementCategories.add("grocery");
+		ApplicationEx.advertisementCategories.add("cosmetics");
+		ApplicationEx.advertisementCategories.add("medicines");
+		ApplicationEx.advertisementCategories.add("pest control");
 
 	}
 
@@ -268,11 +272,15 @@ public class PriceKingUtils {
 		Integer[] icons = { R.drawable.icon_laptop, R.drawable.icon_cellphone,
 				R.drawable.icon_watch, R.drawable.icon_perfumes,
 				R.drawable.icon_jackets, R.drawable.icon_shoes,
-				R.drawable.icon_jeans };
+				R.drawable.sports, R.drawable.sunglasses, R.drawable.grocery,
+				R.drawable.cosmetics, R.drawable.medicines,
+				R.drawable.pest_control };
 
 		// Keep all Strings in array
 		String[] categories_array = { "Laptops", "Cell Phones",
-				"Wrist Watches", "Perfumes", "Jackets", "Shoes", "Jeans" };
+				"Wrist Watches", "Perfumes", "Jackets", "Shoes",
+				"Sports Utilities", "Sunglasses", "Grocery", "Cosmetics",
+				"Medicines", "Pest Control" };
 
 		for (int i = 0; i < icons.length; i++) {
 			Categories categories = new Categories();

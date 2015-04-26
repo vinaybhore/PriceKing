@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,19 +11,19 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.priceking.ApplicationEx;
 import com.priceking.R;
 import com.priceking.entity.Product;
 import com.priceking.utils.PriceKingUtils;
 
 /**
- * News Adapter that holds News list in a list view
+ * Product Adapter that holds product list in a list view
  * 
  * @author DEVEN
  * 
  */
 public class ProductListAdapter extends BaseAdapter {
 	private List<Product> productList = new ArrayList<Product>();
-	private int lastPosition = -1;
 	private Context context;
 	private String viewMode;
 
@@ -102,25 +100,56 @@ public class ProductListAdapter extends BaseAdapter {
 		productsViewHolder.salePrice.setText(PriceKingUtils
 				.formatCurrencyUSD(product.getSalePrice()));
 		productsViewHolder.category.setText(product.getCategory());
-		convertView.setTag(R.id.offer_id, product);
-		convertView.setTag(productsViewHolder);
 
-		if (product.getThumbnailBlob() != null) {
+		if (ApplicationEx.productImages
+				.containsKey(product.getThumbnailImage())
+				&& ApplicationEx.productImages.get(product.getThumbnailImage()) != null) {
+
 			productsViewHolder.thumbnailImage
-					.setImageDrawable(new BitmapDrawable(BitmapFactory
-							.decodeByteArray(product.getThumbnailBlob(), 0,
-									product.getThumbnailBlob().length)));
+					.setImageDrawable(ApplicationEx.productImages.get(product
+							.getThumbnailImage()));
 		} else {
 			productsViewHolder.thumbnailImage
 					.setImageResource(R.drawable.noimage);
 		}
 
-		if (product.getCustomerRatingBlob() != null) {
-			productsViewHolder.custRatingImage
-					.setImageDrawable(new BitmapDrawable(BitmapFactory
-							.decodeByteArray(product.getCustomerRatingBlob(),
-									0, product.getCustomerRatingBlob().length)));
+		// if (product.getThumbnailBlob() != null) {
+		// productsViewHolder.thumbnailImage
+		// .setImageDrawable(new BitmapDrawable(BitmapFactory
+		// .decodeByteArray(product.getThumbnailBlob(), 0,
+		// product.getThumbnailBlob().length)));
+		// } else {
+		// productsViewHolder.thumbnailImage
+		// .setImageResource(R.drawable.noimage);
+		// }
+
+		if (product.getCustomerRating() > 0
+				&& product.getCustomerRating() < 1.1) {
+			productsViewHolder.custRatingImage.setImageDrawable(context
+					.getResources().getDrawable(R.drawable.one_star));
+		} else if (product.getCustomerRating() > 1
+				&& product.getCustomerRating() < 2.1) {
+			productsViewHolder.custRatingImage.setImageDrawable(context
+					.getResources().getDrawable(R.drawable.two_star));
+		} else if (product.getCustomerRating() > 2
+				&& product.getCustomerRating() < 3.1) {
+			productsViewHolder.custRatingImage.setImageDrawable(context
+					.getResources().getDrawable(R.drawable.three_star));
+		} else if (product.getCustomerRating() > 3
+				&& product.getCustomerRating() < 4.1) {
+			productsViewHolder.custRatingImage.setImageDrawable(context
+					.getResources().getDrawable(R.drawable.four_star));
+		} else if (product.getCustomerRating() > 4
+				&& product.getCustomerRating() < 5.1) {
+			productsViewHolder.custRatingImage.setImageDrawable(context
+					.getResources().getDrawable(R.drawable.five_star));
+		} else {
+			productsViewHolder.custRatingImage.setImageDrawable(context
+					.getResources().getDrawable(R.drawable.four_star));
 		}
+
+		convertView.setTag(R.id.offer_id, product);
+		convertView.setTag(productsViewHolder);
 
 		return convertView;
 	}

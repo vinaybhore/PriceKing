@@ -96,6 +96,7 @@ public class ProductListActivity extends BaseActivity {
 		viewMode.setOnClickListener(onClickListener);
 		productListAdapter = new ProductListAdapter(productList, this, "list");
 		productListView.setAdapter(productListAdapter);
+
 		productListView.setOnItemClickListener(onItemClickListener);
 	}
 

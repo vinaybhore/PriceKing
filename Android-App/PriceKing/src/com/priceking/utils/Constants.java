@@ -50,7 +50,7 @@ public final class Constants {
 		public static final String RECENTLY_VIEWED_CATEGORY = "Recently Viewed Items";
 		public static final String STORES_CATEGORY = "Stores";
 		public static final String WISHLIST_CATEGORY = "Your Wish List";
-		public static final String ORDERS_CATEGORY = "Your Orders";
+		public static final String DEALS_CATEGORY = "Today's Deals";
 		public static final String CONTACT_US_CATEGORY = "Contact Us";
 		public static final String SIGN_IN_CATEGORY = "Sign In";
 		public static final String SIGN_OUT_CATEGORY = "Sign Out";

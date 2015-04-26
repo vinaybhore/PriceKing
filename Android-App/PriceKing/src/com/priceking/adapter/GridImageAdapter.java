@@ -14,7 +14,7 @@ public class GridImageAdapter extends BaseAdapter {
 
 	// Keep all Images in array
 	public Integer[] mThumbIds = { R.drawable.amazon, R.drawable.ebay,
-			R.drawable.target, R.drawable.walmart };
+			R.drawable.target, R.drawable.walmart, R.drawable.best_buy };
 
 	// Constructor
 	public GridImageAdapter(Context c) {

@@ -1,5 +1,6 @@
 package com.priceking.services;
 
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +48,6 @@ public class RetrieveAdvertisementsService implements Runnable {
 		this.context = context;
 		try {
 			this.query = URLEncoder.encode(query, "utf-8");
-			;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -62,8 +62,7 @@ public class RetrieveAdvertisementsService implements Runnable {
 
 		Message message = new Message();
 		try {
-			RETRIEVE_PRODUCT_URL = Services.PRODUCT_API_URL + query
-					+ Services.FORMAT + Services.API_KEY;
+			RETRIEVE_PRODUCT_URL = Services.PRODUCT_API_URL + query;
 			HTTPRequest request = new HTTPRequest(RETRIEVE_PRODUCT_URL, context);
 			Log.d("Product Service", "URL::" + RETRIEVE_PRODUCT_URL);
 			statusCode = request.execute(HTTPRequest.RequestMethod.GET);
@@ -147,24 +146,15 @@ public class RetrieveAdvertisementsService implements Runnable {
 			db.openInternalDB();
 			db.deleteAllTableEntries(DatabaseHandler.TABLE_ADVERTISEMENT);
 
-			JSONObject jsonObject = new JSONObject(jsonResponse);
+			JSONArray productArray = new JSONArray(response);
 			JSONObject myProductObject = null;
 
-			if (jsonObject.has("items")) {
-				JSONArray productArray = jsonObject.getJSONArray("items");
-
-				for (int i = 0; i < productArray.length(); i++) {
-					Product product = new Product();
-					myProductObject = productArray.getJSONObject(i);
-					product.deserializeJSON(myProductObject);
-					advertisementList.add(product);
-					db.addProduct(DatabaseHandler.TABLE_ADVERTISEMENT, product);
-				}
-			} else {
-				listener.onRetrieveAdvertisementFailed(
-						Constants.PriceKingDialogCodes.DATA_NOT_FOUND,
-						Constants.PriceKingDialogMessages.NOT_FOUND);
-
+			for (int i = 0; i < productArray.length(); i++) {
+				Product product = new Product();
+				myProductObject = productArray.getJSONObject(i);
+				product.deserializeJSON(myProductObject);
+				advertisementList.add(product);
+				db.addProduct(DatabaseHandler.TABLE_ADVERTISEMENT, product);
 			}
 
 			return advertisementList;

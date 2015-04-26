@@ -20,9 +20,7 @@ public class Product implements Entitiy, Parcelable {
 	private String thumbnailImage;
 	private String productURL;
 	private double customerRating;
-	private String customerRatingImage;
 	private byte[] thumbnailBlob;
-	private byte[] customerRatingBlob;
 
 	public Product() {
 
@@ -92,28 +90,12 @@ public class Product implements Entitiy, Parcelable {
 		this.customerRating = customerRating;
 	}
 
-	public String getCustomerRatingImage() {
-		return customerRatingImage;
-	}
-
-	public void setCustomerRatingImage(String customerRatingImage) {
-		this.customerRatingImage = customerRatingImage;
-	}
-
 	public byte[] getThumbnailBlob() {
 		return thumbnailBlob;
 	}
 
 	public void setThumbnailBlob(byte[] thumbnailBlob) {
 		this.thumbnailBlob = thumbnailBlob;
-	}
-
-	public byte[] getCustomerRatingBlob() {
-		return customerRatingBlob;
-	}
-
-	public void setCustomerRatingBlob(byte[] customerRatingBlob) {
-		this.customerRatingBlob = customerRatingBlob;
 	}
 
 	@Override
@@ -127,22 +109,21 @@ public class Product implements Entitiy, Parcelable {
 	@Override
 	public void deserializeJSON(JSONObject myProduct) throws Exception {
 
-		this.setName(myProduct.has("name") ? myProduct.getString("name") : "");
+		this.setName(myProduct.has("productName") ? myProduct
+				.getString("productName") : "");
 		this.setMsrp(myProduct.has("msrp") ? myProduct.getDouble("msrp") : 0);
-		this.setSalePrice(myProduct.has("salePrice") ? myProduct
-				.getDouble("salePrice") : 0);
-		this.setCategory(myProduct.has("categoryPath") ? myProduct
-				.getString("categoryPath") : "");
-		this.setShortDescription(myProduct.has("shortDescription") ? myProduct
-				.getString("shortDescription") : "");
+		this.setSalePrice(myProduct.has("price") ? myProduct.getDouble("price")
+				: 0);
+		this.setCategory(myProduct.has("productCategory") ? myProduct
+				.getString("productCategory") : "");
+		this.setShortDescription(myProduct.has("productDescription") ? myProduct
+				.getString("productDescription") : "");
 		this.setThumbnailImage(myProduct.has("thumbnailImage") ? myProduct
 				.getString("thumbnailImage") : "");
 		this.setProductURL(myProduct.has("productUrl") ? myProduct
 				.getString("productUrl") : "");
 		this.setCustomerRating(myProduct.has("customerRating") ? myProduct
 				.getDouble("customerRating") : 0.0);
-		this.setCustomerRatingImage(myProduct.has("customerRatingImage") ? myProduct
-				.getString("customerRatingImage") : "");
 
 	}
 
@@ -176,9 +157,7 @@ public class Product implements Entitiy, Parcelable {
 		out.writeString(thumbnailImage);
 		out.writeString(productURL);
 		out.writeDouble(customerRating);
-		out.writeString(customerRatingImage);
 		out.writeByteArray(thumbnailBlob);
-		out.writeByteArray(customerRatingBlob);
 
 	}
 
@@ -196,9 +175,7 @@ public class Product implements Entitiy, Parcelable {
 		thumbnailImage = in.readString();
 		productURL = in.readString();
 		customerRating = in.readDouble();
-		customerRatingImage = in.readString();
 		thumbnailBlob = new byte[in.readInt()];
-		customerRatingBlob = new byte[in.readInt()];
 	}
 
 	public static final Parcelable.Creator<Product> CREATOR = new Parcelable.Creator<Product>() {

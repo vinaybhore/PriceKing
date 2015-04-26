@@ -1,18 +1,23 @@
 package com.priceking.activity;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.TimeZone;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.CalendarContract;
+import android.provider.CalendarContract.Events;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.Html;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.GestureDetector.OnGestureListener;
@@ -25,6 +30,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -33,6 +39,7 @@ import android.widget.Toast;
 import com.google.analytics.tracking.android.EasyTracker;
 import com.priceking.ApplicationEx;
 import com.priceking.R;
+import com.priceking.data.DatabaseHandler;
 import com.priceking.entity.Product;
 import com.priceking.utils.PriceKingUtils;
 
@@ -58,6 +65,8 @@ public class RecentlyViewedDetailActivity extends BaseActivity implements
 
 	private RelativeLayout mainLayout;
 	private Button webSiteButton;
+
+	private DatabaseHandler db;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -350,20 +359,41 @@ public class RecentlyViewedDetailActivity extends BaseActivity implements
 
 			if (product != null) {
 				nameTextView.setText(product.getName());
-				if (product.getThumbnailBlob() != null) {
-					thumbnailImageView.setImageDrawable(new BitmapDrawable(
-							BitmapFactory.decodeByteArray(
-									product.getThumbnailBlob(), 0,
-									product.getThumbnailBlob().length)));
+				if (ApplicationEx.productImages.containsKey(product
+						.getThumbnailImage())
+						&& ApplicationEx.productImages.get(product
+								.getThumbnailImage()) != null) {
+
+					thumbnailImageView
+							.setImageDrawable(ApplicationEx.productImages
+									.get(product.getThumbnailImage()));
 				} else {
 					thumbnailImageView.setImageResource(R.drawable.noimage);
 				}
 
-				if (product.getCustomerRatingBlob() != null) {
-					ratingImageView.setImageDrawable(new BitmapDrawable(
-							BitmapFactory.decodeByteArray(
-									product.getCustomerRatingBlob(), 0,
-									product.getCustomerRatingBlob().length)));
+				if (product.getCustomerRating() > 0
+						&& product.getCustomerRating() < 1.1) {
+					ratingImageView.setImageDrawable(getResources()
+							.getDrawable(R.drawable.one_star));
+				} else if (product.getCustomerRating() > 1
+						&& product.getCustomerRating() < 2.1) {
+					ratingImageView.setImageDrawable(getResources()
+							.getDrawable(R.drawable.two_star));
+				} else if (product.getCustomerRating() > 2
+						&& product.getCustomerRating() < 3.1) {
+					ratingImageView.setImageDrawable(getResources()
+							.getDrawable(R.drawable.three_star));
+				} else if (product.getCustomerRating() > 3
+						&& product.getCustomerRating() < 4.1) {
+					ratingImageView.setImageDrawable(getResources()
+							.getDrawable(R.drawable.four_star));
+				} else if (product.getCustomerRating() > 4
+						&& product.getCustomerRating() < 5.1) {
+					ratingImageView.setImageDrawable(getResources()
+							.getDrawable(R.drawable.five_star));
+				} else {
+					ratingImageView.setImageDrawable(getResources()
+							.getDrawable(R.drawable.four_star));
 				}
 
 				msrpTextView.setText(PriceKingUtils.formatCurrencyUSD(product
@@ -387,6 +417,20 @@ public class RecentlyViewedDetailActivity extends BaseActivity implements
 							+ "</font>";
 					savingTextView.setText(Html.fromHtml(savingText));
 
+				}
+
+				if (!TextUtils.isEmpty(ApplicationEx.userName)) {
+					addToWishListButton.setVisibility(View.VISIBLE);
+					db = new DatabaseHandler(getApplicationContext());
+					db.openInternalDB();
+
+					if (db.isInWishList(ApplicationEx.userName,
+							product.getProductURL())) {
+						addToWishListButton.setText("Added to wish list");
+					}
+					db.close();
+				} else {
+					addToWishListButton.setVisibility(View.GONE);
 				}
 
 				getActionBar().setTitle("Product Details");
@@ -414,6 +458,53 @@ public class RecentlyViewedDetailActivity extends BaseActivity implements
 							Uri.parse(product.getProductURL()));
 					startActivity(myIntent);
 					break;
+				case R.id.add_to_wish_list:
+					try {
+						if (!TextUtils.isEmpty(ApplicationEx.userName)) {
+							addToWishListButton.setVisibility(View.VISIBLE);
+							db = new DatabaseHandler(getApplicationContext());
+							db.openInternalDB();
+							if (!db.isInWishList(ApplicationEx.userName,
+									product.getProductURL())) {
+								db.addToWishList(product,
+										ApplicationEx.userName);
+								addToWishListButton
+										.setText("Added to wish list");
+							} else {
+								PriceKingUtils.showToast(
+										RecentlyViewedDetailActivity.this,
+										"Already added to wish list");
+							}
+						} else {
+							addToWishListButton.setVisibility(View.GONE);
+						}
+					} catch (Exception e) {
+						e.printStackTrace();
+					} finally {
+						db.close();
+					}
+					break;
+				case R.id.add_to_calendar:
+					try {
+						Calendar cal = Calendar.getInstance(TimeZone
+								.getDefault());
+						DatePickerDialog datePicker = new DatePickerDialog(
+								RecentlyViewedDetailActivity.this,
+								datePickerListener, cal.get(Calendar.YEAR),
+								cal.get(Calendar.MONTH),
+								cal.get(Calendar.DAY_OF_MONTH));
+						datePicker.setCancelable(false);
+						datePicker.setTitle("Select the date");
+						datePicker.show();
+
+					} catch (Exception e) {
+						PriceKingUtils.showToast(
+								RecentlyViewedDetailActivity.this,
+								"An error occured while showing Date Picker\n\n"
+										+ " Error Details:\n" + e.toString());
+					}
+
+					break;
 				default:
 					break;
 				}
@@ -421,6 +512,43 @@ public class RecentlyViewedDetailActivity extends BaseActivity implements
 			}
 		};
 
+	}
+
+	/**
+	 * Date Picker Dialog
+	 */
+	private DatePickerDialog.OnDateSetListener datePickerListener = new DatePickerDialog.OnDateSetListener() {
+
+		// when dialog box is closed, below method will be called.
+		public void onDateSet(DatePicker view, int selectedYear,
+				int selectedMonth, int selectedDay) {
+			String year = String.valueOf(selectedYear);
+			String month = String.valueOf(selectedMonth + 1);
+			String day = String.valueOf(selectedDay);
+
+			addEventToCalendar(Integer.parseInt(year), Integer.parseInt(month),
+					Integer.parseInt(day));
+
+		}
+	};
+
+	/**
+	 * Add Event to Calendar
+	 */
+	public void addEventToCalendar(int year, int month, int day) {
+		Intent calIntent = new Intent(Intent.ACTION_INSERT);
+		calIntent.setType("vnd.android.cursor.item/event");
+		calIntent.putExtra(Events.TITLE, "Reminder: " + product.getName());
+		calIntent.putExtra(Events.DESCRIPTION, product.getShortDescription());
+
+		GregorianCalendar calDate = new GregorianCalendar(2012, 7, 15);
+		calIntent.putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, true);
+		calIntent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME,
+				calDate.getTimeInMillis());
+		calIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME,
+				calDate.getTimeInMillis());
+
+		startActivity(calIntent);
 	}
 
 	@Override
@@ -436,25 +564,25 @@ public class RecentlyViewedDetailActivity extends BaseActivity implements
 	public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
 			float velocityY) {
 		try {
-			if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MAX_OFF_PATH) {
+			// if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MAX_OFF_PATH) {
+			//
+			// return false;
+			// }
 
-				return false;
-			}
-
-			// right to left swipe
-			if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE
-					&& Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY
-					&& currentPage == (ApplicationEx.productList.size() - 1)) {
-
-				mPager.setCurrentItem(0, false);
-				return true;
-			} else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE
-					&& Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY
-					&& currentPage == 0) {
-				mPager.setCurrentItem(ApplicationEx.productList.size() - 1,
-						false);
-				return true;
-			}
+			// // right to left swipe
+			// if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE
+			// && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY
+			// && currentPage == (ApplicationEx.productList.size() - 1)) {
+			//
+			// mPager.setCurrentItem(0, false);
+			// return true;
+			// } else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE
+			// && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY
+			// && currentPage == 0) {
+			// mPager.setCurrentItem(ApplicationEx.productList.size() - 1,
+			// false);
+			// return true;
+			// }
 		} catch (Exception e) {
 			// e.printStackTrace();
 		}

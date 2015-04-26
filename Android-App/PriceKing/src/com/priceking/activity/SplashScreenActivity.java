@@ -1,13 +1,9 @@
 package com.priceking.activity;
 
-import java.io.ByteArrayOutputStream;
 import java.util.List;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,8 +19,6 @@ import com.priceking.services.RetrieveAdvertisementsService;
 import com.priceking.services.RetrieveAdvertisementsService.RetrieveAdvertisementServiceListener;
 import com.priceking.services.RetrieveImageService;
 import com.priceking.services.RetrieveImageService.RetrieveImageServiceListener;
-import com.priceking.services.RetrieveRatingImageService;
-import com.priceking.services.RetrieveRatingImageService.RetrieveRatingImageServiceListener;
 import com.priceking.utils.PriceKingUtils;
 
 /**
@@ -34,13 +28,12 @@ import com.priceking.utils.PriceKingUtils;
  * 
  */
 public class SplashScreenActivity extends Activity implements
-		RetrieveAdvertisementServiceListener, RetrieveImageServiceListener,
-		RetrieveRatingImageServiceListener {
+		RetrieveAdvertisementServiceListener, RetrieveImageServiceListener {
 
 	private static final int DELAY = 100;
 	private static final int START_HOME_ACTIVITY = 1;
 
-	//private ProgressDialog pd;
+	// private ProgressDialog pd;
 
 	// For Database
 	private DatabaseHandler db;
@@ -95,8 +88,8 @@ public class SplashScreenActivity extends Activity implements
 	 * Advertisment web service call
 	 */
 	private void getAdvertisements() {
+		// ApplicationEx.productImages.clear();
 		count = 0;
-		//pd = ProgressDialog.show(SplashScreenActivity.this, "", "Loading...");
 		RetrieveAdvertisementsService service = new RetrieveAdvertisementsService(
 				getApplicationContext(),
 				PriceKingUtils.getRandomAdvertisement());
@@ -117,27 +110,23 @@ public class SplashScreenActivity extends Activity implements
 		System.out.println("*****Reached Success*****");
 
 		for (int i = 0; i < advertisementList.size(); i++) {
+			count++;
 			Product advertisement = advertisementList.get(i);
-			if (!TextUtils.isEmpty(advertisement.getThumbnailImage()))
+			if (advertisement.getThumbnailImage() != null
+					|| !TextUtils.isEmpty(advertisement.getThumbnailImage()))
 				getImage(advertisement.getThumbnailImage());
 		}
 
 	}
 
 	private void getImage(String imageURL) {
-		RetrieveImageService service = new RetrieveImageService(
-				SplashScreenActivity.this);
-		service.setListener(this);
-		service.setImageURL(imageURL);
-		ApplicationEx.operationsQueue.execute(service);
-	}
-
-	private void getRatingImage(String imageURL) {
-		RetrieveRatingImageService service = new RetrieveRatingImageService(
-				SplashScreenActivity.this);
-		service.setListener(this);
-		service.setImageURL(imageURL);
-		ApplicationEx.operationsQueue.execute(service);
+		if (!ApplicationEx.productImages.containsKey(imageURL)) {
+			RetrieveImageService service = new RetrieveImageService(
+					SplashScreenActivity.this);
+			service.setListener(this);
+			service.setImageURL(imageURL);
+			ApplicationEx.operationsQueue.execute(service);
+		}
 	}
 
 	/*
@@ -149,8 +138,8 @@ public class SplashScreenActivity extends Activity implements
 	 */
 	@Override
 	public void onRetrieveAdvertisementFailed(int error, String message) {
-//		if (pd != null || pd.isShowing())
-//			pd.dismiss();
+		// if (pd != null || pd.isShowing())
+		// pd.dismiss();
 		mHandler.sendEmptyMessageDelayed(START_HOME_ACTIVITY, DELAY);
 
 	}
@@ -158,16 +147,24 @@ public class SplashScreenActivity extends Activity implements
 	@Override
 	public void onGetImageFinished(RetrieveImageService getImageService,
 			Drawable image) {
-		count++;
 		try {
-			db = new DatabaseHandler(SplashScreenActivity.this);
-			db.openInternalDB();
-			Bitmap bitmap = ((BitmapDrawable) image).getBitmap();
-			ByteArrayOutputStream stream = new ByteArrayOutputStream();
-			bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-			byte[] thumbnailBlob = stream.toByteArray();
-			db.updateProductTable(DatabaseHandler.TABLE_ADVERTISEMENT,
-					getImageService.getImageURL(), thumbnailBlob);
+			if (image != null) {
+				ApplicationEx.productImages.put(getImageService.getImageURL(),
+						image);
+			}
+
+			// db = new DatabaseHandler(SplashScreenActivity.this);
+			// db.openInternalDB();
+			// Bitmap bitmap = ((BitmapDrawable) image).getBitmap();
+			// ByteArrayOutputStream stream = new ByteArrayOutputStream();
+			// bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+			// byte[] thumbnailBlob = stream.toByteArray();
+			// db.updateProductTable(DatabaseHandler.TABLE_ADVERTISEMENT,
+			// getImageService.getImageURL(), thumbnailBlob);
+			// stream.flush();
+			// bitmap.recycle();
+			// thumbnailBlob = null;
+			// db.close();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -177,65 +174,44 @@ public class SplashScreenActivity extends Activity implements
 
 		if (count == ApplicationEx.advertisementList.size()) {
 			count = 0;
-			db.close();
-			ratingCount = 0;
-			for (int i = 0; i < ApplicationEx.advertisementList.size(); i++) {
-				Product advertisement = ApplicationEx.advertisementList.get(i);
-				if (!TextUtils.isEmpty(advertisement.getCustomerRatingImage())) {
-					ratingCount++;
-					getRatingImage(advertisement.getCustomerRatingImage());
-				}
-			}
-
-		}
-
-	}
-
-	@Override
-	public void onGetImageFailed(RetrieveImageService getImageService,
-			String error) {
-//		if (pd != null || pd.isShowing())
-//			pd.dismiss();
-		mHandler.sendEmptyMessageDelayed(START_HOME_ACTIVITY, DELAY);
-	}
-
-	@Override
-	public void onGetRatingImageFinished(
-			RetrieveRatingImageService getImageService, Drawable image) {
-		count++;
-		try {
-			db = new DatabaseHandler(SplashScreenActivity.this);
-			db.openInternalDB();
-			Bitmap bitmap = ((BitmapDrawable) image).getBitmap();
-			ByteArrayOutputStream stream = new ByteArrayOutputStream();
-			bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-			byte[] thumbnailBlob = stream.toByteArray();
-			db.updateProductTable(DatabaseHandler.TABLE_ADVERTISEMENT,
-					getImageService.getImageURL(), thumbnailBlob);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-
-		}
-
-		if (count == ratingCount) {
-			count = 0;
-			db.close();
-//			if (pd != null || pd.isShowing())
-//				pd.dismiss();
+			// saveImagesToSDCard();
 			mHandler.sendEmptyMessageDelayed(START_HOME_ACTIVITY, DELAY);
 		}
 
 	}
 
-	@Override
-	public void onGetRatingImageFailed(
-			RetrieveRatingImageService getImageService, String error) {
-//		if (pd != null || pd.isShowing())
-//			pd.dismiss();
-		mHandler.sendEmptyMessageDelayed(START_HOME_ACTIVITY, DELAY);
+	// public void saveImagesToSDCard() {
+	// File sdCardDirectory = Environment.getExternalStorageDirectory();
+	// // Create a new folder in SD Card
+	// File dir = new File(sdCardDirectory.getAbsolutePath() + "/PriceKing/");
+	// dir.mkdirs();
+	//
+	// for (Map.Entry<String, Drawable> entry : ApplicationEx.productImages
+	// .entrySet()) {
+	// Bitmap bitmap = ((BitmapDrawable) entry.getValue()).getBitmap();
+	// File image = new File(dir, entry.getKey() + ".png");
+	// // Encode the file as a PNG image.
+	// FileOutputStream outStream;
+	// try {
+	//
+	// outStream = new FileOutputStream(image);
+	// bitmap.compress(Bitmap.CompressFormat.PNG, 100, outStream);
+	// /* 100 to keep full quality of the image */
+	//
+	// outStream.flush();
+	// outStream.close();
+	// } catch (FileNotFoundException e) {
+	// e.printStackTrace();
+	// } catch (IOException e) {
+	// e.printStackTrace();
+	// }
+	// }
+	// }
 
+	@Override
+	public void onGetImageFailed(RetrieveImageService getImageService,
+			String error) {
+		mHandler.sendEmptyMessageDelayed(START_HOME_ACTIVITY, DELAY);
 	}
 
 	/**
@@ -259,6 +235,6 @@ public class SplashScreenActivity extends Activity implements
 			mHandler.removeMessages(START_HOME_ACTIVITY);
 		}
 		super.onBackPressed();
-	};
+	}
 
 }
