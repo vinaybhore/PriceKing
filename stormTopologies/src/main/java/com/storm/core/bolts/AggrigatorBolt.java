@@ -96,6 +96,21 @@ public class AggrigatorBolt extends BaseRichBolt{
 				}
 		*/	
 			}
+		}else if(input.getSourceStreamId().equalsIgnoreCase(Constants.SMALLBUSINESSRESULTSTREAM)){
+			this.collector.ack(input);
+			Log.info("got message from smallbusiness bolt:: "+input.toString());
+			if(input!=null){
+				//ArrayList<String>resultList = new ArrayList<String>();
+				Gson gson = new Gson();
+				//String result =controller.compareAndSort(input.getValueByField("rs").toString());
+				//producer.produce(result, "vinz1234");
+				producer.produce(input.getValueByField("rs").toString(), "vinz1234");
+		/*		for(Object obj:input.getValues()){
+					//resultList.add(gson.toJson(obj));
+					//aggregatorList.add(gson.toJson(obj));
+				}
+		*/	
+			}
 		}
 		
 		Gson gson = new Gson();

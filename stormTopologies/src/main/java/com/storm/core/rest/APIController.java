@@ -22,6 +22,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 
 import com.google.gson.Gson;
+import com.mongodb.BasicDBObject;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
+import com.mongodb.MongoClient;
 
 
 @Controller
@@ -130,6 +136,15 @@ public class APIController {
 						} else {
 							walmartResponse.setCustomerRating(0);
 						}
+						if(item.has("msrp")){
+							if(item.get("msrp").toString().isEmpty()){
+								walmartResponse.setMsrp(walmartResponse.getPrice());
+							}else{
+								walmartResponse.setMsrp(Double.parseDouble(item.get("msrp").toString()));
+							}
+						}else{
+							walmartResponse.setMsrp(walmartResponse.getPrice());
+						}
 
 						apiResponse.add(gson.toJson(walmartResponse));
 
@@ -174,6 +189,7 @@ public class APIController {
 		JSONArray searchResult = searchArray.getJSONArray("searchResult");
 		System.out.println(searchResult);
 		JSONObject itemObject = (JSONObject) searchResult.get(0);
+		if(itemObject.has("item")){
 		JSONArray items = itemObject.getJSONArray("item");
 		Gson gson = new Gson();
 		for(int i=0;i<items.length();i++){
@@ -199,6 +215,7 @@ public class APIController {
 				System.out.println(item.getJSONArray("title").get(0));
 				ebayResponse.setProductName(item.getJSONArray("title").get(0).toString());
 				ebayResponse.setPrice(Double.parseDouble(currentPriceObj.getString("__value__")));
+				ebayResponse.setMsrp(Double.parseDouble(currentPriceObj.getString("__value__")));
 				ebayResponse.setProductCategory(categoryNameArr.get(0).toString());
 				if(item.has("subtitle")){
 					ebayResponse.setProductDescription(item.getJSONArray("subtitle").get(0).toString());
@@ -215,7 +232,7 @@ public class APIController {
 				ebayResponse.setCustomerRating(0);
 				apiResponse.add(gson.toJson(ebayResponse));
 			}
-			
+		}
 			
 		}
 		
@@ -259,6 +276,7 @@ public class APIController {
 				System.out.println(item.get("name"));
 				bestBuyResponse.setProductName(item.get("name").toString());
 				bestBuyResponse.setPrice(Double.parseDouble(item.get("salePrice").toString()));
+				bestBuyResponse.setMsrp(Double.parseDouble(item.get("salePrice").toString()));
 				JSONArray categoryPath = item.getJSONArray("categoryPath");
 				String categorypath="";
 				if(categoryPath.length()>0){
@@ -288,6 +306,45 @@ public class APIController {
 		return apiResponse;
 	}
 	
+	public List<String> smallBusinessesCall(String searchKey) throws ClientProtocolException, IOException {
+		MongoClient mongoClient = MongoConnection.getNewMongoClient();
+
+		DB configDB = mongoClient.getDB("priceking");
+
+		DBCollection collec = configDB.getCollection("products");
+
+		DBObject findQuery = new BasicDBObject();
+
+		findQuery.put("productName", new BasicDBObject("$regex", searchKey).append("$options", "i"));
+		findQuery.put("isDeleted", false);
+
+		System.out.println(findQuery);
+
+		DBCursor productDoc = collec.find(findQuery);
+
+		ArrayList<String> apiResponse = new ArrayList<String>();
+
+		APIResponse databaseResponse;
+
+		Gson gson = new Gson();
+
+		while (productDoc.hasNext()) {
+			System.out.println("New Document for product:");
+			databaseResponse = new APIResponse();
+			DBObject product = productDoc.next();
+			databaseResponse.setProductName(product.get("productName").toString());
+			databaseResponse.setProductDescription(product.get("productDescription").toString());
+			databaseResponse.setPrice(Double.parseDouble(product.get("price").toString()));
+			databaseResponse.setProductCategory(product.get("productCategory").toString());
+			databaseResponse.setProductUrl("N/A");
+			databaseResponse.setCustomerRating(0.0);
+			databaseResponse.setThumbnailImage("N/A");
+			apiResponse.add(gson.toJson(databaseResponse));
+		}
+
+		return apiResponse;
+	}
+	
 	public String compareAndSort(String input) {
 		Gson gson = new Gson();
 		ArrayList<APIResponse> listToSort = new ArrayList<APIResponse>();
@@ -302,6 +359,7 @@ public class APIController {
 				response.setProductDescription(responseObj.getString("productDescription"));
 				response.setProductCategory(responseObj.getString("productCategory"));
 				response.setPrice(Double.parseDouble(responseObj.get("price").toString()));
+				response.setMsrp(Double.parseDouble(responseObj.get("msrp").toString()));
 				response.setProductUrl(responseObj.getString("productUrl"));
 				response.setThumbnailImage(responseObj.getString("thumbnailImage"));
 				response.setCustomerRating(Double.parseDouble(responseObj.get("customerRating").toString()));

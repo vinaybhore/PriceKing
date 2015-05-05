@@ -18,6 +18,7 @@ import backtype.storm.tuple.Fields;
 import com.storm.core.bolts.AggrigatorBolt;
 import com.storm.core.bolts.AmazonBolt;
 import com.storm.core.bolts.EbayBolt;
+import com.storm.core.bolts.SmallBusinessBolt;
 import com.storm.core.bolts.WalmartBolt;
 import com.storm.core.config.Constants;
 import com.storm.core.spouts.MobileRequestSpout;
@@ -66,7 +67,8 @@ public class SearchTopology {
         builder.setBolt(Constants.AMAZON_BOLT_ID, new AmazonBolt(),1).shuffleGrouping(Constants.MOBILE_REQUEST_SPOUT_ID);
         builder.setBolt(Constants.EBAY_BOLT_ID, new EbayBolt(),1).shuffleGrouping(Constants.MOBILE_REQUEST_SPOUT_ID);
         builder.setBolt(Constants.WALMART_BOLT_ID, new WalmartBolt(),1).shuffleGrouping(Constants.MOBILE_REQUEST_SPOUT_ID);
-        builder.setBolt(Constants.AGGRIGATOR_BOLT_ID, new AggrigatorBolt(),3).fieldsGrouping(Constants.AMAZON_BOLT_ID, Constants.AMAZONRESULTSTREAM, new Fields("rs")).fieldsGrouping(Constants.EBAY_BOLT_ID, Constants.EBAYRESULTSTREAM, new Fields("rs")).fieldsGrouping(Constants.WALMART_BOLT_ID, Constants.WALMARTRESULTSTREAM, new Fields("rs"));
+        builder.setBolt(Constants.SMALLBUSINESS_BOLT_ID, new SmallBusinessBolt(),1).shuffleGrouping(Constants.MOBILE_REQUEST_SPOUT_ID);
+        builder.setBolt(Constants.AGGRIGATOR_BOLT_ID, new AggrigatorBolt(),4).fieldsGrouping(Constants.AMAZON_BOLT_ID, Constants.AMAZONRESULTSTREAM, new Fields("rs")).fieldsGrouping(Constants.EBAY_BOLT_ID, Constants.EBAYRESULTSTREAM, new Fields("rs")).fieldsGrouping(Constants.WALMART_BOLT_ID, Constants.WALMARTRESULTSTREAM, new Fields("rs")).fieldsGrouping(Constants.SMALLBUSINESS_BOLT_ID, Constants.SMALLBUSINESSRESULTSTREAM, new Fields("rs"));
         
         return builder.createTopology();
     }

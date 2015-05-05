@@ -17,6 +17,7 @@ public class Constants {
 	public static final String EBAYRESULTSTREAM ="ebay_result_stream";
 	public static final String AMAZONRESULTSTREAM ="amazon_result_stream";
 	public static final String WALMARTRESULTSTREAM ="walmart_result_stream";
+	public static final String SMALLBUSINESSRESULTSTREAM ="smallbusiness_result_stream";
 
 	
 	//Kafka topic
@@ -28,6 +29,7 @@ public class Constants {
 	public static final String AMAZON_BOLT_ID ="amazon_bolt";
 	public static final String EBAY_BOLT_ID ="ebay_bolt";
 	public static final String WALMART_BOLT_ID ="walmart_bolt";
+	public static final String SMALLBUSINESS_BOLT_ID ="smallbusiness_bolt";
 	public static final String AGGRIGATOR_BOLT_ID ="aggrigator_bolt";
 	
 	//tick frequency

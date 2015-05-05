@@ -11,6 +11,7 @@ public class APIResponse implements Serializable{
 	private String productDescription;
 	private String productCategory;
 	private double price;
+	private double msrp;
 	private String thumbnailImage;
 	private double customerRating;
 	private String productUrl;
@@ -61,6 +62,18 @@ public class APIResponse implements Serializable{
 		double comparePrice=((APIResponse)response).getPrice();
         /* For Ascending order*/
         return  (int) (this.price-comparePrice);
+	}
+	/**
+	 * @return the msrp
+	 */
+	public double getMsrp() {
+		return msrp;
+	}
+	/**
+	 * @param msrp the msrp to set
+	 */
+	public void setMsrp(double msrp) {
+		this.msrp = msrp;
 	}
 	
 
